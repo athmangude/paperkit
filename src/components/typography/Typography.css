@@ -1,0 +1,182 @@
+/* Heading styles */
+.paper-heading {
+  font-family: var(--font-family);
+  font-weight: normal;
+  color: var(--ink-black);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.paper-heading--1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.paper-heading--2 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.paper-heading--3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Body text styles */
+.paper-body-text {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--ink-black);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+/* Link styles */
+.paper-link {
+  color: var(--ink-black);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition-normal);
+  font-family: var(--font-family);
+}
+
+.paper-link:hover {
+  color: var(--ink-gray);
+}
+
+.paper-link__external {
+  margin-left: var(--spacing-xs);
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+/* Wavy underline for headings */
+.wavy-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.wavy-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--ink-black),
+    var(--ink-black) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.wavy-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Hand-drawn underline for links */
+.hand-drawn-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.hand-drawn-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink-black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+  border-radius: 1px;
+}
+
+.hand-drawn-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Focus states */
+.paper-heading:focus,
+.paper-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .paper-heading--1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .paper-heading--2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .paper-heading--3 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .paper-body-text {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Text variants */
+.paper-text--small {
+  font-size: var(--font-size-sm);
+}
+
+.paper-text--large {
+  font-size: var(--font-size-lg);
+}
+
+.paper-text--muted {
+  color: var(--ink-light);
+}
+
+.paper-text--bold {
+  font-weight: bold;
+}
+
+.paper-text--italic {
+  font-style: italic;
+}
+
+/* Text alignment */
+.paper-text--center {
+  text-align: center;
+}
+
+.paper-text--right {
+  text-align: right;
+}
+
+.paper-text--left {
+  text-align: left;
+}
+
+/* Text colors */
+.paper-text--success {
+  color: var(--success-green);
+}
+
+.paper-text--error {
+  color: var(--error-red);
+}
+
+.paper-text--warning {
+  color: var(--warning-yellow);
+}
+
+.paper-text--info {
+  color: var(--info-blue);
+}

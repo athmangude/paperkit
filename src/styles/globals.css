@@ -1,0 +1,264 @@
+/* Global styles for Paper Kit Design System */
+
+:root {
+  /* Colors */
+  --paper-white: #fefefe;
+  --paper-gray: #f5f5f5;
+  --ink-black: #1a1a1a;
+  --ink-gray: #666666;
+  --ink-light: #999999;
+  --pencil-gray: #cccccc;
+  --error-red: #ff6b6b;
+  --success-green: #51cf66;
+  --warning-yellow: #ffd43b;
+  --info-blue: #74c0fc;
+
+  /* Typography */
+  --font-family: 'Patrick Hand', cursive;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-pencil: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-paper: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.25s ease-in-out;
+  --transition-slow: 0.35s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--ink-black);
+  background-color: var(--paper-white);
+  margin: 0;
+  padding: 0;
+}
+
+/* Hand-drawn underline styles */
+.hand-drawn-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.hand-drawn-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink-black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+  border-radius: 1px;
+}
+
+.hand-drawn-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Wavy underline for headings */
+.wavy-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.wavy-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--ink-black),
+    var(--ink-black) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.wavy-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Utility classes for hand-drawn borders */
+.hand-drawn-border {
+  border: 2px solid var(--ink-black);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.hand-drawn-border::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid var(--ink-black);
+  border-radius: var(--radius-md);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Sketchy button styles */
+.sketchy-button {
+  font-family: var(--font-family);
+  background: transparent;
+  border: 2px solid var(--ink-black);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  font-size: var(--font-size-base);
+}
+
+.sketchy-button:hover {
+  background: var(--ink-black);
+  color: var(--paper-white);
+  transform: translateY(-1px);
+}
+
+.sketchy-button:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pencil);
+}
+
+.sketchy-button:disabled {
+  border-color: var(--pencil-gray);
+  color: var(--pencil-gray);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Hand-drawn input styles */
+.hand-drawn-input {
+  font-family: var(--font-family);
+  border: 2px solid var(--ink-black);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  background: var(--paper-white);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-normal);
+}
+
+.hand-drawn-input:focus {
+  outline: none;
+  border-style: dashed;
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.hand-drawn-input.error {
+  border-color: var(--error-red);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* Container styles */
+.paper-card {
+  background: var(--paper-white);
+  border: 2px solid var(--ink-black);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-pencil);
+  transition: all var(--transition-normal);
+}
+
+.paper-card:hover {
+  box-shadow: var(--shadow-paper);
+  transform: translateY(-2px);
+}
+
+/* Typography styles */
+.heading-1 {
+  font-size: var(--font-size-4xl);
+  font-weight: normal;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.heading-2 {
+  font-size: var(--font-size-3xl);
+  font-weight: normal;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.heading-3 {
+  font-size: var(--font-size-2xl);
+  font-weight: normal;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.body-text {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+/* Link styles */
+.paper-link {
+  color: var(--ink-black);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition-normal);
+}
+
+.paper-link:hover {
+  color: var(--ink-gray);
+}
+
+.paper-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ink-black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.paper-link:hover::after {
+  transform: scaleX(1);
+}
