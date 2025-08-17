@@ -29,20 +29,6 @@ import Button from 'paper-kit/components/Button';
 import Card from 'paper-kit/components/Card';
 ```
 
-## 3. Showcase
-
-### Component Demonstration
-All components must be showcased in a comprehensive demonstration application. This showcase should:
-
-- Display every component with all its variants, sizes, and states
-- Provide interactive examples that users can interact with
-- Show real-world usage patterns and combinations
-- Demonstrate responsive behavior across different screen sizes
-- Include accessibility features and keyboard navigation
-- Present components in a visually appealing, organized layout
-
-The showcase serves as both documentation and a testing environment for all design system components.
-
 ## 4. Components
 
 ### Typography & Links
@@ -149,3 +135,81 @@ A small, temporary, hand-drawn rectangular box that slides in from the top or bo
 
 #### Tooltips
 A small, sketchy speech bubble or rectangular box with a hand-drawn tail, containing light, handwritten text. It appears on hover over a specific element and disappears when the cursor moves away.
+
+## 3. Landing Page Setup Section
+
+### Getting Started
+The landing page should include a comprehensive setup section that provides clear instructions for users to integrate the design system into their projects. This section should include:
+
+#### Installation Instructions
+- Clear step-by-step instructions on how to add the design system to a project
+- Package installation commands (npm/yarn)
+- Required dependencies and their versions
+- Any additional setup steps or configurations needed
+
+#### Dependencies
+- List all required dependencies with specific version ranges
+- Include peer dependencies if any
+- Specify any optional dependencies for enhanced functionality
+- Note any conflicts or compatibility requirements
+
+#### Basic Usage Example
+- Provide a simple, complete example showing how to import and use a basic component
+- Include the necessary import statements
+- Show the component rendered with default props
+- Demonstrate the expected output or behavior
+
+#### Project Integration
+- Instructions for setting up CSS imports or styling
+- Configuration for different build tools (Webpack, Vite, etc.)
+- Framework-specific setup (React, Next.js, etc.)
+- Troubleshooting common installation issues
+
+## 4. Documentation Page
+
+### Comprehensive Component Documentation
+A separate documentation page should be created that provides detailed information about each component. This documentation should be accessible via a dedicated route and include:
+
+#### Component Overview
+- Visual representation of each component
+- Description of its purpose and use cases
+- Design principles and aesthetic guidelines
+- Accessibility considerations
+
+#### Props Documentation
+- Complete list of all available props for each component
+- TypeScript type definitions for each prop
+- Default values and required vs optional props
+- Detailed descriptions of what each prop controls
+
+#### Usage Examples
+- Multiple code examples showing different use cases
+- Examples of all variants, sizes, and states
+- Real-world implementation scenarios
+- Best practices and common patterns
+
+#### Interactive Examples
+- Live, editable examples that users can modify
+- Code playground functionality
+- Real-time preview of changes
+- Copy-to-clipboard functionality for code snippets
+
+#### Component API Reference
+- Detailed API documentation for each component
+- Method signatures and return types
+- Event handlers and callback functions
+- Component composition patterns
+
+## 5. Showcase
+
+### Component Demonstration
+All components must be showcased in a comprehensive demonstration application. This showcase should:
+
+- Display every component with all its variants, sizes, and states
+- Provide interactive examples that users can interact with
+- Show real-world usage patterns and combinations
+- Demonstrate responsive behavior across different screen sizes
+- Include accessibility features and keyboard navigation
+- Present components in a visually appealing, organized layout
+
+The showcase serves as both documentation and a testing environment for all design system components.
