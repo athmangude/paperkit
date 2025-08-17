@@ -119,6 +119,33 @@
   color: var(--ink-black);
 }
 
+/* Date Picker grid layout */
+.date-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.date-picker-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.date-picker-group h3 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--ink-black);
+}
+
+.date-picker-group p {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--ink-gray);
+  margin: 0;
+}
+
 /* Form grid layout */
 .form-grid {
   display: grid;
@@ -201,7 +228,8 @@
   .progress-grid,
   .form-grid,
   .controls-grid,
-  .card-grid {
+  .card-grid,
+  .date-picker-grid {
     grid-template-columns: 1fr;
   }
   

@@ -17,6 +17,7 @@ export { Notification } from './notification';
 export { Tooltip } from './tooltip';
 export { Tabs, TabItem } from './tabs';
 export { Accordion, AccordionItem } from './accordion';
+export { DatePicker } from './date-picker';
 export { Heading, Link, BodyText } from './typography';
 
 // Export types
@@ -41,6 +42,11 @@ export type {
   TabItemProps,
   AccordionProps,
   AccordionItemProps,
+  DatePickerProps,
+  DatePickerState,
+  DateFormat,
+  TimeFormat,
+  Locale,
   HeadingProps,
   LinkProps,
   BaseComponentProps,

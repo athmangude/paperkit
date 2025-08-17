@@ -166,6 +166,40 @@ export interface AccordionItemProps extends BaseComponentProps {
   disabled?: boolean;
 }
 
+// Date Picker types
+export type DateFormat = 'MM/DD/YYYY' | 'DD/MM/YYYY' | 'YYYY-MM-DD' | 'MM-DD-YYYY';
+export type TimeFormat = '12h' | '24h';
+export type Locale = 'en-US' | 'en-GB' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT' | 'pt-BR' | 'ja-JP' | 'ko-KR' | 'zh-CN';
+
+export interface DatePickerProps extends BaseComponentProps {
+  value?: Date | null;
+  onChange?: (date: Date | null) => void;
+  placeholder?: string;
+  format?: DateFormat;
+  locale?: Locale;
+  showTimePicker?: boolean;
+  timeFormat?: TimeFormat;
+  minDate?: Date;
+  maxDate?: Date;
+  disabled?: boolean;
+  allowClear?: boolean;
+  showToday?: boolean;
+  showWeekNumbers?: boolean;
+}
+
+export interface DatePickerState {
+  isOpen: boolean;
+  currentDate: Date;
+  selectedDate: Date | null;
+  hoveredDate: Date | null;
+  currentMonth: number;
+  currentYear: number;
+  selectedTime: {
+    hours: number;
+    minutes: number;
+  };
+}
+
 // Typography types
 export interface HeadingProps extends BaseComponentProps {
   level: 1 | 2 | 3;

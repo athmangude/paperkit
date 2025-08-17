@@ -11,6 +11,7 @@ import { ProgressBar } from './components/progress-bar';
 import { Card } from './components/card';
 import { Badge } from './components/badge';
 import { Divider } from './components/divider';
+import { DatePicker } from './components/date-picker';
 import { Heading, Link, BodyText } from './components/typography';
 import './styles/globals.css';
 import './App.css';
@@ -23,6 +24,8 @@ function App() {
   const [toggleChecked, setToggleChecked] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
   const [progressValue, setProgressValue] = useState(75);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDateTime, setSelectedDateTime] = useState<Date | null>(null);
 
   return (
     <div className="app">
@@ -134,6 +137,53 @@ function App() {
                 <span>Left</span>
                 <Divider orientation="vertical" />
                 <span>Right</span>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* Date Picker Section */}
+        <section className="component-section">
+          <Heading level={2}>Date Picker</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="date-picker-grid">
+              <div className="date-picker-group">
+                <h3>Basic Date Picker</h3>
+                <DatePicker
+                  value={selectedDate}
+                  onChange={setSelectedDate}
+                  placeholder="Select a date..."
+                />
+                <p>Selected: {selectedDate ? selectedDate.toLocaleDateString() : 'None'}</p>
+              </div>
+              
+              <div className="date-picker-group">
+                <h3>Date & Time Picker</h3>
+                <DatePicker
+                  value={selectedDateTime}
+                  onChange={setSelectedDateTime}
+                  showTimePicker={true}
+                  timeFormat="12h"
+                  placeholder="Select date and time..."
+                />
+                <p>Selected: {selectedDateTime ? selectedDateTime.toLocaleString() : 'None'}</p>
+              </div>
+              
+              <div className="date-picker-group">
+                <h3>With Date Range</h3>
+                <DatePicker
+                  minDate={new Date()}
+                  maxDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
+                  placeholder="Select date (next 30 days)..."
+                />
+              </div>
+              
+              <div className="date-picker-group">
+                <h3>Different Format</h3>
+                <DatePicker
+                  format="DD/MM/YYYY"
+                  placeholder="DD/MM/YYYY format..."
+                />
               </div>
             </div>
           </Card>
