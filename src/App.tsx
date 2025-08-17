@@ -49,8 +49,52 @@ function App() {
       </header>
 
       <main className="app-main">
-        {/* Typography Section */}
+        {/* Navigation Menu */}
         <section className="component-section">
+          <Card elevation="medium" padding="large">
+            <Heading level={2}>📋 Component Navigation</Heading>
+            <BodyText>Click to jump to different component sections:</BodyText>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '15px' }}>
+              <Button size="small" onClick={() => document.getElementById('typography')?.scrollIntoView()}>Typography</Button>
+              <Button size="small" onClick={() => document.getElementById('buttons')?.scrollIntoView()}>Buttons</Button>
+              <Button size="small" onClick={() => document.getElementById('progress-badges')?.scrollIntoView()}>Progress & Badges</Button>
+              <Button size="small" onClick={() => document.getElementById('dividers')?.scrollIntoView()}>Dividers</Button>
+              <Button size="small" onClick={() => document.getElementById('date-picker')?.scrollIntoView()}>Date Picker</Button>
+              <Button size="small" onClick={() => document.getElementById('form-inputs')?.scrollIntoView()}>Form Inputs</Button>
+              <Button size="small" onClick={() => document.getElementById('form-controls')?.scrollIntoView()}>Form Controls</Button>
+              <Button size="small" onClick={() => document.getElementById('cards')?.scrollIntoView()}>Cards</Button>
+              <Button size="small" onClick={() => document.getElementById('modal-notification')?.scrollIntoView()}>Modal & Notification</Button>
+              <Button size="small" onClick={() => document.getElementById('tags-tooltips')?.scrollIntoView()}>Tags & Tooltips</Button>
+              <Button size="small" onClick={() => document.getElementById('tabs-accordion')?.scrollIntoView()}>Tabs & Accordion</Button>
+              <Button size="small" onClick={() => document.getElementById('list-pagination')?.scrollIntoView()}>List & Pagination</Button>
+              <Button size="small" onClick={() => document.getElementById('table')?.scrollIntoView()}>Table</Button>
+              <Button size="small" onClick={() => document.getElementById('interactive-demo')?.scrollIntoView()}>Interactive Demo</Button>
+            </div>
+          </Card>
+        </section>
+
+        {/* Test Section - All Components */}
+        <section className="component-section">
+          <Heading level={2}>🔍 Component Test - All Components Should Be Visible</Heading>
+          <Card elevation="medium" padding="large">
+            <BodyText>
+              If you can see this section, the basic components are working. Let's test all components:
+            </BodyText>
+            
+            <div style={{ marginTop: '20px', padding: '10px', border: '2px dashed #ccc' }}>
+              <h3>Quick Component Test:</h3>
+              <Button>Test Button</Button>
+              <Badge>Test Badge</Badge>
+              <Tag>Test Tag</Tag>
+              <ProgressBar value={50} max={100} />
+              <Divider />
+              <p>If you see all the above components, the showcase should be working.</p>
+            </div>
+          </Card>
+        </section>
+
+        {/* Typography Section */}
+        <section id="typography" className="component-section">
           <Heading level={2}>Typography</Heading>
           <Card elevation="medium" padding="large">
             <Heading level={1}>Heading 1</Heading>
@@ -66,7 +110,7 @@ function App() {
         </section>
 
         {/* Buttons Section */}
-        <section className="component-section">
+        <section id="buttons" className="component-section">
           <Heading level={2}>Buttons</Heading>
           <Card elevation="medium" padding="large">
             <div className="button-grid">
@@ -101,7 +145,7 @@ function App() {
         </section>
 
         {/* Progress & Badges Section */}
-        <section className="component-section">
+        <section id="progress-badges" className="component-section">
           <Heading level={2}>Progress & Badges</Heading>
           <Card elevation="medium" padding="large">
             <div className="progress-grid">
@@ -133,7 +177,7 @@ function App() {
         </section>
 
         {/* Dividers Section */}
-        <section className="component-section">
+        <section id="dividers" className="component-section">
           <Heading level={2}>Dividers</Heading>
           <Card elevation="medium" padding="large">
             <div className="divider-demo">
@@ -155,7 +199,7 @@ function App() {
         </section>
 
         {/* Date Picker Section */}
-        <section className="component-section">
+        <section id="date-picker" className="component-section">
           <Heading level={2}>Date Picker</Heading>
           <Card elevation="medium" padding="large">
             <div className="date-picker-grid">
@@ -202,7 +246,7 @@ function App() {
         </section>
 
         {/* Form Inputs Section */}
-        <section className="component-section">
+        <section id="form-inputs" className="component-section">
           <Heading level={2}>Form Inputs</Heading>
           <Card elevation="medium" padding="large">
             <div className="form-grid">
