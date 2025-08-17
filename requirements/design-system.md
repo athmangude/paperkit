@@ -29,7 +29,21 @@ import Button from 'paper-kit/components/Button';
 import Card from 'paper-kit/components/Card';
 ```
 
-## 3. Components
+## 3. Showcase
+
+### Component Demonstration
+All components must be showcased in a comprehensive demonstration application. This showcase should:
+
+- Display every component with all its variants, sizes, and states
+- Provide interactive examples that users can interact with
+- Show real-world usage patterns and combinations
+- Demonstrate responsive behavior across different screen sizes
+- Include accessibility features and keyboard navigation
+- Present components in a visually appealing, organized layout
+
+The showcase serves as both documentation and a testing environment for all design system components.
+
+## 4. Components
 
 ### Typography & Links
 
