@@ -54,6 +54,71 @@
   color: var(--ink-black);
 }
 
+/* Progress & Badge grid layout */
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.progress-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.progress-group h3 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--ink-black);
+}
+
+.badge-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.badge-group h3 {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--ink-black);
+}
+
+.badge-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Divider demo styles */
+.divider-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.divider-demo p {
+  font-family: var(--font-family);
+  margin: 0;
+  color: var(--ink-black);
+}
+
+.vertical-dividers {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  height: 40px;
+}
+
+.vertical-dividers span {
+  font-family: var(--font-family);
+  color: var(--ink-black);
+}
+
 /* Form grid layout */
 .form-grid {
   display: grid;
@@ -133,6 +198,7 @@
   }
   
   .button-grid,
+  .progress-grid,
   .form-grid,
   .controls-grid,
   .card-grid {
@@ -146,6 +212,10 @@
   
   .form-actions .paper-button {
     width: 100%;
+  }
+  
+  .badge-row {
+    justify-content: center;
   }
 }
 

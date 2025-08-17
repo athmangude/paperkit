@@ -1,0 +1,164 @@
+.paper-tag {
+  font-family: var(--font-family);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  border: 2px solid var(--ink-black);
+  border-radius: 20px;
+  background: var(--paper-white);
+  color: var(--ink-black);
+  font-weight: normal;
+  position: relative;
+  transition: all var(--transition-normal);
+  cursor: default;
+}
+
+/* Tag sizes */
+.paper-tag--small {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+}
+
+.paper-tag--medium {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.paper-tag--large {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+/* Tag variants */
+.paper-tag--default {
+  background: var(--paper-white);
+  color: var(--ink-black);
+  border-color: var(--ink-black);
+}
+
+.paper-tag--primary {
+  background: var(--ink-black);
+  color: var(--paper-white);
+  border-color: var(--ink-black);
+}
+
+.paper-tag--success {
+  background: var(--success-green);
+  color: var(--paper-white);
+  border-color: var(--success-green);
+}
+
+.paper-tag--warning {
+  background: var(--warning-yellow);
+  color: var(--ink-black);
+  border-color: var(--warning-yellow);
+}
+
+.paper-tag--error {
+  background: var(--error-red);
+  color: var(--paper-white);
+  border-color: var(--error-red);
+}
+
+.paper-tag--info {
+  background: var(--info-blue);
+  color: var(--paper-white);
+  border-color: var(--info-blue);
+}
+
+.paper-tag__content {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.paper-tag__remove {
+  background: none;
+  border: none;
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  opacity: 0.7;
+}
+
+.paper-tag__remove:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+/* Hover effects */
+.paper-tag:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-pencil);
+}
+
+/* Hand-drawn border effect */
+.paper-tag::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid var(--ink-black);
+  border-radius: 21px;
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.paper-tag:hover::before {
+  opacity: 0.1;
+}
+
+/* Irregular shape variation */
+.paper-tag--irregular {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.paper-tag--irregular::before {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+/* Animation for new tags */
+.paper-tag {
+  animation: tagAppear 0.3s ease-out;
+}
+
+@keyframes tagAppear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Remove animation */
+.paper-tag--removing {
+  animation: tagRemove 0.3s ease-out;
+}
+
+@keyframes tagRemove {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

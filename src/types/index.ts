@@ -17,6 +17,16 @@ export interface ButtonProps extends BaseComponentProps {
   icon?: React.ReactNode;
 }
 
+// Icon Button component types
+export interface IconButtonProps extends BaseComponentProps {
+  icon: React.ReactNode;
+  size?: ButtonSize;
+  variant?: ButtonVariant;
+  disabled?: boolean;
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+}
+
 // Input component types
 export interface InputProps extends BaseComponentProps {
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
@@ -71,10 +81,41 @@ export interface SliderProps extends BaseComponentProps {
   showValue?: boolean;
 }
 
+// Progress Bar types
+export interface ProgressBarProps extends BaseComponentProps {
+  value?: number;
+  max?: number;
+  size?: 'small' | 'medium' | 'large';
+  variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
+  showLabel?: boolean;
+}
+
 // Card types
 export interface CardProps extends BaseComponentProps {
   elevation?: 'low' | 'medium' | 'high';
   padding?: 'small' | 'medium' | 'large';
+}
+
+// Badge types
+export interface BadgeProps extends BaseComponentProps {
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'small' | 'medium' | 'large';
+  icon?: React.ReactNode;
+}
+
+// Tag types
+export interface TagProps extends BaseComponentProps {
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'small' | 'medium' | 'large';
+  removable?: boolean;
+  onRemove?: () => void;
+}
+
+// Divider types
+export interface DividerProps extends BaseComponentProps {
+  orientation?: 'horizontal' | 'vertical';
+  spacing?: 'small' | 'medium' | 'large';
+  variant?: 'default' | 'light' | 'dashed' | 'dotted' | 'wavy';
 }
 
 // Modal types
@@ -103,6 +144,28 @@ export interface TooltipProps extends BaseComponentProps {
   showArrow?: boolean;
 }
 
+// Tabs types
+export interface TabsProps extends BaseComponentProps {
+  defaultActiveTab?: number;
+  onChange?: (index: number) => void;
+}
+
+export interface TabItemProps extends BaseComponentProps {
+  label: string;
+  disabled?: boolean;
+}
+
+// Accordion types
+export interface AccordionProps extends BaseComponentProps {
+  allowMultiple?: boolean;
+}
+
+export interface AccordionItemProps extends BaseComponentProps {
+  title: string;
+  defaultOpen?: boolean;
+  disabled?: boolean;
+}
+
 // Typography types
 export interface HeadingProps extends BaseComponentProps {
   level: 1 | 2 | 3;
@@ -121,12 +184,6 @@ export interface ListItemProps extends BaseComponentProps {
   title?: string;
   subtitle?: string;
   onClick?: () => void;
-}
-
-// Divider types
-export interface DividerProps extends BaseComponentProps {
-  orientation?: 'horizontal' | 'vertical';
-  spacing?: 'small' | 'medium' | 'large';
 }
 
 // Form types

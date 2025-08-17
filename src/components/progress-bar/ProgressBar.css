@@ -1,0 +1,121 @@
+.paper-progress-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.paper-progress-bar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.paper-progress-bar__track {
+  width: 100%;
+  height: 8px;
+  background: var(--paper-gray);
+  border: 2px solid var(--ink-black);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-progress-bar__fill {
+  height: 100%;
+  background: var(--ink-black);
+  border-radius: 2px;
+  transition: width var(--transition-normal);
+  position: relative;
+  /* Uneven edge effect */
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 0,
+    2px 2px,
+    98% 2px,
+    98% 98%,
+    2px 98%,
+    2px 2px
+  );
+}
+
+/* Progress bar sizes */
+.paper-progress-bar--small .paper-progress-bar__track {
+  height: 6px;
+}
+
+.paper-progress-bar--large .paper-progress-bar__track {
+  height: 12px;
+}
+
+/* Progress bar variants */
+.paper-progress-bar--success .paper-progress-bar__fill {
+  background: var(--success-green);
+}
+
+.paper-progress-bar--warning .paper-progress-bar__fill {
+  background: var(--warning-yellow);
+}
+
+.paper-progress-bar--error .paper-progress-bar__fill {
+  background: var(--error-red);
+}
+
+.paper-progress-bar--info .paper-progress-bar__fill {
+  background: var(--info-blue);
+}
+
+/* Label styles */
+.paper-progress-bar__label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--ink-black);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Hand-drawn border effect */
+.paper-progress-bar__track::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid var(--ink-black);
+  border-radius: 4px;
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+/* Animation for progress fill */
+.paper-progress-bar__fill {
+  animation: progressFill 0.5s ease-out;
+}
+
+@keyframes progressFill {
+  0% {
+    transform: scaleX(0.95);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .paper-progress-bar-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-xs);
+  }
+  
+  .paper-progress-bar__label {
+    text-align: center;
+  }
+}

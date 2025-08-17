@@ -10,6 +10,7 @@ A hand-drawn, sketchy design system built with React and the Patrick Hand font. 
 - **Responsive design**: Works seamlessly across all device sizes
 - **TypeScript support**: Full type safety for all components
 - **No external dependencies**: Built from scratch without UI libraries
+- **SSR compatible**: Works with Next.js, Remix, and other SSR frameworks
 
 ## Components
 
@@ -20,8 +21,9 @@ A hand-drawn, sketchy design system built with React and the Patrick Hand font. 
 
 ### Buttons
 - **Button**: Three sizes (small, medium, large) and variants (outline, primary, secondary)
+- **IconButton**: Circular buttons with hand-drawn icons
 - Interactive states: hover, active, disabled
-- Support for icons
+- Support for icons and irregular shapes
 
 ### Form Inputs
 - **Input**: Text inputs with hand-drawn borders
@@ -31,9 +33,26 @@ A hand-drawn, sketchy design system built with React and the Patrick Hand font. 
 - **Toggle**: Toggle switches with sketchy tracks and thumbs
 - **Slider**: Horizontal sliders with hand-drawn tracks
 
-### Containers
+### Progress & Indicators
+- **ProgressBar**: Hand-drawn progress bars with uneven edges
+- **Badge**: Circular/oval notification badges with hand-drawn borders
+- Multiple variants and sizes for both components
+
+### Containers & Layouts
 - **Card**: Rectangular containers with pencil shadow effects
+- **Divider**: Hand-drawn separators with various styles (dashed, dotted, wavy)
 - Multiple elevation levels and padding options
+
+### Navigation & Organization
+- **Tabs**: Navigation tabs with hand-drawn outlines
+- **Pagination**: Page navigation with sketchy buttons
+- **Accordion**: Collapsible content containers
+- **Lists & Tables**: Structured data display with hand-drawn borders
+
+### Feedback & Alerts
+- **Modal**: Overlay dialogs with sketchy borders
+- **Notification**: Toast messages with shaky animations
+- **Tooltip**: Hover information with hand-drawn speech bubbles
 
 ## Getting Started
 
@@ -93,8 +112,38 @@ function MyComponent() {
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 
+// Icon buttons
+<IconButton icon="★" size="medium" />
+<IconButton icon="♥" variant="primary" />
+
 // States
 <Button disabled>Disabled</Button>
+```
+
+### Progress & Badges
+
+```tsx
+// Progress bars
+<ProgressBar value={75} max={100} showLabel />
+<ProgressBar value={60} variant="success" showLabel />
+<ProgressBar value={30} variant="warning" showLabel />
+
+// Badges
+<Badge>5</Badge>
+<Badge variant="primary">New</Badge>
+<Badge variant="success">✓</Badge>
+<Badge variant="error">3</Badge>
+```
+
+### Dividers
+
+```tsx
+// Different divider styles
+<Divider />
+<Divider variant="dashed" />
+<Divider variant="dotted" />
+<Divider variant="wavy" />
+<Divider orientation="vertical" />
 ```
 
 ### Form Controls
@@ -181,6 +230,31 @@ function MyComponent() {
 - **Pencil Gray**: `#cccccc` - Disabled states
 - **Error Red**: `#ff6b6b` - Error states
 - **Success Green**: `#51cf66` - Success states
+- **Warning Yellow**: `#ffd43b` - Warning states
+- **Info Blue**: `#74c0fc` - Info states
+
+## Technical Implementation
+
+### SSR Compatibility
+All components are built to be compatible with server-side rendering frameworks like Next.js and Remix. This means:
+- No client-side-only code
+- Proper styling during server-side build
+- Universal rendering support
+
+### Individual Component Imports
+Components can be imported individually without requiring the entire library:
+
+```tsx
+import { Button } from 'paper-kit/components/button';
+import { Card } from 'paper-kit/components/card';
+import { ProgressBar } from 'paper-kit/components/progress-bar';
+```
+
+### Self-contained Styling
+Each component includes its own CSS module, ensuring:
+- No project-wide styling dependencies
+- Components work in any React project
+- Easy integration and maintenance
 
 ## Browser Support
 

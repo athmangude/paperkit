@@ -1,0 +1,142 @@
+.paper-divider {
+  background: var(--ink-black);
+  position: relative;
+}
+
+/* Horizontal divider */
+.paper-divider--horizontal {
+  width: 100%;
+  height: 2px;
+  margin: 0;
+}
+
+/* Vertical divider */
+.paper-divider--vertical {
+  width: 2px;
+  height: 100%;
+  margin: 0;
+  align-self: stretch;
+}
+
+/* Spacing variations */
+.paper-divider--small {
+  margin: var(--spacing-sm) 0;
+}
+
+.paper-divider--small.paper-divider--vertical {
+  margin: 0 var(--spacing-sm);
+}
+
+.paper-divider--medium {
+  margin: var(--spacing-md) 0;
+}
+
+.paper-divider--medium.paper-divider--vertical {
+  margin: 0 var(--spacing-md);
+}
+
+.paper-divider--large {
+  margin: var(--spacing-lg) 0;
+}
+
+.paper-divider--large.paper-divider--vertical {
+  margin: 0 var(--spacing-lg);
+}
+
+/* Divider variants */
+.paper-divider--default {
+  background: var(--ink-black);
+}
+
+.paper-divider--light {
+  background: var(--ink-light);
+}
+
+.paper-divider--dashed {
+  background: repeating-linear-gradient(
+    to right,
+    var(--ink-black) 0,
+    var(--ink-black) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.paper-divider--dashed.paper-divider--vertical {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--ink-black) 0,
+    var(--ink-black) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.paper-divider--dotted {
+  background: repeating-linear-gradient(
+    to right,
+    var(--ink-black) 0,
+    var(--ink-black) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+.paper-divider--dotted.paper-divider--vertical {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--ink-black) 0,
+    var(--ink-black) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+}
+
+/* Hand-drawn effect */
+.paper-divider::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: var(--ink-black);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.paper-divider--horizontal::before {
+  height: 1px;
+}
+
+.paper-divider--vertical::before {
+  width: 1px;
+}
+
+/* Wavy divider effect */
+.paper-divider--wavy {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--ink-black),
+    var(--ink-black) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+.paper-divider--wavy.paper-divider--vertical {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--ink-black),
+    var(--ink-black) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .paper-divider--vertical {
+    display: none;
+  }
+}

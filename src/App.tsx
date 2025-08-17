@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { Button } from './components/button';
+import { IconButton } from './components/icon-button';
 import { Input } from './components/input';
 import { TextArea } from './components/textarea';
 import { Checkbox } from './components/checkbox';
 import { Radio } from './components/radio';
 import { Toggle } from './components/toggle';
 import { Slider } from './components/slider';
+import { ProgressBar } from './components/progress-bar';
 import { Card } from './components/card';
+import { Badge } from './components/badge';
+import { Divider } from './components/divider';
 import { Heading, Link, BodyText } from './components/typography';
 import './styles/globals.css';
 import './App.css';
@@ -18,6 +22,7 @@ function App() {
   const [radioValue, setRadioValue] = useState('option1');
   const [toggleChecked, setToggleChecked] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
+  const [progressValue, setProgressValue] = useState(75);
 
   return (
     <div className="app">
@@ -65,9 +70,70 @@ function App() {
               </div>
               
               <div className="button-group">
+                <h3>Icon Buttons</h3>
+                <IconButton icon="★" size="small" />
+                <IconButton icon="♥" size="medium" />
+                <IconButton icon="⚡" size="large" />
+              </div>
+              
+              <div className="button-group">
                 <h3>Button States</h3>
                 <Button>Normal</Button>
                 <Button disabled>Disabled</Button>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* Progress & Badges Section */}
+        <section className="component-section">
+          <Heading level={2}>Progress & Badges</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="progress-grid">
+              <div className="progress-group">
+                <h3>Progress Bars</h3>
+                <ProgressBar value={progressValue} max={100} showLabel />
+                <ProgressBar value={60} max={100} variant="success" showLabel />
+                <ProgressBar value={30} max={100} variant="warning" showLabel />
+                <ProgressBar value={90} max={100} variant="error" showLabel />
+              </div>
+              
+              <div className="badge-group">
+                <h3>Badges</h3>
+                <div className="badge-row">
+                  <Badge>5</Badge>
+                  <Badge variant="primary">New</Badge>
+                  <Badge variant="success">✓</Badge>
+                  <Badge variant="warning">!</Badge>
+                  <Badge variant="error">3</Badge>
+                </div>
+                <div className="badge-row">
+                  <Badge size="small">1</Badge>
+                  <Badge size="medium">2</Badge>
+                  <Badge size="large">3</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* Dividers Section */}
+        <section className="component-section">
+          <Heading level={2}>Dividers</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="divider-demo">
+              <p>Content above</p>
+              <Divider />
+              <p>Content below</p>
+              
+              <Divider variant="dashed" />
+              <Divider variant="dotted" />
+              <Divider variant="wavy" />
+              
+              <div className="vertical-dividers">
+                <span>Left</span>
+                <Divider orientation="vertical" />
+                <span>Right</span>
               </div>
             </div>
           </Card>
@@ -241,6 +307,18 @@ function App() {
                   value={textareaValue}
                   onChange={setTextareaValue}
                   rows={3}
+                />
+              </div>
+              
+              <div className="form-group">
+                <label>Progress</label>
+                <ProgressBar value={progressValue} max={100} showLabel />
+                <Slider
+                  min={0}
+                  max={100}
+                  value={progressValue}
+                  onChange={setProgressValue}
+                  showValue
                 />
               </div>
               
