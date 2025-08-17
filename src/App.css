@@ -214,6 +214,64 @@
   flex-wrap: wrap;
 }
 
+/* Modal demo styles */
+.modal-demo {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+}
+
+/* Tags demo styles */
+.tags-demo {
+  margin-bottom: var(--spacing-xl);
+}
+
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+/* Tooltips demo styles */
+.tooltips-demo {
+  margin-bottom: var(--spacing-lg);
+}
+
+.tooltip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+/* Tabs demo styles */
+.tabs-demo {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Accordion demo styles */
+.accordion-demo {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* List demo styles */
+.list-demo {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Pagination demo styles */
+.pagination-demo {
+  margin-bottom: var(--spacing-lg);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .app-header {

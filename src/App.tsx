@@ -12,6 +12,15 @@ import { Card } from './components/card';
 import { Badge } from './components/badge';
 import { Divider } from './components/divider';
 import { DatePicker } from './components/date-picker';
+import { Modal } from './components/modal';
+import { Notification } from './components/notification';
+import { Tag } from './components/tag';
+import { Tooltip } from './components/tooltip';
+import { Tabs, TabItem } from './components/tabs';
+import { Accordion, AccordionItem } from './components/accordion';
+import { List, ListItem } from './components/list';
+import { Pagination } from './components/pagination';
+import { Table, TableHeader, TableRow, TableCell } from './components/table';
 import { Heading, Link, BodyText } from './components/typography';
 import './styles/globals.css';
 import './App.css';
@@ -26,6 +35,9 @@ function App() {
   const [progressValue, setProgressValue] = useState(75);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedDateTime, setSelectedDateTime] = useState<Date | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <div className="app">
@@ -333,6 +345,207 @@ function App() {
               </BodyText>
             </Card>
           </div>
+        </section>
+
+        {/* Modal & Notification Section */}
+        <section className="component-section">
+          <Heading level={2}>Modal & Notification</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="modal-demo">
+              <Button onClick={() => setIsModalOpen(true)}>
+                Open Modal
+              </Button>
+              
+              <Button onClick={() => setShowNotification(true)}>
+                Show Notification
+              </Button>
+            </div>
+            
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Example Modal">
+              <BodyText>
+                This is an example modal with hand-drawn styling. You can close it by clicking the X button or clicking outside the modal.
+              </BodyText>
+              <div className="modal-actions">
+                <Button onClick={() => setIsModalOpen(false)}>Close</Button>
+              </div>
+            </Modal>
+            
+            {showNotification && (
+              <Notification
+                type="success"
+                title="Success!"
+                message="This is a success notification with hand-drawn styling."
+                onClose={() => setShowNotification(false)}
+              />
+            )}
+          </Card>
+        </section>
+
+        {/* Tags & Tooltips Section */}
+        <section className="component-section">
+          <Heading level={2}>Tags & Tooltips</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="tags-demo">
+              <h3>Tags</h3>
+              <div className="tag-group">
+                <Tag>Default</Tag>
+                <Tag variant="primary">Primary</Tag>
+                <Tag variant="success">Success</Tag>
+                <Tag variant="warning">Warning</Tag>
+                <Tag variant="error">Error</Tag>
+                <Tag variant="info">Info</Tag>
+                <Tag removable onRemove={() => console.log('Removed')}>Removable</Tag>
+              </div>
+            </div>
+            
+            <div className="tooltips-demo">
+              <h3>Tooltips</h3>
+              <div className="tooltip-group">
+                <Tooltip content="This is a tooltip on the top">
+                  <Button>Hover me (Top)</Button>
+                </Tooltip>
+                
+                <Tooltip content="This is a tooltip on the bottom" position="bottom">
+                  <Button>Hover me (Bottom)</Button>
+                </Tooltip>
+                
+                <Tooltip content="This is a tooltip on the left" position="left">
+                  <Button>Hover me (Left)</Button>
+                </Tooltip>
+                
+                <Tooltip content="This is a tooltip on the right" position="right">
+                  <Button>Hover me (Right)</Button>
+                </Tooltip>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* Tabs & Accordion Section */}
+        <section className="component-section">
+          <Heading level={2}>Tabs & Accordion</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="tabs-demo">
+              <h3>Tabs</h3>
+              <Tabs defaultActiveTab={0} onChange={(index) => console.log('Tab changed to:', index)}>
+                <TabItem label="Tab 1">
+                  <BodyText>This is the content for tab 1. It contains some sample text.</BodyText>
+                </TabItem>
+                <TabItem label="Tab 2">
+                  <BodyText>This is the content for tab 2. It contains different content.</BodyText>
+                </TabItem>
+                <TabItem label="Tab 3">
+                  <BodyText>This is the content for tab 3. It contains more sample text.</BodyText>
+                </TabItem>
+              </Tabs>
+            </div>
+            
+            <div className="accordion-demo">
+              <h3>Accordion</h3>
+              <Accordion>
+                <AccordionItem title="Accordion Item 1" defaultOpen>
+                  <BodyText>This is the content for accordion item 1. It can contain any content.</BodyText>
+                </AccordionItem>
+                <AccordionItem title="Accordion Item 2">
+                  <BodyText>This is the content for accordion item 2. It can contain any content.</BodyText>
+                </AccordionItem>
+                <AccordionItem title="Accordion Item 3">
+                  <BodyText>This is the content for accordion item 3. It can contain any content.</BodyText>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </Card>
+        </section>
+
+        {/* List & Pagination Section */}
+        <section className="component-section">
+          <Heading level={2}>List & Pagination</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="list-demo">
+              <h3>List</h3>
+              <List variant="default" size="medium">
+                <ListItem
+                  icon="📧"
+                  title="Email"
+                  subtitle="Check your inbox for new messages"
+                  onClick={() => console.log('Email clicked')}
+                />
+                <ListItem
+                  icon="📱"
+                  title="Phone"
+                  subtitle="Call or text someone"
+                  onClick={() => console.log('Phone clicked')}
+                />
+                <ListItem
+                  icon="📁"
+                  title="Files"
+                  subtitle="Access your documents"
+                  onClick={() => console.log('Files clicked')}
+                />
+                <ListItem
+                  icon="⚙️"
+                  title="Settings"
+                  subtitle="Configure your preferences"
+                  onClick={() => console.log('Settings clicked')}
+                />
+              </List>
+            </div>
+            
+            <div className="pagination-demo">
+              <h3>Pagination</h3>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={10}
+                onPageChange={setCurrentPage}
+                showFirstLast
+                showPrevNext
+                maxVisiblePages={5}
+              />
+            </div>
+          </Card>
+        </section>
+
+        {/* Table Section */}
+        <section className="component-section">
+          <Heading level={2}>Table</Heading>
+          <Card elevation="medium" padding="large">
+            <Table variant="bordered" size="medium">
+              <thead>
+                <TableRow>
+                  <TableHeader>Name</TableHeader>
+                  <TableHeader>Email</TableHeader>
+                  <TableHeader>Role</TableHeader>
+                  <TableHeader>Status</TableHeader>
+                </TableRow>
+              </thead>
+              <tbody>
+                <TableRow>
+                  <TableCell data-label="Name">John Doe</TableCell>
+                  <TableCell data-label="Email">john@example.com</TableCell>
+                  <TableCell data-label="Role">Developer</TableCell>
+                  <TableCell data-label="Status">
+                    <Badge variant="success">Active</Badge>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell data-label="Name">Jane Smith</TableCell>
+                  <TableCell data-label="Email">jane@example.com</TableCell>
+                  <TableCell data-label="Role">Designer</TableCell>
+                  <TableCell data-label="Status">
+                    <Badge variant="warning">Pending</Badge>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell data-label="Name">Bob Johnson</TableCell>
+                  <TableCell data-label="Email">bob@example.com</TableCell>
+                  <TableCell data-label="Role">Manager</TableCell>
+                  <TableCell data-label="Status">
+                    <Badge variant="error">Inactive</Badge>
+                  </TableCell>
+                </TableRow>
+              </tbody>
+            </Table>
+          </Card>
         </section>
 
         {/* Interactive Demo Section */}

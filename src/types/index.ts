@@ -200,6 +200,43 @@ export interface DatePickerState {
   };
 }
 
+// List types
+export interface ListProps extends BaseComponentProps {
+  variant?: 'default' | 'outlined' | 'filled';
+  size?: 'small' | 'medium' | 'large';
+}
+
+export interface ListItemProps extends BaseComponentProps {
+  icon?: React.ReactNode;
+  title?: string;
+  subtitle?: string;
+  onClick?: () => void;
+}
+
+// Pagination types
+export interface PaginationProps extends BaseComponentProps {
+  currentPage?: number;
+  totalPages?: number;
+  onPageChange?: (page: number) => void;
+  showFirstLast?: boolean;
+  showPrevNext?: boolean;
+  maxVisiblePages?: number;
+}
+
+// Table types
+export interface TableProps extends BaseComponentProps {
+  variant?: 'default' | 'bordered' | 'striped';
+  size?: 'small' | 'medium' | 'large';
+}
+
+export interface TableHeaderProps extends BaseComponentProps {}
+
+export interface TableRowProps extends BaseComponentProps {}
+
+export interface TableCellProps extends BaseComponentProps {
+  'data-label'?: string;
+}
+
 // Typography types
 export interface HeadingProps extends BaseComponentProps {
   level: 1 | 2 | 3;
@@ -210,14 +247,6 @@ export interface LinkProps extends BaseComponentProps {
   href: string;
   external?: boolean;
   children: React.ReactNode;
-}
-
-// List types
-export interface ListItemProps extends BaseComponentProps {
-  icon?: React.ReactNode;
-  title?: string;
-  subtitle?: string;
-  onClick?: () => void;
 }
 
 // Form types
