@@ -83,11 +83,13 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] create an about page at /about. The about page should include the inspiration for it i.e., designing low fidelity designs in figma and wantint to continue doing it in React with vibe coding. Mention when it's relevant to use it including when there is no design system in place and you just want to present a UX flow
 - [Closed] add space between hero component and the content that follows it in the documentation page
 - [Closed] on the navigation bar the button with the link of the active page should be a primary button
+- [open] all content inside hero components should be centered
 
 ##### Lists
 - [Closed] list item borders should match those of basic buttons
 - [Closed] remove border on the List component containing list items
 - [Closed] when a list item is selected it's text is not visible. Introduce a selected property for a listItem. When an item is selected, its background is black and text is white
+- [Closed] hovering on a selected list item should not change its background color
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form

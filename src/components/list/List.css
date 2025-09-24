@@ -57,12 +57,12 @@
   cursor: pointer;
 }
 
-.paper-list-item--clickable:hover {
+.paper-list-item--clickable:hover:not(.paper-list-item--selected) {
   background: var(--paper-gray);
   transform: translateX(2px);
 }
 
-.paper-list-item--clickable:focus {
+.paper-list-item--clickable:focus:not(.paper-list-item--selected) {
   outline: none;
   border-color: var(--ink-black);
   border-style: dashed;
