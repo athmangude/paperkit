@@ -18,14 +18,10 @@ const About: React.FC = () => {
 
       {/* Hero Section */}
       <Hero>
-        <div className="container">
-          <Card elevation="high" padding="large" className="hero-card">
-            <Heading level={2}>About Paper Kit</Heading>
-            <BodyText>
-              A design system born from the love of low-fidelity design and the desire to bring that aesthetic to React development.
-            </BodyText>
-          </Card>
-        </div>
+        <Heading level={2}>About Paper Kit</Heading>
+        <BodyText>
+          A design system born from the love of low-fidelity design and the desire to bring that aesthetic to React development.
+        </BodyText>
       </Hero>
 
       {/* Main Content */}

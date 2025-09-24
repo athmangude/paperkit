@@ -115,22 +115,18 @@ const Showcase: React.FC = () => {
 
       {/* Hero Section */}
       <Hero>
-        <div className="container">
-          <Card elevation="high" padding="large" className="hero-card">
-            <Heading level={2}>Comprehensive Design System Showcase</Heading>
-            <BodyText>
-              Explore real-world applications of Paper Kit components through interactive examples 
-              including forms, social media feeds, user profiles, and dashboard interfaces.
-            </BodyText>
-            <div className="hero-actions">
-              <Button variant="primary" size="large" onClick={() => setShowModal(true)}>
-                Get Started
-              </Button>
-              <Button variant="outline" size="large">
-                View Documentation
-              </Button>
-            </div>
-          </Card>
+        <Heading level={2}>Comprehensive Design System Showcase</Heading>
+        <BodyText>
+          Explore real-world applications of Paper Kit components through interactive examples 
+          including forms, social media feeds, user profiles, and dashboard interfaces.
+        </BodyText>
+        <div className="hero-actions">
+          <Button variant="primary" size="large" onClick={() => setShowModal(true)}>
+            Get Started
+          </Button>
+          <Button variant="outline" size="large">
+            View Documentation
+          </Button>
         </div>
       </Hero>
 
@@ -150,7 +146,7 @@ const Showcase: React.FC = () => {
                         <BodyText className="stat-label">{stat.label}</BodyText>
                         <Heading level={3} className="stat-value">{stat.value}</Heading>
                         <div className={`stat-change ${stat.trend}`}>
-                          <Badge variant={stat.trend === 'up' ? 'success' : 'error'} size="small">
+                          <Badge variant={stat.trend === 'up' ? 'success' : 'error'} size="large">
                             {stat.change}
                           </Badge>
                         </div>

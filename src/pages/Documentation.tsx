@@ -812,10 +812,8 @@ const Documentation: React.FC = () => {
     <div className="documentation">
       <Header />
       <Hero>
-        <div className="container">
-          <Heading level={2}>Paper Kit Documentation</Heading>
-          <BodyText>Complete guide to using Paper Kit components in your projects.</BodyText>
-      </div>
+        <Heading level={2}>Paper Kit Documentation</Heading>
+        <BodyText>Complete guide to using Paper Kit components in your projects.</BodyText>
       </Hero>
 
       <div className="documentation-content">
