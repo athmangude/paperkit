@@ -84,6 +84,9 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] Notification should not have a background color. Only the icon in the notification should be used to differentiate with a badge component with a background color
 - [Closed] The notification variants should use different icons, cross for error, info for info, warning for warning etc.
 
+##### Showcase
+- [Closed] Create a showcase page and showcase extensive usage of the design system for forms with one form, a social media feed, user profile, dashboard
+
 ### 11. Remove interactive examples below documentation
 #### Status: Closed
 

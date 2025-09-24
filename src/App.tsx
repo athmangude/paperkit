@@ -70,9 +70,16 @@ function App() {
         <div className="header-content">
           <Heading level={1} className="app-title">Paper Kit Design System</Heading>
           <nav className="main-nav">
+            <RouterLink to="/">
+              <Button 
+                variant={location.pathname === '/' ? 'primary' : 'outline'}
+              >
+                Home
+              </Button>
+            </RouterLink>
             <RouterLink to="/showcase">
               <Button 
-                variant={location.pathname === '/showcase' || location.pathname === '/' ? 'primary' : 'outline'}
+                variant={location.pathname === '/showcase' ? 'primary' : 'outline'}
               >
                 Showcase
               </Button>
