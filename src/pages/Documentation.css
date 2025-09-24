@@ -190,22 +190,13 @@
   padding: 8px 12px;
   background-color: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
+  position: relative;
 }
 
-.copy-button {
-  background: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 12px;
-  cursor: pointer;
-  font-family: 'Patrick Hand', cursive;
-  transition: all 0.2s ease;
-}
-
-.copy-button:hover {
-  background-color: #e9ecef;
-  border-color: #adb5bd;
+.code-header .paper-button {
+  position: absolute;
+  top: 8px;
+  right: 12px;
 }
 
 .code-block {

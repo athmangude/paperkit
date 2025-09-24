@@ -1,6 +1,6 @@
 # Pre-release issues
 
-## Status: All Issues Closed
+## Status: All Issues Closed ✅
 
 ## List of issues
 
@@ -47,7 +47,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 - remove the last column showing badges
 - First column is not populated leaving last content column headerless
 
-### 8. Use design system small buttons in getting started section of showcase
+### 8. Use design system small buttons in getting started section of showcase and documentation
 #### Status: Closed
 
 - Instead of blue buttons use, design system small buttons
@@ -62,7 +62,16 @@ Rendering of tooltips stopped completely after fixing issue #4
 - Check font sizing for the rest of the headings ensuring smaller headings user smaller font size
 
 ### 9. Tooltip issues
-#### Status: Open
+#### Status: Closed
 
-- [Open] Tooltip renders after hovering away from target component
-- [Open] Tooltip is rendered in parent component instead of appropriate position next to target component
+- [Closed] Tooltip renders after hovering away from target component
+- [Closed] Tooltip is rendered in parent component instead of appropriate position next to target component
+
+### 10. Documentation issues
+#### Status: Closed
+
+- [Closed] Documentation does not include all components. It should include all components in this design system
+- [Closed] Separate documentation and landing page into separate pages. The pages should have separate routes
+- [Closed] All input components should be grouped under input including radio buttons and checkboxes
+- [Closed] Show buttons to trigger all notification variants
+- [Closed] Notification should not have a background color. Only the icon in the notification should be used to differentiate with a badge component with a background color

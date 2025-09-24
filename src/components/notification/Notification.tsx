@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { NotificationProps } from '../../types';
+import { Badge } from '../badge';
 import './Notification.css';
 
 export const Notification: React.FC<NotificationProps> = ({
@@ -50,10 +51,26 @@ export const Notification: React.FC<NotificationProps> = ({
     }
   };
 
+  const getBadgeVariant = () => {
+    switch (type) {
+      case 'success':
+        return 'success';
+      case 'error':
+        return 'error';
+      case 'warning':
+        return 'warning';
+      case 'info':
+      default:
+        return 'default';
+    }
+  };
+
   return (
     <div className={notificationClasses}>
       <div className="paper-notification__icon">
-        {getIcon()}
+        <Badge variant={getBadgeVariant()} size="small">
+          {getIcon()}
+        </Badge>
       </div>
       <div className="paper-notification__content">
         {title && (
