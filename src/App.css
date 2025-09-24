@@ -30,6 +30,9 @@ body {
 .setup-section {
   padding: 60px 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .setup-grid {

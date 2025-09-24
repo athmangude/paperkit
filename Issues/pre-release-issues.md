@@ -83,7 +83,9 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] create an about page at /about. The about page should include the inspiration for it i.e., designing low fidelity designs in figma and wantint to continue doing it in React with vibe coding. Mention when it's relevant to use it including when there is no design system in place and you just want to present a UX flow
 - [Closed] add space between hero component and the content that follows it in the documentation page
 - [Closed] on the navigation bar the button with the link of the active page should be a primary button
-- [open] all content inside hero components should be centered
+- [Closed] in all pages, all direct children of hero components should be centered i.e., if the direct children of the hero unit is cards, the cards should be centered, not the content inside cards. If it's text, the text should be centered
+- [Closed] in the show case page, under dashboard interface, use tags instead of badges to show status on the orders list
+- [Closed] badges should have a size property with options small, medium, large. Default is small. Add these options and demonstrate the variants in the documentation page under badges
 
 ##### Lists
 - [Closed] list item borders should match those of basic buttons

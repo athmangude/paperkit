@@ -5,7 +5,7 @@ import './Badge.css';
 export const Badge: React.FC<BadgeProps> = ({
   children,
   variant = 'default',
-  size = 'medium',
+  size = 'small',
   icon,
   className = '',
 }) => {

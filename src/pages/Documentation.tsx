@@ -370,7 +370,7 @@ const Documentation: React.FC = () => {
       props: [
         { name: 'children', type: 'ReactNode', required: true, description: 'Badge content' },
         { name: 'variant', type: '"default" | "success" | "warning" | "error"', required: false, default: 'default', description: 'Badge variant' },
-        { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Badge size' }
+        { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'small', description: 'Badge size' }
       ],
       examples: [
         {

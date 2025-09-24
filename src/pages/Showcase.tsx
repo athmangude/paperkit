@@ -179,12 +179,12 @@ const Showcase: React.FC = () => {
                           <TableCell>{order.product}</TableCell>
                           <TableCell>{order.amount}</TableCell>
                           <TableCell>
-                            <Badge 
+                            <Tag 
                               variant={order.status === 'completed' ? 'success' : 
                                       order.status === 'pending' ? 'warning' : 'default'}
                             >
                               {order.status}
-                            </Badge>
+                            </Tag>
                           </TableCell>
                         </TableRow>
                       ))}
