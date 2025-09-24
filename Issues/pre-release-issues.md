@@ -45,8 +45,11 @@ Rendering of tooltips stopped completely after fixing issue #4
 
 - The column row should be divided into cells and not look merged
 - remove the last column showing badges
+- First column is not populated leaving last content column headerless
 
 ### 8. Use design system small buttons in getting started section of showcase
 #### Status: Closed
 
-Instead of blue buttons use, design system small buttons
+- Instead of blue buttons use, design system small buttons
+- Place the button top right of relevant content
+- When copy button is clicked, show, "copied", reset after 3 seconds

@@ -48,12 +48,19 @@ function App() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
+  const [copiedButton, setCopiedButton] = useState<string | null>(null);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleCopy = (text: string, buttonId: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedButton(buttonId);
+    setTimeout(() => setCopiedButton(null), 3000);
   };
 
   if (currentPage === 'documentation') {
@@ -94,15 +101,23 @@ function App() {
               <Heading level={3}>Installation</Heading>
               <div className="code-block">
                 <pre><code>npm install paper-kit</code></pre>
-                <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('npm install paper-kit')}>
-                  Copy
+                <Button 
+                  size="small" 
+                  variant="outline" 
+                  onClick={() => handleCopy('npm install paper-kit', 'npm-install')}
+                >
+                  {copiedButton === 'npm-install' ? 'Copied!' : 'Copy'}
                 </Button>
               </div>
                              <BodyText>Or using yarn:</BodyText>
                <div className="code-block">
                  <pre><code>yarn add paper-kit</code></pre>
-                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('yarn add paper-kit')}>
-                   Copy
+                 <Button 
+                   size="small" 
+                   variant="outline" 
+                   onClick={() => handleCopy('yarn add paper-kit', 'yarn-add')}
+                 >
+                   {copiedButton === 'yarn-add' ? 'Copied!' : 'Copy'}
                  </Button>
                </div>
              </Card>
@@ -134,7 +149,10 @@ function App() {
     </Card>
   );
 }`}</code></pre>
-                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText(`import { Button, Card, Typography } from 'paper-kit';
+                 <Button 
+                   size="small" 
+                   variant="outline" 
+                   onClick={() => handleCopy(`import { Button, Card, Typography } from 'paper-kit';
 
 function App() {
   return (
@@ -143,8 +161,9 @@ function App() {
       <Button>Click me</Button>
     </Card>
   );
-}`)}>
-                   Copy
+}`, 'basic-usage')}
+                 >
+                   {copiedButton === 'basic-usage' ? 'Copied!' : 'Copy'}
                  </Button>
                </div>
              </Card>
@@ -155,16 +174,24 @@ function App() {
                <BodyText>Import the base styles in your main CSS file:</BodyText>
                <div className="code-block">
                  <pre><code>@import 'paper-kit/dist/styles.css';</code></pre>
-                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('@import \'paper-kit/dist/styles.css\';')}>
-                   Copy
+                 <Button 
+                   size="small" 
+                   variant="outline" 
+                   onClick={() => handleCopy('@import \'paper-kit/dist/styles.css\';', 'css-import')}
+                 >
+                   {copiedButton === 'css-import' ? 'Copied!' : 'Copy'}
                  </Button>
                </div>
                <BodyText><strong>Font Setup:</strong></BodyText>
                <BodyText>Add Patrick Hand font to your HTML:</BodyText>
                <div className="code-block">
                  <pre><code>{`<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">`}</code></pre>
-                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">')}>
-                   Copy
+                 <Button 
+                   size="small" 
+                   variant="outline" 
+                   onClick={() => handleCopy('<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">', 'font-link')}
+                 >
+                   {copiedButton === 'font-link' ? 'Copied!' : 'Copy'}
                  </Button>
                </div>
              </Card>
@@ -553,6 +580,11 @@ function App() {
           <Heading level={2}>Table</Heading>
           <Card elevation="medium" padding="large">
             <Table>
+              <colgroup>
+                <col style={{width: '30%'}} />
+                <col style={{width: '40%'}} />
+                <col style={{width: '30%'}} />
+              </colgroup>
               <thead>
                 <tr>
                   <TableHeader>Name</TableHeader>
