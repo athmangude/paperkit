@@ -94,16 +94,16 @@ function App() {
               <Heading level={3}>Installation</Heading>
               <div className="code-block">
                 <pre><code>npm install paper-kit</code></pre>
-                <button className="copy-button" onClick={() => navigator.clipboard.writeText('npm install paper-kit')}>
+                <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('npm install paper-kit')}>
                   Copy
-                </button>
+                </Button>
               </div>
                              <BodyText>Or using yarn:</BodyText>
                <div className="code-block">
                  <pre><code>yarn add paper-kit</code></pre>
-                 <button className="copy-button" onClick={() => navigator.clipboard.writeText('yarn add paper-kit')}>
+                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('yarn add paper-kit')}>
                    Copy
-                 </button>
+                 </Button>
                </div>
              </Card>
 
@@ -134,7 +134,7 @@ function App() {
     </Card>
   );
 }`}</code></pre>
-                 <button className="copy-button" onClick={() => navigator.clipboard.writeText(`import { Button, Card, Typography } from 'paper-kit';
+                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText(`import { Button, Card, Typography } from 'paper-kit';
 
 function App() {
   return (
@@ -145,7 +145,7 @@ function App() {
   );
 }`)}>
                    Copy
-                 </button>
+                 </Button>
                </div>
              </Card>
 
@@ -155,17 +155,17 @@ function App() {
                <BodyText>Import the base styles in your main CSS file:</BodyText>
                <div className="code-block">
                  <pre><code>@import 'paper-kit/dist/styles.css';</code></pre>
-                 <button className="copy-button" onClick={() => navigator.clipboard.writeText('@import \'paper-kit/dist/styles.css\';')}>
+                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('@import \'paper-kit/dist/styles.css\';')}>
                    Copy
-                 </button>
+                 </Button>
                </div>
                <BodyText><strong>Font Setup:</strong></BodyText>
                <BodyText>Add Patrick Hand font to your HTML:</BodyText>
                <div className="code-block">
                  <pre><code>{`<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">`}</code></pre>
-                 <button className="copy-button" onClick={() => navigator.clipboard.writeText('<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">')}>
+                 <Button size="small" variant="outline" onClick={() => navigator.clipboard.writeText('<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">')}>
                    Copy
-                 </button>
+                 </Button>
                </div>
              </Card>
           </div>
@@ -558,7 +558,6 @@ function App() {
                   <TableHeader>Name</TableHeader>
                   <TableHeader>Email</TableHeader>
                   <TableHeader>Role</TableHeader>
-                  <TableHeader>Status</TableHeader>
                 </tr>
               </thead>
               <tbody>
@@ -566,19 +565,16 @@ function App() {
                   <TableCell>John Doe</TableCell>
                   <TableCell>john@example.com</TableCell>
                   <TableCell>Developer</TableCell>
-                  <TableCell><Badge>1</Badge></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Jane Smith</TableCell>
                   <TableCell>jane@example.com</TableCell>
                   <TableCell>Designer</TableCell>
-                  <TableCell><Badge>2</Badge></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Bob Johnson</TableCell>
                   <TableCell>bob@example.com</TableCell>
                   <TableCell>Manager</TableCell>
-                  <TableCell><Badge>0</Badge></TableCell>
                 </TableRow>
               </tbody>
             </Table>

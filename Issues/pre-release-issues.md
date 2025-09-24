@@ -35,4 +35,18 @@ When a component with a tooltip is hovered over, the tooltip appears once then d
 
 In error states, the icon is too close to the text. See attached image in terminal
 
+### 6. Tooltips not-rendering
+#### Status: Closed
 
+Rendering of tooltips stopped completely after fixing issue #4
+
+### 7. Table display in showcase
+#### Status: Closed
+
+- The column row should be divided into cells and not look merged
+- remove the last column showing badges
+
+### 8. Use design system small buttons in getting started section of showcase
+#### Status: Closed
+
+Instead of blue buttons use, design system small buttons

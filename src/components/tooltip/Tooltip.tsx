@@ -23,7 +23,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   useEffect(() => {
-    if (isVisible && triggerRef.current && tooltipRef.current) {
+    if (isVisible && triggerRef.current) {
       const updatePosition = () => {
         if (!triggerRef.current || !tooltipRef.current) return;
         
@@ -59,12 +59,16 @@ export const Tooltip: React.FC<TooltipProps> = ({
         setTooltipPosition({ x, y });
       };
 
-      // Initial position calculation
-      updatePosition();
+      // Small delay to ensure tooltip is rendered before calculating position
+      const timer = setTimeout(() => {
+        if (tooltipRef.current) {
+          updatePosition();
+        }
+      }, 10);
 
       // Update position on scroll and resize
       const handleUpdate = () => {
-        if (isVisible) {
+        if (isVisible && tooltipRef.current) {
           updatePosition();
         }
       };
@@ -73,6 +77,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       window.addEventListener('resize', handleUpdate);
 
       return () => {
+        clearTimeout(timer);
         window.removeEventListener('scroll', handleUpdate, true);
         window.removeEventListener('resize', handleUpdate);
       };
