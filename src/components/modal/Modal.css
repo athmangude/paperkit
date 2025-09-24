@@ -10,7 +10,8 @@
   justify-content: center;
   z-index: 1000;
   padding: var(--spacing-lg);
-  animation: modalFadeIn 0.3s ease-out;
+  opacity: 0;
+  animation: modalFadeIn 0.2s ease-out forwards;
 }
 
 .paper-modal {
@@ -21,8 +22,13 @@
   max-height: 90vh;
   overflow: hidden;
   position: relative;
-  animation: modalSlideIn 0.3s ease-out;
+  opacity: 0;
+  transform: scale(0.9) translateY(-20px);
   box-shadow: var(--shadow-pencil);
+}
+
+.paper-modal--animating {
+  animation: modalSlideIn 0.2s ease-out forwards;
 }
 
 /* Modal sizes */
@@ -107,10 +113,6 @@
 }
 
 @keyframes modalSlideIn {
-  from {
-    transform: scale(0.9) translateY(-20px);
-    opacity: 0;
-  }
   to {
     transform: scale(1) translateY(0);
     opacity: 1;

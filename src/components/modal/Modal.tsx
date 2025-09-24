@@ -10,6 +10,8 @@ export const Modal: React.FC<ModalProps> = ({
   size = 'medium',
   className = '',
 }) => {
+  const [isAnimating, setIsAnimating] = React.useState(false);
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -20,6 +22,13 @@ export const Modal: React.FC<ModalProps> = ({
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      // Small delay to prevent flickering
+      const timer = setTimeout(() => setIsAnimating(true), 10);
+      return () => clearTimeout(timer);
+    } else {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+      setIsAnimating(false);
     }
 
     return () => {
@@ -33,6 +42,7 @@ export const Modal: React.FC<ModalProps> = ({
   const modalClasses = [
     'paper-modal',
     `paper-modal--${size}`,
+    isAnimating ? 'paper-modal--animating' : '',
     className,
   ].filter(Boolean).join(' ');
 

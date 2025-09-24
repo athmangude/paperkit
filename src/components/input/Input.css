@@ -60,14 +60,20 @@
   margin-top: var(--spacing-xs);
   font-family: var(--font-family);
   position: relative;
-  padding-left: var(--spacing-sm);
+  padding-left: calc(var(--spacing-sm) + 16px);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 .paper-input__error::before {
   content: '⚠';
   position: absolute;
   left: 0;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-sm);
+  line-height: 1;
 }
 
 /* Hand-drawn border effect */
