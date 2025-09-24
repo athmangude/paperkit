@@ -268,3 +268,9 @@ export interface FormFieldProps extends BaseComponentProps {
 export interface HeroProps extends BaseComponentProps {
   children: React.ReactNode;
 }
+
+// Navigation Bar types
+export interface NavigationBarProps extends BaseComponentProps {
+  title?: string;
+  navigationComponents?: React.ReactNode;
+}

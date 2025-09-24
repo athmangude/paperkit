@@ -1,0 +1,55 @@
+/* Navigation Bar Component Styles */
+.paper-navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--paper-white);
+  border-bottom: 2px solid var(--ink-black);
+  padding: 0;
+}
+
+.navigation-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 70px;
+}
+
+.navigation-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navigation-title {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  font-weight: normal;
+  color: var(--ink-black);
+}
+
+.navigation-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navigation-content {
+    padding: 0 15px;
+    height: 60px;
+  }
+  
+  .navigation-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .navigation-nav {
+    gap: 8px;
+  }
+}

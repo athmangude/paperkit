@@ -90,8 +90,9 @@ Rendering of tooltips stopped completely after fixing issue #4
 ##### Layout
 - [Closed] Create a hero unit component. It should have a bottom border matching the button border. It's also a flex-container with column flex-direction, content center aligned and center justified. It does not have any background colors. It has a top and bottom padding of 50px and 20 px bottom margin.
 - [Closed] Replace all hero components in the pages with the reusable component
-- [open] add a navigation bar component. The navigation bar should match the current navigation bar. It should take in a `title` and `navigationComponents` props where title is the current page title and navigation components is a component with the navigation items which can be a container with buttons etc.
-- [open] Add the hero and navigation bar components to the documentation under layout and showcase
+- [Closed] add a navigation bar component. The navigation bar should match the current navigation bar. It should take in a `title` and `navigationComponents` props where title is the current page title and navigation components is a component with the navigation items which can be a container with buttons etc.
+- [Closed] Navigation bar should have a bottom border matching similar to the one used for buttons
+- [Closed] Add the hero and navigation bar components to the documentation under layout and showcase
 
 ##### Lists
 - [Closed] list item borders should match those of basic buttons

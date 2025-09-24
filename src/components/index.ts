@@ -79,3 +79,7 @@ export { Header } from './header';
 // Hero component
 export { Hero } from './hero';
 export type { HeroProps } from '../types';
+
+// Navigation Bar component
+export { NavigationBar } from './navigation-bar';
+export type { NavigationBarProps } from '../types';

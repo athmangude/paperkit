@@ -30,7 +30,8 @@ import {
   TableCell,
   IconButton,
   Header,
-  Hero
+  Hero,
+  NavigationBar
 } from '../components';
 import './Documentation.css';
 
@@ -796,6 +797,80 @@ const Documentation: React.FC = () => {
                 </TableRow>
               </tbody>
             </Table>
+          )
+        }
+      ]
+    },
+    hero: {
+      name: 'Hero',
+      description: 'A hero section component for page headers with consistent styling and layout.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: true, description: 'Hero content' },
+        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+      ],
+      examples: [
+        {
+          title: 'Basic Hero',
+          code: `<Hero>
+  <div className="container">
+    <Heading level={2}>Welcome to Paper Kit</Heading>
+    <BodyText>Build beautiful interfaces with our design system.</BodyText>
+  </div>
+</Hero>`,
+          component: (
+            <Hero>
+              <div style={{ textAlign: 'center' }}>
+                <Heading level={2}>Welcome to Paper Kit</Heading>
+                <BodyText>Build beautiful interfaces with our design system.</BodyText>
+              </div>
+            </Hero>
+          )
+        }
+      ]
+    },
+    navigationbar: {
+      name: 'NavigationBar',
+      description: 'A flexible navigation bar component with customizable title and navigation elements.',
+      props: [
+        { name: 'title', type: 'string', required: false, default: 'Paperkit', description: 'Navigation bar title' },
+        { name: 'navigationComponents', type: 'ReactNode', required: false, description: 'Navigation elements (buttons, links, etc.)' },
+        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+      ],
+      examples: [
+        {
+          title: 'Basic Navigation Bar',
+          code: `<NavigationBar 
+  title="My App"
+  navigationComponents={
+    <div>
+      <Button variant="outline">Home</Button>
+      <Button variant="outline">About</Button>
+    </div>
+  }
+/>`,
+          component: (
+            <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                <Heading level={3} style={{ margin: 0 }}>My App</Heading>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <Button variant="outline" size="small">Home</Button>
+                  <Button variant="outline" size="small">About</Button>
+                </div>
+              </div>
+              <BodyText style={{ fontSize: '12px', color: '#666' }}>Navigation bar preview</BodyText>
+            </div>
+          )
+        },
+        {
+          title: 'Navigation Bar with Custom Title',
+          code: `<NavigationBar title="Custom Title" />`,
+          component: (
+            <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Heading level={3} style={{ margin: 0 }}>Custom Title</Heading>
+              </div>
+              <BodyText style={{ fontSize: '12px', color: '#666' }}>Navigation bar with custom title</BodyText>
+            </div>
           )
         }
       ]
