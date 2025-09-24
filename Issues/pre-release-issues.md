@@ -92,6 +92,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] Replace all hero components in the pages with the reusable component
 - [Closed] add a navigation bar component. The navigation bar should match the current navigation bar. It should take in a `title` and `navigationComponents` props where title is the current page title and navigation components is a component with the navigation items which can be a container with buttons etc.
 - [Closed] Navigation bar should have a bottom border matching similar to the one used for buttons
+- [Closed] use our design system navigation bar across all pages
 - [Closed] Add the hero and navigation bar components to the documentation under layout and showcase
 
 ##### Lists

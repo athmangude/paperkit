@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -30,7 +31,7 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Header,
+  NavigationBar,
   Hero
 } from '../components';
 import './Showcase.css';
@@ -111,7 +112,22 @@ const Showcase: React.FC = () => {
 
   return (
     <div className="showcase">
-      <Header />
+      <NavigationBar 
+        title="Paperkit"
+        navigationComponents={
+          <div>
+            <RouterLink to="/about">
+              <Button variant="outline">About</Button>
+            </RouterLink>
+            <RouterLink to="/documentation">
+              <Button variant="outline">Documentation</Button>
+            </RouterLink>
+            <RouterLink to="/showcase">
+              <Button variant="outline">Showcase</Button>
+            </RouterLink>
+          </div>
+        }
+      />
 
       {/* Hero Section */}
       <Hero>

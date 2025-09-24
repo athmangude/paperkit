@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { 
   Button, 
   Card, 
@@ -31,7 +32,7 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Header,
+  NavigationBar,
   Hero
 } from './components';
 import './App.css';
@@ -65,7 +66,22 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <NavigationBar 
+        title="Paperkit"
+        navigationComponents={
+          <div>
+            <RouterLink to="/about">
+              <Button variant="outline">About</Button>
+            </RouterLink>
+            <RouterLink to="/documentation">
+              <Button variant="outline">Documentation</Button>
+            </RouterLink>
+            <RouterLink to="/showcase">
+              <Button variant="outline">Showcase</Button>
+            </RouterLink>
+          </div>
+        }
+      />
 
       {/* Setup Section */}
       <Hero>

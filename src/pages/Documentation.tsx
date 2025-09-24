@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { 
   Button, 
   Card, 
@@ -29,7 +30,6 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Header,
   Hero,
   NavigationBar
 } from '../components';
@@ -885,7 +885,22 @@ const Documentation: React.FC = () => {
 
   return (
     <div className="documentation">
-      <Header />
+      <NavigationBar 
+        title="Paperkit"
+        navigationComponents={
+          <div>
+            <RouterLink to="/about">
+              <Button variant="outline">About</Button>
+            </RouterLink>
+            <RouterLink to="/documentation">
+              <Button variant="outline">Documentation</Button>
+            </RouterLink>
+            <RouterLink to="/showcase">
+              <Button variant="outline">Showcase</Button>
+            </RouterLink>
+          </div>
+        }
+      />
       <Hero>
         <Heading level={2}>Paper Kit Documentation</Heading>
         <BodyText>Complete guide to using Paper Kit components in your projects.</BodyText>

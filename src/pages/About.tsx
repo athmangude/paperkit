@@ -6,7 +6,7 @@ import {
   Heading,
   Link,
   BodyText,
-  Header,
+  NavigationBar,
   Hero
 } from '../components';
 import './About.css';
@@ -14,7 +14,22 @@ import './About.css';
 const About: React.FC = () => {
   return (
     <div className="about">
-      <Header />
+      <NavigationBar 
+        title="Paperkit"
+        navigationComponents={
+          <div>
+            <RouterLink to="/about">
+              <Button variant="outline">About</Button>
+            </RouterLink>
+            <RouterLink to="/documentation">
+              <Button variant="outline">Documentation</Button>
+            </RouterLink>
+            <RouterLink to="/showcase">
+              <Button variant="outline">Showcase</Button>
+            </RouterLink>
+          </div>
+        }
+      />
 
       {/* Hero Section */}
       <Hero>
