@@ -80,6 +80,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] remove the "home" link on the navigation bar since the / link exists on the label "paperkit"
 - [Closed] remove max width on documentation page. All pages should be wrapped with the same container component for consistency. The same navigation header component used in the landing page should be used across the three pages and all subsequent pages. Make it a reusable component
 - [Closed] There is no consistency in the header and hero layout between the showcase page and the rest of the pages. Do not change the color of the header to gradient colors please. I like it the way it is.
+- [Closed] create an about page at /about. The about page should include the inspiration for it i.e., designing low fidelity designs in figma and wantint to continue doing it in React with vibe coding. Mention when it's relevant to use it including when there is no design system in place and you just want to present a UX flow
 
 
 ##### Input
@@ -95,6 +96,8 @@ Rendering of tooltips stopped completely after fixing issue #4
 ##### Showcase
 - [Closed] Create a showcase page and showcase extensive usage of the design system for forms with one form, a social media feed, user profile, dashboard
 - [Closed] Display the showcased usecase in different tabs
+- [Closed] display the showcased usecases outside of tabs top to bottom
+
 
 ### 11. Remove interactive examples below documentation
 #### Status: Closed

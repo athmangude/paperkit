@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import {
   Button,
   Card,
   Heading,
-  Link,
   BodyText,
   Input,
   TextArea,
@@ -52,7 +50,6 @@ const Showcase: React.FC = () => {
   const [notificationType, setNotificationType] = useState<'success' | 'error' | 'warning' | 'info'>('info');
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
-  const [showcaseTab, setShowcaseTab] = useState(0);
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -136,11 +133,13 @@ const Showcase: React.FC = () => {
         </div>
       </section>
 
-      {/* Main Showcase Content with Tabs */}
+      {/* Main Showcase Content */}
       <section className="showcase-content">
         <div className="container">
-          <Tabs defaultActiveTab={showcaseTab} onChange={(index) => setShowcaseTab(index)}>
-            <TabItem label="Dashboard">
+          {/* Dashboard Section */}
+          <div className="showcase-section">
+            <Heading level={2}>Dashboard Interface</Heading>
+            <BodyText>Real-world dashboard with statistics, tables, and data visualization components.</BodyText>
               <div className="dashboard-grid">
                 {/* Stats Cards */}
                 <div className="stats-grid">
@@ -193,9 +192,12 @@ const Showcase: React.FC = () => {
                   </Table>
                 </Card>
               </div>
-            </TabItem>
+            </div>
 
-            <TabItem label="Contact Form">
+            {/* Contact Form Section */}
+            <div className="showcase-section">
+              <Heading level={2}>Contact Form</Heading>
+              <BodyText>Comprehensive form showcasing various input components and validation states.</BodyText>
               <Card elevation="medium" padding="large" className="form-card">
                 <form onSubmit={handleSubmit}>
                   <div className="form-grid">
@@ -301,9 +303,12 @@ const Showcase: React.FC = () => {
                   </div>
                 </form>
               </Card>
-            </TabItem>
+            </div>
 
-            <TabItem label="Social Feed">
+            {/* Social Feed Section */}
+            <div className="showcase-section">
+              <Heading level={2}>Social Media Feed</Heading>
+              <BodyText>Social media interface demonstrating card layouts, user interactions, and content organization.</BodyText>
               <div className="social-feed">
                 {socialPosts.map((post) => (
                   <Card key={post.id} elevation="medium" padding="large" className="post-card">
@@ -338,9 +343,12 @@ const Showcase: React.FC = () => {
                   </Card>
                 ))}
               </div>
-            </TabItem>
+            </div>
 
-            <TabItem label="User Profile">
+            {/* User Profile Section */}
+            <div className="showcase-section">
+              <Heading level={2}>User Profile</Heading>
+              <BodyText>User profile interface showcasing personal information, activity feeds, and social stats.</BodyText>
               <div className="profile-layout">
                 <Card elevation="medium" padding="large" className="profile-card">
                   <div className="profile-header">
@@ -361,15 +369,15 @@ const Showcase: React.FC = () => {
                   
                   <div className="profile-stats">
                     <div className="stat">
-                      <Heading level={4}>1,234</Heading>
+                      <Heading level={3}>1,234</Heading>
                       <BodyText>Followers</BodyText>
                     </div>
                     <div className="stat">
-                      <Heading level={4}>567</Heading>
+                      <Heading level={3}>567</Heading>
                       <BodyText>Following</BodyText>
                     </div>
                     <div className="stat">
-                      <Heading level={4}>89</Heading>
+                      <Heading level={3}>89</Heading>
                       <BodyText>Projects</BodyText>
                     </div>
                   </div>
@@ -399,9 +407,12 @@ const Showcase: React.FC = () => {
                   </List>
                 </Card>
               </div>
-            </TabItem>
+            </div>
 
-            <TabItem label="Components">
+            {/* Interactive Components Section */}
+            <div className="showcase-section">
+              <Heading level={2}>Interactive Components</Heading>
+              <BodyText>Advanced components demonstrating tabs, accordions, progress bars, and interactive elements.</BodyText>
               <div className="interactive-grid">
                 <Card elevation="medium" padding="large">
                   <Heading level={3}>Tabs Example</Heading>
@@ -469,8 +480,7 @@ const Showcase: React.FC = () => {
                   </div>
                 </Card>
               </div>
-            </TabItem>
-          </Tabs>
+            </div>
         </div>
       </section>
 

@@ -26,6 +26,9 @@ export const Header: React.FC<HeaderProps> = ({
             <RouterLink to="/documentation">
               <Button variant="outline">Documentation</Button>
             </RouterLink>
+            <RouterLink to="/about">
+              <Button variant="outline">About</Button>
+            </RouterLink>
           </nav>
         )}
       </div>

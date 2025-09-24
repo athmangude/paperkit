@@ -1,0 +1,106 @@
+/* About Page Styles */
+.about {
+  min-height: 100vh;
+  font-family: 'Patrick Hand', cursive;
+}
+
+/* Hero Section */
+.about-hero {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.hero-card {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Main Content */
+.about-content {
+  padding: 60px 0;
+  background: var(--paper-gray);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Card Styles */
+.inspiration-card,
+.use-cases-card,
+.philosophy-card,
+.cta-card {
+  margin-bottom: 0;
+}
+
+.use-case-list {
+  margin-top: 20px;
+}
+
+.use-case-item {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--ink-light);
+}
+
+.use-case-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.use-case-item h4 {
+  margin-bottom: 8px;
+  color: var(--ink-black);
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 40px 0;
+  }
+
+  .about-content {
+    padding: 40px 0;
+  }
+
+  .content-grid {
+    gap: 24px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-actions .paper-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 30px 0;
+  }
+
+  .about-content {
+    padding: 30px 0;
+  }
+
+  .content-grid {
+    gap: 20px;
+  }
+}

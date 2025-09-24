@@ -31,6 +31,26 @@
   background: var(--paper-white);
 }
 
+/* Showcase Sections */
+.showcase-section {
+  margin-bottom: 80px;
+}
+
+.showcase-section:last-child {
+  margin-bottom: 0;
+}
+
+.showcase-section h2 {
+  margin-bottom: 16px;
+  color: var(--ink-black);
+}
+
+.showcase-section p {
+  margin-bottom: 32px;
+  color: var(--ink-gray);
+  font-size: var(--font-size-lg);
+}
+
 .dashboard-grid {
   display: flex;
   flex-direction: column;
