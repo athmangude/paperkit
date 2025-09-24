@@ -17,36 +17,7 @@ body {
   min-height: 100vh;
 }
 
-/* Header - Landing page specific gradient styling */
-.app-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 2rem 0;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.app-title {
-  margin: 0;
-  font-size: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.main-nav {
-  display: flex;
-  gap: 15px;
-}
+/* Header styles moved to Header component */
 
 /* Container */
 .container {

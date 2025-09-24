@@ -30,7 +30,8 @@ import {
   TableHeader,
   TableRow,
   TableCell,
-  IconButton
+  IconButton,
+  Header
 } from './components';
 import './App.css';
 
@@ -63,15 +64,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="app-header">
-        <div className="header-content">
-          <h1 className="app-title">Paperkit</h1>
-          <nav className="main-nav">
-            <Button variant="primary">Showcase</Button>
-            <Button variant="primary">Documentation</Button>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Setup Section */}
       <section id="setup" className="setup-section">
