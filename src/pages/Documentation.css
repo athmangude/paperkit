@@ -1,15 +1,18 @@
 .documentation {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  min-height: 100vh;
   font-family: 'Patrick Hand', cursive;
 }
 
 .documentation-intro {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   text-align: center;
-  margin-bottom: 40px;
-  padding: 20px;
-  border-bottom: 2px solid #333;
+}
+
+.documentation-intro .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .documentation-content {
@@ -17,6 +20,10 @@
   grid-template-columns: 250px 1fr;
   gap: 40px;
   margin-bottom: 60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
 }
 
 .documentation-sidebar {
