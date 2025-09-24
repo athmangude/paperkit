@@ -4,38 +4,12 @@
   background: var(--paper-gray);
 }
 
-/* Header */
-.showcase-header {
-  background: var(--paper-white);
-  border-bottom: 2px solid var(--ink-light);
-  padding: var(--spacing-lg) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-lg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.showcase-title {
-  margin: 0;
-  color: var(--ink-black);
-}
-
-.main-nav {
-  display: flex;
-  gap: var(--spacing-sm);
-}
+/* Header styles removed - using Header component */
 
 /* Hero Section */
 .hero-section {
-  padding: var(--spacing-4xl) 0;
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .hero-card {
@@ -53,7 +27,7 @@
 
 /* Showcase Content Section */
 .showcase-content {
-  padding: var(--spacing-4xl) 0;
+  padding: 60px 0;
   background: var(--paper-white);
 }
 
