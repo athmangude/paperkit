@@ -1,36 +1,34 @@
 import React, { useState } from 'react';
-import { 
-  Button, 
-  Card, 
+import {
+  Button,
+  Card,
   Heading,
   Link,
   BodyText,
-  Input, 
-  TextArea, 
-  Checkbox, 
-  Radio, 
-  Toggle, 
-  Slider, 
-  ProgressBar, 
-  Badge, 
-  Divider, 
-  Modal, 
-  Notification, 
-  Tag, 
-  Tooltip, 
-  Tabs, 
+  Input,
+  TextArea,
+  Checkbox,
+  Radio,
+  Toggle,
+  Slider,
+  ProgressBar,
+  Badge,
+  Divider,
+  Tag,
+  Tooltip,
+  Tabs,
   TabItem,
-  Accordion, 
+  Accordion,
   AccordionItem,
-  DatePicker, 
-  List, 
+  DatePicker,
+  List,
   ListItem,
-  Pagination, 
+  Pagination,
   Table,
   TableHeader,
   TableRow,
   TableCell,
-  IconButton 
+  IconButton
 } from '../components';
 import './Documentation.css';
 
@@ -55,46 +53,186 @@ interface ComponentDoc {
 
 const Documentation: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState('button');
-  const [showModal, setShowModal] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
   const [copiedButton, setCopiedButton] = useState<string | null>(null);
-  const [inputValue, setInputValue] = useState('');
-  const [checkboxChecked, setCheckboxChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState('option1');
-  const [toggleValue, setToggleValue] = useState(false);
-  const [sliderValue, setSliderValue] = useState(50);
-  const [progressValue, setProgressValue] = useState(75);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [activeTab, setActiveTab] = useState(0);
 
   const components: Record<string, ComponentDoc> = {
     input: {
-      name: 'Input Components',
-      description: 'A comprehensive collection of form input components for user interaction.',
-      props: [],
+      name: 'Input',
+      description: 'A text input component for single-line text entry.',
+      props: [
+        { name: 'value', type: 'string', required: false, description: 'Input value' },
+        { name: 'onChange', type: '(value: string) => void', required: false, description: 'Change handler' },
+        { name: 'placeholder', type: 'string', required: false, description: 'Placeholder text' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the input' },
+        { name: 'error', type: 'string', required: false, description: 'Error message' },
+        { name: 'type', type: 'string', required: false, default: 'text', description: 'Input type' }
+      ],
       examples: [
         {
-          title: 'Input Components Overview',
-          code: `// All input components grouped together
-<Input placeholder="Text input" />
-<TextArea placeholder="Multi-line text" />
-<Checkbox label="Checkbox option" />
-<Radio name="group" value="option1" label="Radio option" />
-<Toggle label="Toggle switch" />
-<Slider value={50} min={0} max={100} />
-<DatePicker placeholder="Select date" />`,
+          title: 'Basic Input',
+          code: '<Input placeholder="Enter text" />',
+          component: <Input placeholder="Enter text" />
+        },
+        {
+          title: 'Input with Error',
+          code: '<Input placeholder="Enter text" error="This field is required" />',
+          component: <Input placeholder="Enter text" error="This field is required" />
+        },
+        {
+          title: 'Disabled Input',
+          code: '<Input placeholder="Disabled" disabled />',
+          component: <Input placeholder="Disabled" disabled />
+        }
+      ]
+    },
+    textarea: {
+      name: 'TextArea',
+      description: 'A multi-line text input component for longer text entry.',
+      props: [
+        { name: 'value', type: 'string', required: false, description: 'TextArea value' },
+        { name: 'onChange', type: '(value: string) => void', required: false, description: 'Change handler' },
+        { name: 'placeholder', type: 'string', required: false, description: 'Placeholder text' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the textarea' },
+        { name: 'error', type: 'string', required: false, description: 'Error message' },
+        { name: 'rows', type: 'number', required: false, default: '4', description: 'Number of rows' }
+      ],
+      examples: [
+        {
+          title: 'Basic TextArea',
+          code: '<TextArea placeholder="Enter your message" />',
+          component: <TextArea placeholder="Enter your message" />
+        },
+        {
+          title: 'TextArea with Error',
+          code: '<TextArea placeholder="Enter your message" error="Message is required" />',
+          component: <TextArea placeholder="Enter your message" error="Message is required" />
+        }
+      ]
+    },
+    checkbox: {
+      name: 'Checkbox',
+      description: 'A checkbox component for boolean input selection.',
+      props: [
+        { name: 'checked', type: 'boolean', required: false, default: 'false', description: 'Checked state' },
+        { name: 'onChange', type: '(checked: boolean) => void', required: false, description: 'Change handler' },
+        { name: 'label', type: 'string', required: false, description: 'Checkbox label' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the checkbox' }
+      ],
+      examples: [
+        {
+          title: 'Basic Checkbox',
+          code: '<Checkbox label="I agree to the terms" />',
+          component: <Checkbox label="I agree to the terms" />
+        },
+        {
+          title: 'Checked Checkbox',
+          code: '<Checkbox label="Already checked" checked />',
+          component: <Checkbox label="Already checked" checked />
+        },
+        {
+          title: 'Disabled Checkbox',
+          code: '<Checkbox label="Disabled option" disabled />',
+          component: <Checkbox label="Disabled option" disabled />
+        }
+      ]
+    },
+    radio: {
+      name: 'Radio',
+      description: 'A radio button component for single selection from multiple options.',
+      props: [
+        { name: 'checked', type: 'boolean', required: false, default: 'false', description: 'Checked state' },
+        { name: 'onChange', type: '(value: string | boolean) => void', required: false, description: 'Change handler' },
+        { name: 'label', type: 'string', required: false, description: 'Radio label' },
+        { name: 'value', type: 'string', required: false, description: 'Radio value' },
+        { name: 'name', type: 'string', required: false, description: 'Group name for radio buttons' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the radio' }
+      ],
+      examples: [
+        {
+          title: 'Basic Radio',
+          code: '<Radio name="option" value="option1" label="Option 1" />',
+          component: <Radio name="option" value="option1" label="Option 1" />
+        },
+        {
+          title: 'Radio Group',
+          code: `<Radio name="choice" value="a" label="Choice A" />
+<Radio name="choice" value="b" label="Choice B" />
+<Radio name="choice" value="c" label="Choice C" />`,
           component: (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <Input placeholder="Text input" />
-              <TextArea placeholder="Multi-line text" />
-              <Checkbox label="Checkbox option" />
-              <Radio name="group" value="option1" label="Radio option" />
-              <Toggle label="Toggle switch" />
-              <Slider value={50} min={0} max={100} />
-              <DatePicker placeholder="Select date" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <Radio name="choice" value="a" label="Choice A" />
+              <Radio name="choice" value="b" label="Choice B" />
+              <Radio name="choice" value="c" label="Choice C" />
             </div>
           )
+        }
+      ]
+    },
+    toggle: {
+      name: 'Toggle',
+      description: 'A toggle switch component for boolean input selection.',
+      props: [
+        { name: 'checked', type: 'boolean', required: false, default: 'false', description: 'Toggle state' },
+        { name: 'onChange', type: '(checked: boolean) => void', required: false, description: 'Change handler' },
+        { name: 'label', type: 'string', required: false, description: 'Toggle label' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the toggle' }
+      ],
+      examples: [
+        {
+          title: 'Basic Toggle',
+          code: '<Toggle label="Enable notifications" />',
+          component: <Toggle label="Enable notifications" />
+        },
+        {
+          title: 'Checked Toggle',
+          code: '<Toggle label="Already enabled" checked />',
+          component: <Toggle label="Already enabled" checked />
+        }
+      ]
+    },
+    slider: {
+      name: 'Slider',
+      description: 'A range slider component for numeric input selection.',
+      props: [
+        { name: 'value', type: 'number', required: false, default: '0', description: 'Slider value' },
+        { name: 'onChange', type: '(value: number) => void', required: false, description: 'Change handler' },
+        { name: 'min', type: 'number', required: false, default: '0', description: 'Minimum value' },
+        { name: 'max', type: 'number', required: false, default: '100', description: 'Maximum value' },
+        { name: 'step', type: 'number', required: false, default: '1', description: 'Step increment' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the slider' }
+      ],
+      examples: [
+        {
+          title: 'Basic Slider',
+          code: '<Slider value={50} min={0} max={100} />',
+          component: <Slider value={50} min={0} max={100} />
+        },
+        {
+          title: 'Slider with Step',
+          code: '<Slider value={25} min={0} max={100} step={5} />',
+          component: <Slider value={25} min={0} max={100} step={5} />
+        }
+      ]
+    },
+    datepicker: {
+      name: 'DatePicker',
+      description: 'A date picker component for date selection.',
+      props: [
+        { name: 'value', type: 'Date | null', required: false, description: 'Selected date' },
+        { name: 'onChange', type: '(date: Date | null) => void', required: false, description: 'Change handler' },
+        { name: 'placeholder', type: 'string', required: false, description: 'Placeholder text' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the date picker' }
+      ],
+      examples: [
+        {
+          title: 'Basic DatePicker',
+          code: '<DatePicker placeholder="Select a date" />',
+          component: <DatePicker placeholder="Select a date" />
+        },
+        {
+          title: 'DatePicker with Value',
+          code: '<DatePicker value={new Date()} />',
+          component: <DatePicker value={new Date()} />
         }
       ]
     },
@@ -206,15 +344,15 @@ const Documentation: React.FC = () => {
           )
         },
         {
-          title: 'BodyText Variants',
-          code: `<BodyText variant="body">Body text</BodyText>
-<BodyText variant="caption">Caption text</BodyText>
-<BodyText variant="overline">Overline text</BodyText>`,
+          title: 'BodyText Examples',
+          code: `<BodyText>Body text</BodyText>
+<BodyText>Caption text</BodyText>
+<BodyText>Overline text</BodyText>`,
           component: (
             <div>
-              <BodyText variant="body">Body text</BodyText>
-              <BodyText variant="caption">Caption text</BodyText>
-              <BodyText variant="overline">Overline text</BodyText>
+              <BodyText>Body text</BodyText>
+              <BodyText>Caption text</BodyText>
+              <BodyText>Overline text</BodyText>
             </div>
           )
         },
@@ -248,6 +386,32 @@ const Documentation: React.FC = () => {
               <Badge variant="error">Error</Badge>
             </div>
           )
+        },
+        {
+          title: 'Badge Sizes',
+          code: `<Badge size="small">Small</Badge>
+<Badge size="medium">Medium</Badge>
+<Badge size="large">Large</Badge>`,
+          component: (
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <Badge size="small">Small</Badge>
+              <Badge size="medium">Medium</Badge>
+              <Badge size="large">Large</Badge>
+            </div>
+          )
+        },
+        {
+          title: 'Badge with Numbers',
+          code: `<Badge>5</Badge>
+<Badge variant="success">99</Badge>
+<Badge variant="warning">150</Badge>`,
+          component: (
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <Badge>5</Badge>
+              <Badge variant="success">99</Badge>
+              <Badge variant="warning">150</Badge>
+            </div>
+          )
         }
       ]
     },
@@ -263,9 +427,35 @@ const Documentation: React.FC = () => {
       ],
       examples: [
         {
-          title: 'Icon Button',
-          code: '<IconButton>★</IconButton>',
-          component: <IconButton>★</IconButton>
+          title: 'IconButton Variants',
+          code: `<IconButton icon="★" variant="primary" />
+<IconButton icon="★" variant="secondary" />
+<IconButton icon="★" variant="outline" />`,
+          component: (
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <IconButton icon="★" variant="primary" />
+              <IconButton icon="★" variant="secondary" />
+              <IconButton icon="★" variant="outline" />
+            </div>
+          )
+        },
+        {
+          title: 'IconButton Sizes',
+          code: `<IconButton icon="★" size="small" />
+<IconButton icon="★" size="medium" />
+<IconButton icon="★" size="large" />`,
+          component: (
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <IconButton icon="★" size="small" />
+              <IconButton icon="★" size="medium" />
+              <IconButton icon="★" size="large" />
+            </div>
+          )
+        },
+        {
+          title: 'Disabled IconButton',
+          code: '<IconButton icon="★" disabled />',
+          component: <IconButton icon="★" disabled />
         }
       ]
     },
@@ -280,7 +470,35 @@ const Documentation: React.FC = () => {
       ],
       examples: [
         {
-          title: 'Progress Bar',
+          title: 'ProgressBar Variants',
+          code: `<ProgressBar value={75} variant="default" />
+<ProgressBar value={75} variant="success" />
+<ProgressBar value={75} variant="warning" />
+<ProgressBar value={75} variant="error" />`,
+          component: (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <ProgressBar value={75} variant="default" />
+              <ProgressBar value={75} variant="success" />
+              <ProgressBar value={75} variant="warning" />
+              <ProgressBar value={75} variant="error" />
+            </div>
+          )
+        },
+        {
+          title: 'ProgressBar Sizes',
+          code: `<ProgressBar value={75} size="small" />
+<ProgressBar value={75} size="medium" />
+<ProgressBar value={75} size="large" />`,
+          component: (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <ProgressBar value={75} size="small" />
+              <ProgressBar value={75} size="medium" />
+              <ProgressBar value={75} size="large" />
+            </div>
+          )
+        },
+        {
+          title: 'ProgressBar with Label',
           code: '<ProgressBar value={75} showLabel={true} />',
           component: <ProgressBar value={75} showLabel={true} />
         }
@@ -310,6 +528,24 @@ const Documentation: React.FC = () => {
               <Tag variant="error">Error</Tag>
             </div>
           )
+        },
+        {
+          title: 'Tag Sizes',
+          code: `<Tag size="small">Small</Tag>
+<Tag size="medium">Medium</Tag>
+<Tag size="large">Large</Tag>`,
+          component: (
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <Tag size="small">Small</Tag>
+              <Tag size="medium">Medium</Tag>
+              <Tag size="large">Large</Tag>
+            </div>
+          )
+        },
+        {
+          title: 'Removable Tag',
+          code: '<Tag onRemove={() => console.log("Removed")}>Removable</Tag>',
+          component: <Tag onRemove={() => console.log("Removed")}>Removable</Tag>
         }
       ]
     },
@@ -317,14 +553,38 @@ const Documentation: React.FC = () => {
       name: 'Divider',
       description: 'A visual separator component.',
       props: [
-        { name: 'variant', type: '"horizontal" | "vertical"', required: false, default: 'horizontal', description: 'Divider orientation' },
-        { name: 'spacing', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Spacing around divider' }
+        { name: 'orientation', type: '"horizontal" | "vertical"', required: false, default: 'horizontal', description: 'Divider orientation' },
+        { name: 'spacing', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Spacing around divider' },
+        { name: 'variant', type: '"default" | "light" | "dashed" | "dotted" | "wavy"', required: false, default: 'default', description: 'Divider style variant' }
       ],
       examples: [
         {
-          title: 'Horizontal Divider',
-          code: '<Divider variant="horizontal" />',
-          component: <Divider variant="horizontal" />
+          title: 'Divider Orientations',
+          code: `<Divider orientation="horizontal" />
+<Divider orientation="vertical" />`,
+          component: (
+            <div>
+              <Divider orientation="horizontal" />
+              <div style={{ display: 'flex', height: '50px', alignItems: 'center' }}>
+                <span>Left</span>
+                <Divider orientation="vertical" />
+                <span>Right</span>
+              </div>
+            </div>
+          )
+        },
+        {
+          title: 'Divider Variants',
+          code: `<Divider variant="default" />
+<Divider variant="dashed" />
+<Divider variant="dotted" />`,
+          component: (
+            <div>
+              <Divider variant="default" />
+              <Divider variant="dashed" />
+              <Divider variant="dotted" />
+            </div>
+          )
         }
       ]
     },
@@ -344,7 +604,7 @@ const Documentation: React.FC = () => {
           code: `<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Example Modal">
   <BodyText>This is modal content</BodyText>
 </Modal>`,
-          component: <Button onClick={() => setShowModal(true)}>Open Modal</Button>
+          component: <Button>Open Modal</Button>
         }
       ]
     },
@@ -375,10 +635,10 @@ const Documentation: React.FC = () => {
 </Button>`,
           component: (
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              <Button onClick={() => setShowNotification(true)}>Show Success</Button>
-              <Button onClick={() => setShowNotification(true)}>Show Warning</Button>
-              <Button onClick={() => setShowNotification(true)}>Show Error</Button>
-              <Button onClick={() => setShowNotification(true)}>Show Info</Button>
+              <Button>Show Success</Button>
+              <Button>Show Warning</Button>
+              <Button>Show Error</Button>
+              <Button>Show Info</Button>
             </div>
           )
         }
@@ -603,14 +863,14 @@ const Documentation: React.FC = () => {
                 <Heading level={3}>Examples</Heading>
                 {components[activeComponent].examples.map((example, index) => (
                   <Card key={index} className="example-card">
-                    <Heading level={4}>{example.title}</Heading>
+                    <Heading level={3}>{example.title}</Heading>
                     <div className="example-content">
                       <div className="example-preview">
                         {example.component}
                       </div>
                       <div className="example-code">
                         <div className="code-header">
-                          <BodyText variant="caption">Code</BodyText>
+                          <BodyText>Code</BodyText>
                           <Button 
                             size="small" 
                             variant="outline"
@@ -632,113 +892,6 @@ const Documentation: React.FC = () => {
         </div>
       </div>
 
-      {/* Interactive Examples */}
-      <section className="interactive-examples">
-        <Heading level={2}>Interactive Examples</Heading>
-        
-        <Card className="interactive-card">
-          <Heading level={3}>Modal Example</Heading>
-          <Button onClick={() => setShowModal(true)}>Open Modal</Button>
-          <Modal 
-            isOpen={showModal} 
-            onClose={() => setShowModal(false)}
-            title="Interactive Modal"
-          >
-            <BodyText>This is an interactive modal example. You can close it by clicking the X or outside the modal.</BodyText>
-            <div style={{ marginTop: '20px' }}>
-              <Button onClick={() => setShowModal(false)}>Close</Button>
-            </div>
-          </Modal>
-        </Card>
-
-        <Card className="interactive-card">
-          <Heading level={3}>Notification Example</Heading>
-          <Button onClick={() => setShowNotification(true)}>Show Notification</Button>
-          {showNotification && (
-            <Notification 
-              message="This is an interactive notification!" 
-              onClose={() => setShowNotification(false)}
-            />
-          )}
-        </Card>
-
-        <Card className="interactive-card">
-          <Heading level={3}>Form Controls</Heading>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <div>
-              <BodyText>Input: {inputValue}</BodyText>
-              <Input value={inputValue} onChange={setInputValue} placeholder="Type here..." />
-            </div>
-            <div>
-              <Checkbox checked={checkboxChecked} onChange={setCheckboxChecked} label="Checkbox" />
-            </div>
-            <div>
-              <Radio 
-                name="demo" 
-                value="option1" 
-                checked={radioValue === 'option1'} 
-                onChange={(value) => setRadioValue(value)} 
-                label="Option 1" 
-              />
-              <Radio 
-                name="demo" 
-                value="option2" 
-                checked={radioValue === 'option2'} 
-                onChange={(value) => setRadioValue(value)} 
-                label="Option 2" 
-              />
-            </div>
-            <div>
-              <Toggle checked={toggleValue} onChange={setToggleValue} label="Toggle" />
-            </div>
-            <div>
-              <BodyText>Slider: {sliderValue}</BodyText>
-              <Slider value={sliderValue} onChange={setSliderValue} min={0} max={100} />
-            </div>
-            <div>
-              <BodyText>Progress: {progressValue}%</BodyText>
-              <ProgressBar value={progressValue} />
-            </div>
-          </div>
-        </Card>
-
-        <Card className="interactive-card">
-          <Heading level={3}>Date Picker</Heading>
-          <DatePicker 
-            selectedDate={selectedDate} 
-            onDateChange={setSelectedDate}
-            placeholder="Select a date"
-          />
-          {selectedDate && (
-            <BodyText>Selected: {selectedDate.toLocaleDateString()}</BodyText>
-          )}
-        </Card>
-
-        <Card className="interactive-card">
-          <Heading level={3}>Pagination</Heading>
-          <Pagination 
-            currentPage={currentPage} 
-            totalPages={10} 
-            onPageChange={setCurrentPage}
-          />
-          <BodyText>Current page: {currentPage}</BodyText>
-        </Card>
-
-        <Card className="interactive-card">
-          <Heading level={3}>Tabs</Heading>
-          <Tabs defaultActiveTab={activeTab} onChange={(index) => setActiveTab(index)}>
-            <TabItem label="Tab 1">
-              <BodyText>Content for tab 1</BodyText>
-            </TabItem>
-            <TabItem label="Tab 2">
-              <BodyText>Content for tab 2</BodyText>
-            </TabItem>
-            <TabItem label="Tab 3">
-              <BodyText>Content for tab 3</BodyText>
-            </TabItem>
-          </Tabs>
-        </Card>
-      </section>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { 
   Button, 
   Card, 
@@ -32,11 +33,10 @@ import {
   TableCell,
   IconButton 
 } from './components';
-import Documentation from './pages/Documentation';
 import './App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'showcase' | 'documentation'>('showcase');
+  const location = useLocation();
   const [inputValue, setInputValue] = useState('');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('option1');
@@ -63,10 +63,6 @@ function App() {
     setTimeout(() => setCopiedButton(null), 3000);
   };
 
-  if (currentPage === 'documentation') {
-    return <Documentation />;
-  }
-
   return (
     <div className="App">
       {/* Navigation Header */}
@@ -74,18 +70,20 @@ function App() {
         <div className="header-content">
           <Heading level={1} className="app-title">Paper Kit Design System</Heading>
           <nav className="main-nav">
-            <Button 
-              variant={currentPage === 'showcase' ? 'primary' : 'outline'}
-              onClick={() => setCurrentPage('showcase')}
-            >
-              Showcase
-            </Button>
-            <Button 
-              variant={currentPage === 'documentation' ? 'primary' : 'outline'}
-              onClick={() => setCurrentPage('documentation')}
-            >
-              Documentation
-            </Button>
+            <RouterLink to="/showcase">
+              <Button 
+                variant={location.pathname === '/showcase' || location.pathname === '/' ? 'primary' : 'outline'}
+              >
+                Showcase
+              </Button>
+            </RouterLink>
+            <RouterLink to="/documentation">
+              <Button 
+                variant={location.pathname === '/documentation' ? 'primary' : 'outline'}
+              >
+                Documentation
+              </Button>
+            </RouterLink>
           </nav>
         </div>
       </header>
@@ -339,11 +337,11 @@ function App() {
           <Heading level={2}>Date Picker</Heading>
           <Card elevation="medium" padding="large">
             <div className="date-picker-grid">
-              <DatePicker 
-                selectedDate={selectedDate} 
-                onDateChange={setSelectedDate}
-                placeholder="Select a date"
-              />
+            <DatePicker 
+              value={selectedDate} 
+              onChange={setSelectedDate}
+              placeholder="Select a date"
+            />
               {selectedDate && (
                 <BodyText>Selected: {selectedDate.toLocaleDateString()}</BodyText>
               )}
@@ -399,20 +397,20 @@ function App() {
               </div>
               <div>
                 <Heading level={3}>Radio Buttons</Heading>
-                <Radio 
-                  name="demo" 
-                  value="option1" 
-                  checked={radioValue === 'option1'} 
-                  onChange={(value) => setRadioValue(value)} 
-                  label="Option 1" 
-                />
-                <Radio 
-                  name="demo" 
-                  value="option2" 
-                  checked={radioValue === 'option2'} 
-                  onChange={(value) => setRadioValue(value)} 
-                  label="Option 2" 
-                />
+              <Radio 
+                name="demo" 
+                value="option1" 
+                checked={radioValue === 'option1'} 
+                onChange={(value) => setRadioValue(value as string)} 
+                label="Option 1" 
+              />
+              <Radio 
+                name="demo" 
+                value="option2" 
+                checked={radioValue === 'option2'} 
+                onChange={(value) => setRadioValue(value as string)} 
+                label="Option 2" 
+              />
               </div>
               <div>
                 <Heading level={3}>Toggle</Heading>

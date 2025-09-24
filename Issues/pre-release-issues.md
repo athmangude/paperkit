@@ -70,8 +70,21 @@ Rendering of tooltips stopped completely after fixing issue #4
 ### 10. Documentation issues
 #### Status: Closed
 
+##### Pages
+- [Closed] Separate documentation and landing page into separate pages. The pages should have separate routes i.e., a landing page at /, documentation at /documentation, a showcase page at /showcase 
 - [Closed] Documentation does not include all components. It should include all components in this design system
-- [Closed] Separate documentation and landing page into separate pages. The pages should have separate routes
+
+##### Input
+- [Closed] Render props table and components separately for each input component instead of a showcase form
+- [Closed] Where there are variants involved, render the components and example usage code for all variants. Also do this for all other components with variants
 - [Closed] All input components should be grouped under input including radio buttons and checkboxes
+
+##### Notifications
 - [Closed] Show buttons to trigger all notification variants
 - [Closed] Notification should not have a background color. Only the icon in the notification should be used to differentiate with a badge component with a background color
+- [Closed] The notification variants should use different icons, cross for error, info for info, warning for warning etc.
+
+### 11. Remove interactive examples below documentation
+#### Status: Closed
+
+The interactive examples section should not be shown in documentation
