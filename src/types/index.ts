@@ -212,6 +212,7 @@ export interface ListItemProps extends BaseComponentProps {
   title?: string;
   subtitle?: string;
   onClick?: () => void;
+  selected?: boolean;
 }
 
 // Pagination types

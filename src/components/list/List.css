@@ -69,6 +69,25 @@
   box-shadow: var(--shadow-pencil);
 }
 
+.paper-list-item--selected {
+  background-color: var(--ink-black);
+  color: var(--paper-white);
+  font-weight: bold;
+}
+
+.paper-list-item--selected .paper-list-item__title {
+  color: var(--paper-white);
+}
+
+.paper-list-item--selected .paper-list-item__subtitle {
+  color: var(--paper-white);
+  opacity: 0.8;
+}
+
+.paper-list-item--selected .paper-list-item__icon {
+  color: var(--paper-white);
+}
+
 .paper-list-item__icon {
   display: flex;
   align-items: center;

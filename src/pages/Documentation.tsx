@@ -820,17 +820,16 @@ const Documentation: React.FC = () => {
       <div className="documentation-content">
         <div className="documentation-sidebar">
           <Heading level={3}>Components</Heading>
-          <nav className="component-nav">
+          <List variant="outlined" size="small">
             {Object.keys(components).map((key) => (
-              <button
+              <ListItem
                 key={key}
-                className={`nav-item ${activeComponent === key ? 'active' : ''}`}
+                title={components[key].name}
                 onClick={() => setActiveComponent(key)}
-              >
-                {components[key].name}
-              </button>
+                selected={activeComponent === key}
+              />
             ))}
-          </nav>
+          </List>
         </div>
 
         <div className="documentation-main">

@@ -86,6 +86,8 @@ Rendering of tooltips stopped completely after fixing issue #4
 
 ##### Lists
 - [Closed] list item borders should match those of basic buttons
+- [Closed] remove border on the List component containing list items
+- [Closed] when a list item is selected it's text is not visible. Introduce a selected property for a listItem. When an item is selected, its background is black and text is white
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form

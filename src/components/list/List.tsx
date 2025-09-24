@@ -7,11 +7,13 @@ export const ListItem: React.FC<ListItemProps> = ({
   title,
   subtitle,
   onClick,
+  selected = false,
   className = '',
 }) => {
   const itemClasses = [
     'paper-list-item',
     onClick ? 'paper-list-item--clickable' : '',
+    selected ? 'paper-list-item--selected' : '',
     className,
   ].filter(Boolean).join(' ');
 
