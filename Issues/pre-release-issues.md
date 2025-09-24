@@ -81,7 +81,11 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] remove max width on documentation page. All pages should be wrapped with the same container component for consistency. The same navigation header component used in the landing page should be used across the three pages and all subsequent pages. Make it a reusable component
 - [Closed] There is no consistency in the header and hero layout between the showcase page and the rest of the pages. Do not change the color of the header to gradient colors please. I like it the way it is.
 - [Closed] create an about page at /about. The about page should include the inspiration for it i.e., designing low fidelity designs in figma and wantint to continue doing it in React with vibe coding. Mention when it's relevant to use it including when there is no design system in place and you just want to present a UX flow
+- [Closed] add space between hero component and the content that follows it in the documentation page
+- [Closed] on the navigation bar the button with the link of the active page should be a primary button
 
+##### Lists
+- [Closed] list item borders should match those of basic buttons
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form

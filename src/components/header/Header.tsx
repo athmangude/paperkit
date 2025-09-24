@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Button, Heading } from '../index';
 import './Header.css';
 
@@ -12,6 +12,12 @@ export const Header: React.FC<HeaderProps> = ({
   title = "Paperkit",
   showNavigation = true 
 }) => {
+  const location = useLocation();
+  
+  const getButtonVariant = (path: string) => {
+    return location.pathname === path ? 'primary' : 'outline';
+  };
+
   return (
     <header className="paper-header">
       <div className="header-content">
@@ -21,13 +27,13 @@ export const Header: React.FC<HeaderProps> = ({
         {showNavigation && (
           <nav className="header-nav">
             <RouterLink to="/showcase">
-              <Button variant="outline">Showcase</Button>
+              <Button variant={getButtonVariant('/showcase')}>Showcase</Button>
             </RouterLink>
             <RouterLink to="/documentation">
-              <Button variant="outline">Documentation</Button>
+              <Button variant={getButtonVariant('/documentation')}>Documentation</Button>
             </RouterLink>
             <RouterLink to="/about">
-              <Button variant="outline">About</Button>
+              <Button variant={getButtonVariant('/about')}>About</Button>
             </RouterLink>
           </nav>
         )}

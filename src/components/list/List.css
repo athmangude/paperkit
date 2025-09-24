@@ -47,8 +47,8 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm);
-  border: 2px solid transparent;
-  border-radius: 6px;
+  border: 2px solid var(--ink-black);
+  border-radius: var(--radius-md);
   transition: all var(--transition-normal);
   position: relative;
 }
@@ -59,7 +59,6 @@
 
 .paper-list-item--clickable:hover {
   background: var(--paper-gray);
-  border-color: var(--ink-black);
   transform: translateX(2px);
 }
 
