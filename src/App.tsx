@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { 
   Button, 
   Card, 
@@ -31,12 +30,12 @@ import {
   TableHeader,
   TableRow,
   TableCell,
-  IconButton 
+  IconButton,
+  Header
 } from './components';
 import './App.css';
 
 function App() {
-  const location = useLocation();
   const [inputValue, setInputValue] = useState('');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('option1');
@@ -65,35 +64,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* Navigation Header */}
-      <header className="app-header">
-        <div className="header-content">
-          <Heading level={1} className="app-title">Paper Kit Design System</Heading>
-          <nav className="main-nav">
-            <RouterLink to="/">
-              <Button 
-                variant={location.pathname === '/' ? 'primary' : 'outline'}
-              >
-                Home
-              </Button>
-            </RouterLink>
-            <RouterLink to="/showcase">
-              <Button 
-                variant={location.pathname === '/showcase' ? 'primary' : 'outline'}
-              >
-                Showcase
-              </Button>
-            </RouterLink>
-            <RouterLink to="/documentation">
-              <Button 
-                variant={location.pathname === '/documentation' ? 'primary' : 'outline'}
-              >
-                Documentation
-              </Button>
-            </RouterLink>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Setup Section */}
       <section id="setup" className="setup-section">

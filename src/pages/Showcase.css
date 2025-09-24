@@ -51,8 +51,8 @@
   margin-top: var(--spacing-lg);
 }
 
-/* Dashboard Section */
-.dashboard-section {
+/* Showcase Content Section */
+.showcase-content {
   padding: var(--spacing-4xl) 0;
   background: var(--paper-white);
 }
@@ -99,11 +99,7 @@
   margin-top: var(--spacing-lg);
 }
 
-/* Form Section */
-.form-section {
-  padding: var(--spacing-4xl) 0;
-}
-
+/* Form Card */
 .form-card {
   max-width: 800px;
   margin: 0 auto;
@@ -138,11 +134,7 @@
   justify-content: center;
 }
 
-/* Social Media Feed Section */
-.social-section {
-  padding: var(--spacing-4xl) 0;
-  background: var(--paper-white);
-}
+/* Social Media Feed */
 
 .social-feed {
   max-width: 600px;
@@ -209,10 +201,7 @@
   gap: var(--spacing-sm);
 }
 
-/* User Profile Section */
-.profile-section {
-  padding: var(--spacing-4xl) 0;
-}
+/* User Profile */
 
 .profile-layout {
   display: grid;
@@ -269,11 +258,7 @@
   gap: var(--spacing-sm);
 }
 
-/* Interactive Components Section */
-.interactive-section {
-  padding: var(--spacing-4xl) 0;
-  background: var(--paper-white);
-}
+/* Interactive Components */
 
 .interactive-grid {
   display: grid;
@@ -354,11 +339,7 @@
 
 @media (max-width: 480px) {
   .hero-section,
-  .dashboard-section,
-  .form-section,
-  .social-section,
-  .profile-section,
-  .interactive-section {
+  .showcase-content {
     padding: var(--spacing-xl) 0;
   }
 

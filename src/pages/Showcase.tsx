@@ -31,7 +31,8 @@ import {
   TableHeader,
   TableRow,
   TableCell,
-  IconButton
+  IconButton,
+  Header
 } from '../components';
 import './Showcase.css';
 
@@ -51,6 +52,7 @@ const Showcase: React.FC = () => {
   const [notificationType, setNotificationType] = useState<'success' | 'error' | 'warning' | 'info'>('info');
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
+  const [showcaseTab, setShowcaseTab] = useState(0);
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -111,20 +113,7 @@ const Showcase: React.FC = () => {
 
   return (
     <div className="showcase">
-      {/* Navigation Header */}
-      <header className="showcase-header">
-        <div className="header-content">
-          <Heading level={1} className="showcase-title">Paper Kit Showcase</Heading>
-          <nav className="main-nav">
-            <RouterLink to="/showcase">
-              <Button variant="primary">Showcase</Button>
-            </RouterLink>
-            <RouterLink to="/documentation">
-              <Button variant="outline">Documentation</Button>
-            </RouterLink>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="hero-section">
@@ -147,354 +136,341 @@ const Showcase: React.FC = () => {
         </div>
       </section>
 
-      {/* Dashboard Section */}
-      <section className="dashboard-section">
+      {/* Main Showcase Content with Tabs */}
+      <section className="showcase-content">
         <div className="container">
-          <Heading level={2}>Dashboard Interface</Heading>
-          <div className="dashboard-grid">
-            {/* Stats Cards */}
-            <div className="stats-grid">
-              {dashboardStats.map((stat, index) => (
-                <Card key={index} elevation="medium" padding="medium" className="stat-card">
-                  <div className="stat-content">
-                    <BodyText className="stat-label">{stat.label}</BodyText>
-                    <Heading level={3} className="stat-value">{stat.value}</Heading>
-                    <div className={`stat-change ${stat.trend}`}>
-                      <Badge variant={stat.trend === 'up' ? 'success' : 'error'} size="small">
-                        {stat.change}
-                      </Badge>
+          <Tabs defaultActiveTab={showcaseTab} onChange={(index) => setShowcaseTab(index)}>
+            <TabItem label="Dashboard">
+              <div className="dashboard-grid">
+                {/* Stats Cards */}
+                <div className="stats-grid">
+                  {dashboardStats.map((stat, index) => (
+                    <Card key={index} elevation="medium" padding="medium" className="stat-card">
+                      <div className="stat-content">
+                        <BodyText className="stat-label">{stat.label}</BodyText>
+                        <Heading level={3} className="stat-value">{stat.value}</Heading>
+                        <div className={`stat-change ${stat.trend}`}>
+                          <Badge variant={stat.trend === 'up' ? 'success' : 'error'} size="small">
+                            {stat.change}
+                          </Badge>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+
+                {/* Recent Orders Table */}
+                <Card elevation="medium" padding="large" className="orders-card">
+                  <Heading level={3}>Recent Orders</Heading>
+                  <Table>
+                    <thead>
+                      <tr>
+                        <TableHeader>Order ID</TableHeader>
+                        <TableHeader>Customer</TableHeader>
+                        <TableHeader>Product</TableHeader>
+                        <TableHeader>Amount</TableHeader>
+                        <TableHeader>Status</TableHeader>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {recentOrders.map((order) => (
+                        <TableRow key={order.id}>
+                          <TableCell>{order.id}</TableCell>
+                          <TableCell>{order.customer}</TableCell>
+                          <TableCell>{order.product}</TableCell>
+                          <TableCell>{order.amount}</TableCell>
+                          <TableCell>
+                            <Badge 
+                              variant={order.status === 'completed' ? 'success' : 
+                                      order.status === 'pending' ? 'warning' : 'default'}
+                            >
+                              {order.status}
+                            </Badge>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Card>
+              </div>
+            </TabItem>
+
+            <TabItem label="Contact Form">
+              <Card elevation="medium" padding="large" className="form-card">
+                <form onSubmit={handleSubmit}>
+                  <div className="form-grid">
+                    <div className="form-group">
+                      <BodyText>Full Name</BodyText>
+                      <Input
+                        value={formData.name}
+                        onChange={(value) => handleInputChange('name', value)}
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    
+                    <div className="form-group">
+                      <BodyText>Email Address</BodyText>
+                      <Input
+                        value={formData.email}
+                        onChange={(value) => handleInputChange('email', value)}
+                        placeholder="Enter your email"
+                        type="email"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <BodyText>Gender</BodyText>
+                      <div className="radio-group">
+                        <Radio
+                          name="gender"
+                          value="male"
+                          checked={formData.gender === 'male'}
+                          onChange={(value) => handleInputChange('gender', value)}
+                          label="Male"
+                        />
+                        <Radio
+                          name="gender"
+                          value="female"
+                          checked={formData.gender === 'female'}
+                          onChange={(value) => handleInputChange('gender', value)}
+                          label="Female"
+                        />
+                        <Radio
+                          name="gender"
+                          value="other"
+                          checked={formData.gender === 'other'}
+                          onChange={(value) => handleInputChange('gender', value)}
+                          label="Other"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <BodyText>Birth Date</BodyText>
+                      <DatePicker
+                        value={formData.birthDate}
+                        onChange={(date) => handleInputChange('birthDate', date)}
+                        placeholder="Select your birth date"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <BodyText>Age: {formData.age}</BodyText>
+                      <Slider
+                        value={formData.age}
+                        onChange={(value) => handleInputChange('age', value)}
+                        min={18}
+                        max={100}
+                      />
+                    </div>
+
+                    <div className="form-group full-width">
+                      <BodyText>Message</BodyText>
+                      <TextArea
+                        value={formData.message}
+                        onChange={(value) => handleInputChange('message', value)}
+                        placeholder="Tell us about your project..."
+                        rows={4}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <Checkbox
+                        checked={formData.newsletter}
+                        onChange={(checked) => handleInputChange('newsletter', checked)}
+                        label="Subscribe to newsletter"
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <Toggle
+                        checked={formData.notifications}
+                        onChange={(checked) => handleInputChange('notifications', checked)}
+                        label="Enable notifications"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-actions">
+                    <Button type="submit" variant="primary" size="large">
+                      Submit Form
+                    </Button>
+                    <Button type="button" variant="outline" size="large">
+                      Reset
+                    </Button>
+                  </div>
+                </form>
+              </Card>
+            </TabItem>
+
+            <TabItem label="Social Feed">
+              <div className="social-feed">
+                {socialPosts.map((post) => (
+                  <Card key={post.id} elevation="medium" padding="large" className="post-card">
+                    <div className="post-header">
+                      <div className="post-author">
+                        <div className="avatar">{post.avatar}</div>
+                        <div className="author-info">
+                          <BodyText className="author-name">{post.author}</BodyText>
+                          <BodyText className="post-time">{post.time}</BodyText>
+                        </div>
+                      </div>
+                      <IconButton icon="⋯" variant="outline" size="small" />
+                    </div>
+                    
+                    <div className="post-content">
+                      <BodyText>{post.content}</BodyText>
+                    </div>
+                    
+                    <Divider />
+                    
+                    <div className="post-actions">
+                      <Button variant="outline" size="small">
+                        👍 {post.likes}
+                      </Button>
+                      <Button variant="outline" size="small">
+                        💬 {post.comments}
+                      </Button>
+                      <Button variant="outline" size="small">
+                        🔄 {post.shares}
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </TabItem>
+
+            <TabItem label="User Profile">
+              <div className="profile-layout">
+                <Card elevation="medium" padding="large" className="profile-card">
+                  <div className="profile-header">
+                    <div className="profile-avatar">👤</div>
+                    <div className="profile-info">
+                      <Heading level={3}>John Doe</Heading>
+                      <BodyText>Software Engineer</BodyText>
+                      <div className="profile-tags">
+                        <Tag>React</Tag>
+                        <Tag>TypeScript</Tag>
+                        <Tag>Design Systems</Tag>
+                      </div>
+                    </div>
+                    <Button variant="outline">Edit Profile</Button>
+                  </div>
+                  
+                  <Divider />
+                  
+                  <div className="profile-stats">
+                    <div className="stat">
+                      <Heading level={4}>1,234</Heading>
+                      <BodyText>Followers</BodyText>
+                    </div>
+                    <div className="stat">
+                      <Heading level={4}>567</Heading>
+                      <BodyText>Following</BodyText>
+                    </div>
+                    <div className="stat">
+                      <Heading level={4}>89</Heading>
+                      <BodyText>Projects</BodyText>
                     </div>
                   </div>
                 </Card>
-              ))}
-            </div>
 
-            {/* Recent Orders Table */}
-            <Card elevation="medium" padding="large" className="orders-card">
-              <Heading level={3}>Recent Orders</Heading>
-              <Table>
-                <thead>
-                  <tr>
-                    <TableHeader>Order ID</TableHeader>
-                    <TableHeader>Customer</TableHeader>
-                    <TableHeader>Product</TableHeader>
-                    <TableHeader>Amount</TableHeader>
-                    <TableHeader>Status</TableHeader>
-                  </tr>
-                </thead>
-                <tbody>
-                  {recentOrders.map((order) => (
-                    <TableRow key={order.id}>
-                      <TableCell>{order.id}</TableCell>
-                      <TableCell>{order.customer}</TableCell>
-                      <TableCell>{order.product}</TableCell>
-                      <TableCell>{order.amount}</TableCell>
-                      <TableCell>
-                        <Badge 
-                          variant={order.status === 'completed' ? 'success' : 
-                                  order.status === 'pending' ? 'warning' : 'default'}
-                        >
-                          {order.status}
-                        </Badge>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </tbody>
-              </Table>
-            </Card>
-          </div>
-        </div>
-      </section>
+                <Card elevation="medium" padding="large" className="activity-card">
+                  <Heading level={3}>Recent Activity</Heading>
+                  <List>
+                    <ListItem>
+                      <div className="activity-item">
+                        <Badge variant="success" size="small">✓</Badge>
+                        <BodyText>Completed project "Paper Kit Design System"</BodyText>
+                      </div>
+                    </ListItem>
+                    <ListItem>
+                      <div className="activity-item">
+                        <Badge variant="info" size="small">ℹ</Badge>
+                        <BodyText>Updated profile information</BodyText>
+                      </div>
+                    </ListItem>
+                    <ListItem>
+                      <div className="activity-item">
+                        <Badge variant="warning" size="small">⚠</Badge>
+                        <BodyText>Received new collaboration request</BodyText>
+                      </div>
+                    </ListItem>
+                  </List>
+                </Card>
+              </div>
+            </TabItem>
 
-      {/* Form Section */}
-      <section className="form-section">
-        <div className="container">
-          <Heading level={2}>Contact Form</Heading>
-          <Card elevation="medium" padding="large" className="form-card">
-            <form onSubmit={handleSubmit}>
-              <div className="form-grid">
-                <div className="form-group">
-                  <BodyText>Full Name</BodyText>
-                  <Input
-                    value={formData.name}
-                    onChange={(value) => handleInputChange('name', value)}
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <BodyText>Email Address</BodyText>
-                  <Input
-                    value={formData.email}
-                    onChange={(value) => handleInputChange('email', value)}
-                    placeholder="Enter your email"
-                    type="email"
-                  />
-                </div>
+            <TabItem label="Components">
+              <div className="interactive-grid">
+                <Card elevation="medium" padding="large">
+                  <Heading level={3}>Tabs Example</Heading>
+                  <Tabs defaultActiveTab={activeTab} onChange={(index) => setActiveTab(index)}>
+                    <TabItem label="Overview">
+                      <BodyText>This is the overview tab content.</BodyText>
+                    </TabItem>
+                    <TabItem label="Settings">
+                      <BodyText>This is the settings tab content.</BodyText>
+                    </TabItem>
+                    <TabItem label="Analytics">
+                      <BodyText>This is the analytics tab content.</BodyText>
+                    </TabItem>
+                  </Tabs>
+                </Card>
 
-                <div className="form-group">
-                  <BodyText>Gender</BodyText>
-                  <div className="radio-group">
-                    <Radio
-                      name="gender"
-                      value="male"
-                      checked={formData.gender === 'male'}
-                      onChange={(value) => handleInputChange('gender', value)}
-                      label="Male"
-                    />
-                    <Radio
-                      name="gender"
-                      value="female"
-                      checked={formData.gender === 'female'}
-                      onChange={(value) => handleInputChange('gender', value)}
-                      label="Female"
-                    />
-                    <Radio
-                      name="gender"
-                      value="other"
-                      checked={formData.gender === 'other'}
-                      onChange={(value) => handleInputChange('gender', value)}
-                      label="Other"
+                <Card elevation="medium" padding="large">
+                  <Heading level={3}>Accordion Example</Heading>
+                  <Accordion>
+                    <AccordionItem title="What is Paper Kit?">
+                      <BodyText>Paper Kit is a comprehensive design system built with React and TypeScript.</BodyText>
+                    </AccordionItem>
+                    <AccordionItem title="How do I get started?">
+                      <BodyText>Simply install the package and import the components you need.</BodyText>
+                    </AccordionItem>
+                    <AccordionItem title="Is it free to use?">
+                      <BodyText>Yes, Paper Kit is completely free and open source.</BodyText>
+                    </AccordionItem>
+                  </Accordion>
+                </Card>
+
+                <Card elevation="medium" padding="large">
+                  <Heading level={3}>Progress & Pagination</Heading>
+                  <div className="progress-section">
+                    <BodyText>Project Progress</BodyText>
+                    <ProgressBar value={75} showLabel variant="success" />
+                  </div>
+                  <Divider />
+                  <div className="pagination-section">
+                    <BodyText>Page Navigation</BodyText>
+                    <Pagination
+                      currentPage={currentPage}
+                      totalPages={10}
+                      onPageChange={setCurrentPage}
                     />
                   </div>
-                </div>
+                </Card>
 
-                <div className="form-group">
-                  <BodyText>Birth Date</BodyText>
-                  <DatePicker
-                    value={formData.birthDate}
-                    onChange={(date) => handleInputChange('birthDate', date)}
-                    placeholder="Select your birth date"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <BodyText>Age: {formData.age}</BodyText>
-                  <Slider
-                    value={formData.age}
-                    onChange={(value) => handleInputChange('age', value)}
-                    min={18}
-                    max={100}
-                  />
-                </div>
-
-                <div className="form-group full-width">
-                  <BodyText>Message</BodyText>
-                  <TextArea
-                    value={formData.message}
-                    onChange={(value) => handleInputChange('message', value)}
-                    placeholder="Tell us about your project..."
-                    rows={4}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <Checkbox
-                    checked={formData.newsletter}
-                    onChange={(checked) => handleInputChange('newsletter', checked)}
-                    label="Subscribe to newsletter"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <Toggle
-                    checked={formData.notifications}
-                    onChange={(checked) => handleInputChange('notifications', checked)}
-                    label="Enable notifications"
-                  />
-                </div>
-              </div>
-
-              <div className="form-actions">
-                <Button type="submit" variant="primary" size="large">
-                  Submit Form
-                </Button>
-                <Button type="button" variant="outline" size="large">
-                  Reset
-                </Button>
-              </div>
-            </form>
-          </Card>
-        </div>
-      </section>
-
-      {/* Social Media Feed Section */}
-      <section className="social-section">
-        <div className="container">
-          <Heading level={2}>Social Media Feed</Heading>
-          <div className="social-feed">
-            {socialPosts.map((post) => (
-              <Card key={post.id} elevation="medium" padding="large" className="post-card">
-                <div className="post-header">
-                  <div className="post-author">
-                    <div className="avatar">{post.avatar}</div>
-                    <div className="author-info">
-                      <BodyText className="author-name">{post.author}</BodyText>
-                      <BodyText className="post-time">{post.time}</BodyText>
+                <Card elevation="medium" padding="large">
+                  <Heading level={3}>Tooltips & Tags</Heading>
+                  <div className="tooltip-demo">
+                    <Tooltip content="This is a helpful tooltip">
+                      <Button>Hover for tooltip</Button>
+                    </Tooltip>
+                  </div>
+                  <Divider />
+                  <div className="tags-demo">
+                    <BodyText>Available Tags:</BodyText>
+                    <div className="tags-list">
+                      <Tag variant="default">Default</Tag>
+                      <Tag variant="success">Success</Tag>
+                      <Tag variant="warning">Warning</Tag>
+                      <Tag variant="error">Error</Tag>
                     </div>
                   </div>
-                  <IconButton icon="⋯" variant="outline" size="small" />
-                </div>
-                
-                <div className="post-content">
-                  <BodyText>{post.content}</BodyText>
-                </div>
-                
-                <Divider />
-                
-                <div className="post-actions">
-                  <Button variant="outline" size="small">
-                    👍 {post.likes}
-                  </Button>
-                  <Button variant="outline" size="small">
-                    💬 {post.comments}
-                  </Button>
-                  <Button variant="outline" size="small">
-                    🔄 {post.shares}
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* User Profile Section */}
-      <section className="profile-section">
-        <div className="container">
-          <Heading level={2}>User Profile</Heading>
-          <div className="profile-layout">
-            <Card elevation="medium" padding="large" className="profile-card">
-              <div className="profile-header">
-                <div className="profile-avatar">👤</div>
-                <div className="profile-info">
-                  <Heading level={3}>John Doe</Heading>
-                  <BodyText>Software Engineer</BodyText>
-                  <div className="profile-tags">
-                    <Tag>React</Tag>
-                    <Tag>TypeScript</Tag>
-                    <Tag>Design Systems</Tag>
-                  </div>
-                </div>
-                <Button variant="outline">Edit Profile</Button>
+                </Card>
               </div>
-              
-              <Divider />
-              
-              <div className="profile-stats">
-                <div className="stat">
-                  <Heading level={4}>1,234</Heading>
-                  <BodyText>Followers</BodyText>
-                </div>
-                <div className="stat">
-                  <Heading level={4}>567</Heading>
-                  <BodyText>Following</BodyText>
-                </div>
-                <div className="stat">
-                  <Heading level={4}>89</Heading>
-                  <BodyText>Projects</BodyText>
-                </div>
-              </div>
-            </Card>
-
-            <Card elevation="medium" padding="large" className="activity-card">
-              <Heading level={3}>Recent Activity</Heading>
-              <List>
-                <ListItem>
-                  <div className="activity-item">
-                    <Badge variant="success" size="small">✓</Badge>
-                    <BodyText>Completed project "Paper Kit Design System"</BodyText>
-                  </div>
-                </ListItem>
-                <ListItem>
-                  <div className="activity-item">
-                    <Badge variant="info" size="small">ℹ</Badge>
-                    <BodyText>Updated profile information</BodyText>
-                  </div>
-                </ListItem>
-                <ListItem>
-                  <div className="activity-item">
-                    <Badge variant="warning" size="small">⚠</Badge>
-                    <BodyText>Received new collaboration request</BodyText>
-                  </div>
-                </ListItem>
-              </List>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Components Section */}
-      <section className="interactive-section">
-        <div className="container">
-          <Heading level={2}>Interactive Components</Heading>
-          <div className="interactive-grid">
-            <Card elevation="medium" padding="large">
-              <Heading level={3}>Tabs Example</Heading>
-              <Tabs defaultActiveTab={activeTab} onChange={(index) => setActiveTab(index)}>
-                <TabItem label="Overview">
-                  <BodyText>This is the overview tab content.</BodyText>
-                </TabItem>
-                <TabItem label="Settings">
-                  <BodyText>This is the settings tab content.</BodyText>
-                </TabItem>
-                <TabItem label="Analytics">
-                  <BodyText>This is the analytics tab content.</BodyText>
-                </TabItem>
-              </Tabs>
-            </Card>
-
-            <Card elevation="medium" padding="large">
-              <Heading level={3}>Accordion Example</Heading>
-              <Accordion>
-                <AccordionItem title="What is Paper Kit?">
-                  <BodyText>Paper Kit is a comprehensive design system built with React and TypeScript.</BodyText>
-                </AccordionItem>
-                <AccordionItem title="How do I get started?">
-                  <BodyText>Simply install the package and import the components you need.</BodyText>
-                </AccordionItem>
-                <AccordionItem title="Is it free to use?">
-                  <BodyText>Yes, Paper Kit is completely free and open source.</BodyText>
-                </AccordionItem>
-              </Accordion>
-            </Card>
-
-            <Card elevation="medium" padding="large">
-              <Heading level={3}>Progress & Pagination</Heading>
-              <div className="progress-section">
-                <BodyText>Project Progress</BodyText>
-                <ProgressBar value={75} showLabel variant="success" />
-              </div>
-              <Divider />
-              <div className="pagination-section">
-                <BodyText>Page Navigation</BodyText>
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={10}
-                  onPageChange={setCurrentPage}
-                />
-              </div>
-            </Card>
-
-            <Card elevation="medium" padding="large">
-              <Heading level={3}>Tooltips & Tags</Heading>
-              <div className="tooltip-demo">
-                <Tooltip content="This is a helpful tooltip">
-                  <Button>Hover for tooltip</Button>
-                </Tooltip>
-              </div>
-              <Divider />
-              <div className="tags-demo">
-                <BodyText>Available Tags:</BodyText>
-                <div className="tags-list">
-                  <Tag variant="default">Default</Tag>
-                  <Tag variant="success">Success</Tag>
-                  <Tag variant="warning">Warning</Tag>
-                  <Tag variant="error">Error</Tag>
-                </div>
-              </div>
-            </Card>
-          </div>
+            </TabItem>
+          </Tabs>
         </div>
       </section>
 

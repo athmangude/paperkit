@@ -73,6 +73,10 @@ Rendering of tooltips stopped completely after fixing issue #4
 ##### Pages
 - [Closed] Separate documentation and landing page into separate pages. The pages should have separate routes i.e., a landing page at /, documentation at /documentation, a showcase page at /showcase 
 - [Closed] Documentation does not include all components. It should include all components in this design system
+- [Closed] Apply the same header component across all pages. The header used in the documentation page is ideal
+- [Closed] The title should always remain the same across all pages
+- [Closed] clicking the title should lead to the landing page at /
+- [Closed] the title should always read "Paperkit"
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form
@@ -86,6 +90,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 
 ##### Showcase
 - [Closed] Create a showcase page and showcase extensive usage of the design system for forms with one form, a social media feed, user profile, dashboard
+- [Closed] Display the showcased usecase in different tabs
 
 ### 11. Remove interactive examples below documentation
 #### Status: Closed

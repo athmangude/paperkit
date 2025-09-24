@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Card,
+import { 
+  Button, 
+  Card, 
   Heading,
   Link,
   BodyText,
-  Input,
-  TextArea,
-  Checkbox,
-  Radio,
-  Toggle,
-  Slider,
-  ProgressBar,
-  Badge,
-  Divider,
-  Tag,
-  Tooltip,
-  Tabs,
+  Input, 
+  TextArea, 
+  Checkbox, 
+  Radio, 
+  Toggle, 
+  Slider, 
+  ProgressBar, 
+  Badge, 
+  Divider, 
+  Tag, 
+  Tooltip, 
+  Tabs, 
   TabItem,
-  Accordion,
+  Accordion, 
   AccordionItem,
-  DatePicker,
-  List,
+  DatePicker, 
+  List, 
   ListItem,
-  Pagination,
+  Pagination, 
   Table,
   TableHeader,
   TableRow,
   TableCell,
-  IconButton
+  IconButton,
+  Header
 } from '../components';
 import './Documentation.css';
 
@@ -808,8 +809,8 @@ const Documentation: React.FC = () => {
 
   return (
     <div className="documentation">
-      <div className="documentation-header">
-        <Heading level={1}>Paper Kit Documentation</Heading>
+      <Header />
+      <div className="documentation-intro">
         <BodyText>Complete guide to using Paper Kit components in your projects.</BodyText>
       </div>
 

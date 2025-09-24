@@ -72,3 +72,6 @@ export type { TableProps, TableHeaderProps, TableRowProps, TableCellProps } from
 // Typography components
 export { Heading, Link, BodyText } from './typography';
 export type { HeadingProps, LinkProps } from '../types';
+
+// Header component
+export { Header } from './header';
