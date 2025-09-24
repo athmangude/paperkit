@@ -263,3 +263,8 @@ export interface FormFieldProps extends BaseComponentProps {
   required?: boolean;
   children: React.ReactNode;
 }
+
+// Hero types
+export interface HeroProps extends BaseComponentProps {
+  children: React.ReactNode;
+}

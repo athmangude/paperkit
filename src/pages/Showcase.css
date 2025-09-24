@@ -6,14 +6,7 @@
 
 /* Header styles removed - using Header component */
 
-/* Hero Section */
-.hero-section {
-  padding: 60px 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* Hero Section - styles moved to Hero component */
 
 .hero-card {
   text-align: center;

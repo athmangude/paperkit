@@ -31,7 +31,8 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Header
+  Header,
+  Hero
 } from './components';
 import './App.css';
 
@@ -67,7 +68,7 @@ function App() {
       <Header />
 
       {/* Setup Section */}
-      <section id="setup" className="setup-section">
+      <Hero>
         <div className="container">
           <Heading level={2}>Getting Started</Heading>
           <BodyText>Learn how to integrate Paper Kit into your React projects.</BodyText>
@@ -173,7 +174,7 @@ function App() {
              </Card>
           </div>
         </div>
-      </section>
+      </Hero>
 
       {/* Component Navigation */}
       <section className="component-navigation">

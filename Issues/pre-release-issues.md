@@ -87,6 +87,12 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] in the show case page, under dashboard interface, use tags instead of badges to show status on the orders list
 - [Closed] badges should have a size property with options small, medium, large. Default is small. Add these options and demonstrate the variants in the documentation page under badges
 
+##### Layout
+- [Closed] Create a hero unit component. It should have a bottom border matching the button border. It's also a flex-container with column flex-direction, content center aligned and center justified. It does not have any background colors. It has a top and bottom padding of 50px and 20 px bottom margin.
+- [Closed] Replace all hero components in the pages with the reusable component
+- [open] Add the hero component documentation to the documentation
+
+
 ##### Lists
 - [Closed] list item borders should match those of basic buttons
 - [Closed] remove border on the List component containing list items

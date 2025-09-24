@@ -6,7 +6,8 @@ import {
   Heading,
   Link,
   BodyText,
-  Header
+  Header,
+  Hero
 } from '../components';
 import './About.css';
 
@@ -16,7 +17,7 @@ const About: React.FC = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="about-hero">
+      <Hero>
         <div className="container">
           <Card elevation="high" padding="large" className="hero-card">
             <Heading level={2}>About Paper Kit</Heading>
@@ -25,7 +26,7 @@ const About: React.FC = () => {
             </BodyText>
           </Card>
         </div>
-      </section>
+      </Hero>
 
       {/* Main Content */}
       <section className="about-content">

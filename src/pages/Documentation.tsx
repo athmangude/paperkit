@@ -29,7 +29,8 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Header
+  Header,
+  Hero
 } from '../components';
 import './Documentation.css';
 
@@ -810,12 +811,12 @@ const Documentation: React.FC = () => {
   return (
     <div className="documentation">
       <Header />
-      <div className="documentation-intro">
+      <Hero>
         <div className="container">
           <Heading level={2}>Paper Kit Documentation</Heading>
           <BodyText>Complete guide to using Paper Kit components in your projects.</BodyText>
-        </div>
       </div>
+      </Hero>
 
       <div className="documentation-content">
         <div className="documentation-sidebar">

@@ -75,3 +75,7 @@ export type { HeadingProps, LinkProps } from '../types';
 
 // Header component
 export { Header } from './header';
+
+// Hero component
+export { Hero } from './hero';
+export type { HeroProps } from '../types';

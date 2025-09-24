@@ -30,7 +30,8 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Header
+  Header,
+  Hero
 } from '../components';
 import './Showcase.css';
 
@@ -113,7 +114,7 @@ const Showcase: React.FC = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="hero-section">
+      <Hero>
         <div className="container">
           <Card elevation="high" padding="large" className="hero-card">
             <Heading level={2}>Comprehensive Design System Showcase</Heading>
@@ -131,7 +132,7 @@ const Showcase: React.FC = () => {
             </div>
           </Card>
         </div>
-      </section>
+      </Hero>
 
       {/* Main Showcase Content */}
       <section className="showcase-content">
