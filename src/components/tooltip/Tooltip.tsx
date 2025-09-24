@@ -81,6 +81,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
         window.removeEventListener('scroll', handleUpdate, true);
         window.removeEventListener('resize', handleUpdate);
       };
+    } else {
+      // Reset position when not visible
+      setTooltipPosition({ x: 0, y: 0 });
     }
   }, [isVisible, position]);
 

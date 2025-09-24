@@ -1,6 +1,6 @@
 # Pre-release issues
 
-## Status: Open
+## Status: All Issues Closed
 
 ## List of issues
 
@@ -53,3 +53,16 @@ Rendering of tooltips stopped completely after fixing issue #4
 - Instead of blue buttons use, design system small buttons
 - Place the button top right of relevant content
 - When copy button is clicked, show, "copied", reset after 3 seconds
+
+### 8. Heading 2 issues
+#### Status: Closed
+
+- Heading 2 should be left aligned like heading 1 and heading 3
+- Heading 2 uses a larger font than heading 1
+- Check font sizing for the rest of the headings ensuring smaller headings user smaller font size
+
+### 9. Tooltip issues
+#### Status: Open
+
+- [Open] Tooltip renders after hovering away from target component
+- [Open] Tooltip is rendered in parent component instead of appropriate position next to target component

@@ -5,20 +5,21 @@
   color: var(--ink-black);
   margin: 0;
   line-height: 1.2;
+  text-align: left;
 }
 
 .paper-heading--1 {
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-4xl) !important;
   margin-bottom: var(--spacing-lg);
 }
 
 .paper-heading--2 {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-3xl) !important;
   margin-bottom: var(--spacing-md);
 }
 
 .paper-heading--3 {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-2xl) !important;
   margin-bottom: var(--spacing-sm);
 }
 
