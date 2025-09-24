@@ -283,10 +283,6 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-  }
 
   .app-title {
     font-size: 2rem;
