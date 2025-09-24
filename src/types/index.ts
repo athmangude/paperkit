@@ -56,9 +56,10 @@ export interface CheckboxProps extends BaseComponentProps {
   id?: string;
 }
 
-export interface RadioProps extends CheckboxProps {
+export interface RadioProps extends Omit<CheckboxProps, 'onChange'> {
   value?: string;
   group?: string;
+  onChange?: (value: string | boolean) => void;
 }
 
 // Toggle Switch types

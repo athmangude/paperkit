@@ -16,6 +16,20 @@ export const Badge: React.FC<BadgeProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
+  // Format the content - show "99+" for numbers > 99
+  const formatContent = (content: React.ReactNode): React.ReactNode => {
+    if (typeof content === 'number') {
+      return content > 99 ? '99+' : content.toString();
+    }
+    if (typeof content === 'string') {
+      const num = parseInt(content, 10);
+      if (!isNaN(num) && num > 99) {
+        return '99+';
+      }
+    }
+    return content;
+  };
+
   return (
     <div className={badgeClasses}>
       {icon && (
@@ -24,7 +38,7 @@ export const Badge: React.FC<BadgeProps> = ({
         </span>
       )}
       <span className="paper-badge__content">
-        {children}
+        {formatContent(children)}
       </span>
     </div>
   );

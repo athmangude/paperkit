@@ -282,10 +282,10 @@ function App() {
               </div>
               <div>
                 <Heading level={3}>Badges</Heading>
-                             <Badge>5</Badge>
-             <Badge>12</Badge>
-             <Badge>99</Badge>
-             <Badge>1000</Badge>
+                <Badge>5</Badge>
+                <Badge>12</Badge>
+                <Badge>99</Badge>
+                <Badge>1000</Badge>
               </div>
             </div>
           </Card>
