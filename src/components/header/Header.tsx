@@ -20,9 +20,6 @@ export const Header: React.FC<HeaderProps> = ({
         </RouterLink>
         {showNavigation && (
           <nav className="header-nav">
-            <RouterLink to="/">
-              <Button variant="outline">Home</Button>
-            </RouterLink>
             <RouterLink to="/showcase">
               <Button variant="outline">Showcase</Button>
             </RouterLink>

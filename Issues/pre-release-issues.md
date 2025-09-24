@@ -77,6 +77,8 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] The title should always remain the same across all pages
 - [Closed] clicking the title should lead to the landing page at /
 - [Closed] the title should always read "Paperkit"
+- [Closed] the same navigation header component used in the landing page should be used across the three pages and all subsequent pages. Make it a reusable component
+- [Closed] remove the "home" link on the navigation bar since the / link exists on the label "paperkit"
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form
