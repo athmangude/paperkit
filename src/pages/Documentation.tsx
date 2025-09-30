@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { Star, Settings } from '@mui/icons-material';
 import { 
   Button, 
   Card, 
@@ -435,34 +436,34 @@ const Documentation: React.FC = () => {
       examples: [
         {
           title: 'IconButton Variants',
-          code: `<IconButton icon="★" variant="primary" />
-<IconButton icon="★" variant="secondary" />
-<IconButton icon="★" variant="outline" />`,
+          code: `<IconButton icon={<Star />} variant="primary" />
+<IconButton icon={<Star />} variant="secondary" />
+<IconButton icon={<Star />} variant="outline" />`,
           component: (
             <div style={{ display: 'flex', gap: '10px' }}>
-              <IconButton icon="★" variant="primary" />
-              <IconButton icon="★" variant="secondary" />
-              <IconButton icon="★" variant="outline" />
+              <IconButton icon={<Star />} variant="primary" />
+              <IconButton icon={<Star />} variant="secondary" />
+              <IconButton icon={<Star />} variant="outline" />
             </div>
           )
         },
         {
           title: 'IconButton Sizes',
-          code: `<IconButton icon="★" size="small" />
-<IconButton icon="★" size="medium" />
-<IconButton icon="★" size="large" />`,
+          code: `<IconButton icon={<Star />} size="small" />
+<IconButton icon={<Star />} size="medium" />
+<IconButton icon={<Star />} size="large" />`,
           component: (
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-              <IconButton icon="★" size="small" />
-              <IconButton icon="★" size="medium" />
-              <IconButton icon="★" size="large" />
+              <IconButton icon={<Star />} size="small" />
+              <IconButton icon={<Star />} size="medium" />
+              <IconButton icon={<Star />} size="large" />
             </div>
           )
         },
         {
           title: 'Disabled IconButton',
-          code: '<IconButton icon="★" disabled />',
-          component: <IconButton icon="★" disabled />
+          code: '<IconButton icon={<Star />} disabled />',
+          component: <IconButton icon={<Star />} disabled />
         }
       ]
     },
@@ -1007,7 +1008,7 @@ const Documentation: React.FC = () => {
         {
           title: 'Icon Button Dropdown',
           code: `<DropdownMenu
-  trigger={<IconButton icon="⚙" />}
+  trigger={<IconButton icon={<Settings />} />}
   placement="bottom-right"
 >
   <MenuItem value="settings">Settings</MenuItem>
@@ -1016,7 +1017,7 @@ const Documentation: React.FC = () => {
 </DropdownMenu>`,
           component: (
             <DropdownMenu
-              trigger={<IconButton icon="⚙" />}
+              trigger={<IconButton icon={<Settings />} />}
               placement="bottom-right"
             >
               <MenuItem value="settings">Settings</MenuItem>

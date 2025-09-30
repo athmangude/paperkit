@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { MoreVert } from '@mui/icons-material';
 import {
   Button,
   Card,
@@ -333,7 +334,7 @@ const Showcase: React.FC = () => {
                           <BodyText className="post-time">{post.time}</BodyText>
                         </div>
                       </div>
-                      <IconButton icon="⋯" variant="outline" size="small" />
+                      <IconButton icon={<MoreVert />} variant="outline" size="small" />
                     </div>
                     
                     <div className="post-content">

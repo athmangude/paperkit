@@ -3,6 +3,7 @@ import type { DatePickerProps } from '../../types';
 import { Button } from '../button';
 import { IconButton } from '../icon-button';
 import { Modal } from '../modal';
+import { CalendarToday, Close, NavigateBefore, NavigateNext } from '@mui/icons-material';
 import './DatePicker.css';
 
 // Utility functions for date calculations
@@ -240,7 +241,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           aria-haspopup="dialog"
         />
         <IconButton
-          icon="📅"
+          icon={<CalendarToday />}
           size="small"
           onClick={() => !disabled && setIsOpen(true)}
           disabled={disabled}
@@ -249,7 +250,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         />
         {allowClear && selectedDate && (
           <IconButton
-            icon="✕"
+            icon={<Close />}
             size="small"
             onClick={handleClear}
             disabled={disabled}
@@ -269,7 +270,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           {/* Header */}
           <div className="paper-date-picker__header">
             <IconButton
-              icon="‹"
+              icon={<NavigateBefore />}
               onClick={goToPreviousMonth}
               aria-label="Previous month"
             />
@@ -282,7 +283,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
               </span>
             </div>
             <IconButton
-              icon="›"
+              icon={<NavigateNext />}
               onClick={goToNextMonth}
               aria-label="Next month"
             />

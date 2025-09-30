@@ -2,7 +2,7 @@
 
 ## Status: All Issues Closed ✅
 
-**Last Updated:** All open issues have been resolved and implemented.
+**Last Updated:** All open issues have been resolved and implemented. Material Design icons have been integrated throughout the project.
 
 ## List of issues
 
@@ -126,6 +126,9 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] Create a showcase page and showcase extensive usage of the design system for forms with one form, a social media feed, user profile, dashboard
 - [Closed] Display the showcased usecase in different tabs
 - [Closed] display the showcased usecases outside of tabs top to bottom
+
+##### Icons
+- [Closed] use material design icons instead of system icons
 
 
 ### 11. Remove interactive examples below documentation
