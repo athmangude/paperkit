@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { FaEllipsisV } from 'react-icons/fa';
+import { FaEllipsisV, FaCheck, FaInfo, FaExclamationTriangle, FaUser, FaEnvelope, FaCalendarAlt, FaHeart, FaShare, FaComment } from 'react-icons/fa';
 import {
   Button,
   Card,
@@ -216,7 +216,10 @@ const Showcase: React.FC = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="form-grid">
                     <div className="form-group">
-                      <BodyText>Full Name</BodyText>
+                      <div className="form-label-with-icon">
+                        <FaUser style={{ marginRight: '8px' }} />
+                        <BodyText>Full Name</BodyText>
+                      </div>
                       <Input
                         value={formData.name}
                         onChange={(value) => handleInputChange('name', value)}
@@ -225,7 +228,10 @@ const Showcase: React.FC = () => {
                     </div>
                     
                     <div className="form-group">
-                      <BodyText>Email Address</BodyText>
+                      <div className="form-label-with-icon">
+                        <FaEnvelope style={{ marginRight: '8px' }} />
+                        <BodyText>Email Address</BodyText>
+                      </div>
                       <Input
                         value={formData.email}
                         onChange={(value) => handleInputChange('email', value)}
@@ -262,7 +268,10 @@ const Showcase: React.FC = () => {
                     </div>
 
                     <div className="form-group">
-                      <BodyText>Birth Date</BodyText>
+                      <div className="form-label-with-icon">
+                        <FaCalendarAlt style={{ marginRight: '8px' }} />
+                        <BodyText>Birth Date</BodyText>
+                      </div>
                       <DatePicker
                         value={formData.birthDate}
                         onChange={(date) => handleInputChange('birthDate', date)}
@@ -345,13 +354,16 @@ const Showcase: React.FC = () => {
                     
                     <div className="post-actions">
                       <Button variant="outline" size="small">
-                        👍 {post.likes}
+                        <FaHeart style={{ marginRight: '4px' }} />
+                        {post.likes}
                       </Button>
                       <Button variant="outline" size="small">
-                        💬 {post.comments}
+                        <FaComment style={{ marginRight: '4px' }} />
+                        {post.comments}
                       </Button>
                       <Button variant="outline" size="small">
-                        🔄 {post.shares}
+                        <FaShare style={{ marginRight: '4px' }} />
+                        {post.shares}
                       </Button>
                     </div>
                   </Card>
@@ -366,7 +378,9 @@ const Showcase: React.FC = () => {
               <div className="profile-layout">
                 <Card elevation="medium" padding="large" className="profile-card">
                   <div className="profile-header">
-                    <div className="profile-avatar">👤</div>
+                    <div className="profile-avatar">
+                      <FaUser size={24} />
+                    </div>
                     <div className="profile-info">
                       <Heading level={3}>John Doe</Heading>
                       <BodyText>Software Engineer</BodyText>
@@ -402,19 +416,19 @@ const Showcase: React.FC = () => {
                   <List>
                     <ListItem>
                       <div className="activity-item">
-                        <Badge variant="success" size="small">✓</Badge>
-                        <BodyText>Completed project "Paper Kit Design System"</BodyText>
+                        <IconButton icon={<FaCheck />} size="small" />
+                        <BodyText>Completed project "Protokit Design System"</BodyText>
                       </div>
                     </ListItem>
                     <ListItem>
                       <div className="activity-item">
-                        <Badge variant="info" size="small">ℹ</Badge>
+                        <IconButton icon={<FaInfo />} size="small" />
                         <BodyText>Updated profile information</BodyText>
                       </div>
                     </ListItem>
                     <ListItem>
                       <div className="activity-item">
-                        <Badge variant="warning" size="small">⚠</Badge>
+                        <IconButton icon={<FaExclamationTriangle />} size="small" />
                         <BodyText>Received new collaboration request</BodyText>
                       </div>
                     </ListItem>

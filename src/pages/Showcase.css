@@ -108,6 +108,12 @@
   gap: var(--spacing-xs);
 }
 
+.form-label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
 .form-group.full-width {
   grid-column: 1 / -1;
 }

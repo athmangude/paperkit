@@ -2,7 +2,7 @@
 
 ## Status: All Issues Closed ✅
 
-**Last Updated:** All open issues have been resolved and implemented. Material Design icons have been integrated throughout the project.
+**Last Updated:** All open issues have been resolved and implemented. Font icons have been integrated throughout the project using react-icons.
 
 ## List of issues
 
@@ -129,6 +129,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 
 ##### Icons
 - [Closed] use material design icons instead of system icons
+- [Closed] Use font-icons in the showcase page
 
 
 ### 11. Remove interactive examples below documentation
