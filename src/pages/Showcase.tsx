@@ -113,7 +113,7 @@ const Showcase: React.FC = () => {
   return (
     <div className="showcase">
       <NavigationBar 
-        title="Paperkit"
+        title="Protokit"
         navigationComponents={
           <div>
             <RouterLink to="/about">

@@ -1,4 +1,4 @@
-# Paper Kit Design System
+# Protokit Design System
 
 A beautiful, hand-drawn design system built with React and TypeScript, featuring the Patrick Hand font for a unique, sketchy aesthetic.
 
@@ -58,13 +58,13 @@ A beautiful, hand-drawn design system built with React and TypeScript, featuring
 ### Installation
 
 ```bash
-npm install paper-kit
+npm install protokit
 ```
 
 Or using yarn:
 
 ```bash
-yarn add paper-kit
+yarn add protokit
 ```
 
 ### Dependencies
@@ -80,12 +80,12 @@ yarn add paper-kit
 ### Basic Usage
 
 ```tsx
-import { Button, Card, Heading, BodyText } from 'paper-kit';
+import { Button, Card, Heading, BodyText } from 'protokit';
 
 function App() {
   return (
     <Card>
-      <Heading level={1}>Hello Paper Kit!</Heading>
+      <Heading level={1}>Hello Protokit!</Heading>
       <BodyText>Welcome to the hand-drawn design system.</BodyText>
       <Button>Click me</Button>
     </Card>
@@ -99,7 +99,7 @@ function App() {
 Import the base styles in your main CSS file:
 
 ```css
-@import 'paper-kit/dist/styles.css';
+@import 'protokit/dist/styles.css';
 ```
 
 #### Font Setup

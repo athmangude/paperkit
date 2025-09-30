@@ -4,7 +4,6 @@ import {
   Button,
   Card,
   Heading,
-  Link,
   BodyText,
   NavigationBar,
   Hero
@@ -15,7 +14,7 @@ const About: React.FC = () => {
   return (
     <div className="about">
       <NavigationBar 
-        title="Paperkit"
+        title="Protokit"
         navigationComponents={
           <div>
             <RouterLink to="/about">
@@ -33,7 +32,7 @@ const About: React.FC = () => {
 
       {/* Hero Section */}
       <Hero>
-        <Heading level={2}>About Paper Kit</Heading>
+        <Heading level={2}>About Protokit</Heading>
         <BodyText>
           A design system born from the love of low-fidelity design and the desire to bring that aesthetic to React development.
         </BodyText>
@@ -46,7 +45,7 @@ const About: React.FC = () => {
             <Card elevation="medium" padding="large" className="inspiration-card">
               <Heading level={3}>The Inspiration</Heading>
               <BodyText>
-                Paper Kit was inspired by the joy of designing low-fidelity interfaces in Figma. 
+                Protokit was inspired by the joy of designing low-fidelity interfaces in Figma. 
                 There's something beautiful about the simplicity and clarity that comes from 
                 hand-drawn, paper-like designs that focus on functionality over flashy aesthetics.
               </BodyText>
@@ -66,7 +65,7 @@ const About: React.FC = () => {
               
               <div className="use-case-list">
                 <div className="use-case-item">
-                  <Heading level={4}>No Design System in Place</Heading>
+                  <Heading level={3}>No Design System in Place</Heading>
                   <BodyText>
                     When you're starting a new project and need a cohesive set of components 
                     that work well together out of the box.
@@ -74,7 +73,7 @@ const About: React.FC = () => {
                 </div>
 
                 <div className="use-case-item">
-                  <Heading level={4}>UX Flow Prototyping</Heading>
+                  <Heading level={3}>UX Flow Prototyping</Heading>
                   <BodyText>
                     Perfect for presenting user experience flows and wireframes that need 
                     to feel interactive and polished without overwhelming visual complexity.
@@ -82,7 +81,7 @@ const About: React.FC = () => {
                 </div>
 
                 <div className="use-case-item">
-                  <Heading level={4}>Rapid Development</Heading>
+                  <Heading level={3}>Rapid Development</Heading>
                   <BodyText>
                     When you need to build functional interfaces quickly while maintaining 
                     a professional, consistent look and feel.
@@ -90,7 +89,7 @@ const About: React.FC = () => {
                 </div>
 
                 <div className="use-case-item">
-                  <Heading level={4}>Content-Focused Applications</Heading>
+                  <Heading level={3}>Content-Focused Applications</Heading>
                   <BodyText>
                     Ideal for applications where content is king - documentation sites, 
                     blogs, dashboards, and tools that prioritize usability over visual flair.

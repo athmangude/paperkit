@@ -77,7 +77,7 @@ function App() {
   return (
     <div className="App">
       <NavigationBar 
-        title="Paperkit"
+        title="Protokit"
         navigationComponents={
           <div>
             <RouterLink to="/about">
@@ -103,22 +103,22 @@ function App() {
             <Card className="setup-card">
               <Heading level={3}>Installation</Heading>
               <div className="code-block">
-                <pre><code>npm install paper-kit</code></pre>
+                <pre><code>npm install protokit</code></pre>
                 <Button 
                   size="small" 
                   variant="outline" 
-                  onClick={() => handleCopy('npm install paper-kit', 'npm-install')}
+                  onClick={() => handleCopy('npm install protokit', 'npm-install')}
                 >
                   {copiedButton === 'npm-install' ? 'Copied!' : 'Copy'}
                 </Button>
               </div>
                              <BodyText>Or using yarn:</BodyText>
                <div className="code-block">
-                 <pre><code>yarn add paper-kit</code></pre>
+                 <pre><code>yarn add protokit</code></pre>
                  <Button 
                    size="small" 
                    variant="outline" 
-                   onClick={() => handleCopy('yarn add paper-kit', 'yarn-add')}
+                   onClick={() => handleCopy('yarn add protokit', 'yarn-add')}
                  >
                    {copiedButton === 'yarn-add' ? 'Copied!' : 'Copy'}
                  </Button>
@@ -142,12 +142,12 @@ function App() {
              <Card className="setup-card">
                <Heading level={3}>Basic Usage</Heading>
                <div className="code-block">
-                 <pre><code>{`import { Button, Card, Typography } from 'paper-kit';
+                 <pre><code>{`import { Button, Card, Typography } from 'protokit';
 
 function App() {
   return (
     <Card>
-      <Typography.Heading level={1}>Hello Paper Kit!</Typography.Heading>
+      <Typography.Heading level={1}>Hello Protokit!</Typography.Heading>
       <Button>Click me</Button>
     </Card>
   );
@@ -155,12 +155,12 @@ function App() {
                  <Button 
                    size="small" 
                    variant="outline" 
-                   onClick={() => handleCopy(`import { Button, Card, Typography } from 'paper-kit';
+                   onClick={() => handleCopy(`import { Button, Card, Typography } from 'protokit';
 
 function App() {
   return (
     <Card>
-      <Typography.Heading level={1}>Hello Paper Kit!</Typography.Heading>
+      <Typography.Heading level={1}>Hello Protokit!</Typography.Heading>
       <Button>Click me</Button>
     </Card>
   );

@@ -1098,7 +1098,7 @@ const Documentation: React.FC = () => {
   return (
     <div className="documentation">
       <NavigationBar 
-        title="Paperkit"
+        title="Protokit"
         navigationComponents={
           <div>
             <RouterLink to="/about">
@@ -1114,8 +1114,8 @@ const Documentation: React.FC = () => {
         }
       />
       <Hero>
-        <Heading level={2}>Paper Kit Documentation</Heading>
-        <BodyText>Complete guide to using Paper Kit components in your projects.</BodyText>
+        <Heading level={2}>Protokit Documentation</Heading>
+        <BodyText>Complete guide to using Protokit components in your projects.</BodyText>
       </Hero>
 
       <div className="documentation-content">

@@ -131,4 +131,4 @@ Rendering of tooltips stopped completely after fixing issue #4
 ### 11. Remove interactive examples below documentation
 #### Status: Closed
 
-The interactive examples section should not be shown in documentation
+- [Closed] The interactive examples section should not be shown in documentation
