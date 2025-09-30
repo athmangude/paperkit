@@ -31,7 +31,11 @@ import {
   TableCell,
   IconButton,
   Hero,
-  NavigationBar
+  NavigationBar,
+  Menu,
+  MenuItem,
+  DropdownMenu,
+  Select
 } from '../components';
 import './Documentation.css';
 
@@ -851,13 +855,13 @@ const Documentation: React.FC = () => {
           component: (
             <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                <Heading level={3} style={{ margin: 0 }}>My App</Heading>
+                <Heading level={3}>My App</Heading>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <Button variant="outline" size="small">Home</Button>
                   <Button variant="outline" size="small">About</Button>
                 </div>
               </div>
-              <BodyText style={{ fontSize: '12px', color: '#666' }}>Navigation bar preview</BodyText>
+              <BodyText>Navigation bar preview</BodyText>
             </div>
           )
         },
@@ -867,10 +871,176 @@ const Documentation: React.FC = () => {
           component: (
             <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Heading level={3} style={{ margin: 0 }}>Custom Title</Heading>
+                <Heading level={3}>Custom Title</Heading>
               </div>
-              <BodyText style={{ fontSize: '12px', color: '#666' }}>Navigation bar with custom title</BodyText>
+              <BodyText>Navigation bar with custom title</BodyText>
             </div>
+          )
+        }
+      ]
+    },
+    menu: {
+      name: 'Menu',
+      description: 'A menu component for displaying a list of options with button-like borders and styling.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: true, description: 'Menu items' },
+        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+      ],
+      examples: [
+        {
+          title: 'Basic Menu',
+          code: `<Menu>
+  <MenuItem onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+  <MenuItem onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+  <MenuItem onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+  <MenuItem disabled>Disabled Option</MenuItem>
+</Menu>`,
+          component: (
+            <Menu>
+              <MenuItem onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+              <MenuItem onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+              <MenuItem onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+              <MenuItem disabled>Disabled Option</MenuItem>
+            </Menu>
+          )
+        }
+      ]
+    },
+    menuitem: {
+      name: 'MenuItem',
+      description: 'A menu item component for individual menu options.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: true, description: 'Menu item content' },
+        { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the menu item' },
+        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+      ],
+      examples: [
+        {
+          title: 'Menu Item States',
+          code: `<Menu>
+  <MenuItem onClick={() => alert('Active item')}>Active Item</MenuItem>
+  <MenuItem disabled>Disabled Item</MenuItem>
+</Menu>`,
+          component: (
+            <Menu>
+              <MenuItem onClick={() => alert('Active item')}>Active Item</MenuItem>
+              <MenuItem disabled>Disabled Item</MenuItem>
+            </Menu>
+          )
+        }
+      ]
+    },
+    dropdownmenu: {
+      name: 'DropdownMenu',
+      description: 'A dropdown menu component that shows/hides a menu when clicking on a trigger component.',
+      props: [
+        { name: 'trigger', type: 'ReactNode', required: true, description: 'Trigger element (button, icon, etc.)' },
+        { name: 'children', type: 'ReactNode', required: true, description: 'Menu items' },
+        { name: 'placement', type: '"bottom-left" | "bottom-right" | "top-left" | "top-right"', required: false, default: 'bottom-left', description: 'Menu placement relative to trigger' },
+        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+      ],
+      examples: [
+        {
+          title: 'Button Dropdown',
+          code: `<DropdownMenu
+  trigger={<Button>Actions ▼</Button>}
+  placement="bottom-left"
+>
+  <MenuItem onClick={() => alert('New clicked')}>New</MenuItem>
+  <MenuItem onClick={() => alert('Open clicked')}>Open</MenuItem>
+  <MenuItem onClick={() => alert('Save clicked')}>Save</MenuItem>
+</DropdownMenu>`,
+          component: (
+            <DropdownMenu
+              trigger={<Button>Actions ▼</Button>}
+              placement="bottom-left"
+            >
+              <MenuItem onClick={() => alert('New clicked')}>New</MenuItem>
+              <MenuItem onClick={() => alert('Open clicked')}>Open</MenuItem>
+              <MenuItem onClick={() => alert('Save clicked')}>Save</MenuItem>
+            </DropdownMenu>
+          )
+        },
+        {
+          title: 'Icon Button Dropdown',
+          code: `<DropdownMenu
+  trigger={<IconButton icon="⚙" />}
+  placement="bottom-right"
+>
+  <MenuItem onClick={() => alert('Settings clicked')}>Settings</MenuItem>
+  <MenuItem onClick={() => alert('Profile clicked')}>Profile</MenuItem>
+  <MenuItem onClick={() => alert('Logout clicked')}>Logout</MenuItem>
+</DropdownMenu>`,
+          component: (
+            <DropdownMenu
+              trigger={<IconButton icon="⚙" />}
+              placement="bottom-right"
+            >
+              <MenuItem onClick={() => alert('Settings clicked')}>Settings</MenuItem>
+              <MenuItem onClick={() => alert('Profile clicked')}>Profile</MenuItem>
+              <MenuItem onClick={() => alert('Logout clicked')}>Logout</MenuItem>
+            </DropdownMenu>
+          )
+        }
+      ]
+    },
+    select: {
+      name: 'Select',
+      description: 'A select input component with dropdown list and proper styling.',
+      props: [
+        { name: 'value', type: 'string', required: false, description: 'Selected value' },
+        { name: 'onChange', type: '(value: string) => void', required: false, description: 'Change handler' },
+        { name: 'placeholder', type: 'string', required: false, default: 'Select an option', description: 'Placeholder text' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the select' },
+        { name: 'error', type: 'string', required: false, description: 'Error message' },
+        { name: 'options', type: 'Array<{value: string, label: string, disabled?: boolean}>', required: true, description: 'Select options' },
+        { name: 'name', type: 'string', required: false, description: 'Form field name' },
+        { name: 'id', type: 'string', required: false, description: 'Element ID' }
+      ],
+      examples: [
+        {
+          title: 'Basic Select',
+          code: `<Select
+  placeholder="Choose an option"
+  options={[
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3', disabled: true },
+    { value: 'option4', label: 'Option 4' }
+  ]}
+/>`,
+          component: (
+            <Select
+              placeholder="Choose an option"
+              options={[
+                { value: 'option1', label: 'Option 1' },
+                { value: 'option2', label: 'Option 2' },
+                { value: 'option3', label: 'Option 3', disabled: true },
+                { value: 'option4', label: 'Option 4' }
+              ]}
+            />
+          )
+        },
+        {
+          title: 'Select with Error',
+          code: `<Select
+  placeholder="Select with error"
+  error="This field is required"
+  options={[
+    { value: 'a', label: 'Option A' },
+    { value: 'b', label: 'Option B' }
+  ]}
+/>`,
+          component: (
+            <Select
+              placeholder="Select with error"
+              error="This field is required"
+              options={[
+                { value: 'a', label: 'Option A' },
+                { value: 'b', label: 'Option B' }
+              ]}
+            />
           )
         }
       ]

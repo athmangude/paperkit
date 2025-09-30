@@ -106,6 +106,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 ##### Menus
 - [Closed] Add Menus should display a list of provided options. The list items should have borders similar to the button borders, 2px solid black. The menu should have a 2px solid black border with bottom border radius similar to what we use for buttons. No top border radius. Menu items have bottom borders 2px solid black except that last item
 - [Closed] Add dropdown menus which are like menus above except that they are visible after clicking an another wrapped component e.g., icon button. The drop down menu is hidden upon clicking away from it.
+- [Closed] Add all menus to documentation
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form
