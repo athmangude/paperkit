@@ -109,6 +109,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] Add all menus to documentation
 - [Closed] All menus except dropdown menus should support the optional specification of a `selected` item.
 - [Closed] documentation should correctly implement onChange to set the selected menu item and show the change of the selected item on the menu
+- [Closed] Don't show an alert when a menu item is clicked on select menus, instead show the change of the selection on the menu
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form

@@ -892,16 +892,16 @@ const Documentation: React.FC = () => {
         {
           title: 'Basic Menu',
           code: `<Menu>
-  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+  <MenuItem value="edit">Edit</MenuItem>
+  <MenuItem value="copy">Copy</MenuItem>
+  <MenuItem value="delete">Delete</MenuItem>
   <MenuItem disabled>Disabled Option</MenuItem>
 </Menu>`,
           component: (
             <Menu>
-              <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-              <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-              <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+              <MenuItem value="edit">Edit</MenuItem>
+              <MenuItem value="copy">Copy</MenuItem>
+              <MenuItem value="delete">Delete</MenuItem>
               <MenuItem disabled>Disabled Option</MenuItem>
             </Menu>
           )
@@ -909,15 +909,15 @@ const Documentation: React.FC = () => {
         {
           title: 'Menu with Selected Item',
           code: `<Menu selectedValue="copy">
-  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+  <MenuItem value="edit">Edit</MenuItem>
+  <MenuItem value="copy">Copy</MenuItem>
+  <MenuItem value="delete">Delete</MenuItem>
 </Menu>`,
           component: (
             <Menu selectedValue="copy">
-              <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-              <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-              <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+              <MenuItem value="edit">Edit</MenuItem>
+              <MenuItem value="copy">Copy</MenuItem>
+              <MenuItem value="delete">Delete</MenuItem>
             </Menu>
           )
         },
@@ -929,17 +929,17 @@ const Documentation: React.FC = () => {
   selectedValue={selectedValue}
   onChange={setSelectedValue}
 >
-  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+  <MenuItem value="edit">Edit</MenuItem>
+  <MenuItem value="copy">Copy</MenuItem>
+  <MenuItem value="delete">Delete</MenuItem>
 </Menu>
 <div>Selected: {selectedValue}</div>`,
           component: (
             <div>
               <Menu selectedValue="copy">
-                <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-                <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-                <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+                <MenuItem value="edit">Edit</MenuItem>
+                <MenuItem value="copy">Copy</MenuItem>
+                <MenuItem value="delete">Delete</MenuItem>
               </Menu>
               <div style={{ marginTop: '10px', fontSize: '14px' }}>Selected: copy</div>
             </div>
@@ -961,12 +961,12 @@ const Documentation: React.FC = () => {
         {
           title: 'Menu Item States',
           code: `<Menu>
-  <MenuItem value="active" onClick={() => alert('Active item')}>Active Item</MenuItem>
+  <MenuItem value="active">Active Item</MenuItem>
   <MenuItem disabled>Disabled Item</MenuItem>
 </Menu>`,
           component: (
             <Menu>
-              <MenuItem value="active" onClick={() => alert('Active item')}>Active Item</MenuItem>
+              <MenuItem value="active">Active Item</MenuItem>
               <MenuItem disabled>Disabled Item</MenuItem>
             </Menu>
           )
@@ -989,18 +989,18 @@ const Documentation: React.FC = () => {
   trigger={<Button>Actions ▼</Button>}
   placement="bottom-left"
 >
-  <MenuItem onClick={() => alert('New clicked')}>New</MenuItem>
-  <MenuItem onClick={() => alert('Open clicked')}>Open</MenuItem>
-  <MenuItem onClick={() => alert('Save clicked')}>Save</MenuItem>
+  <MenuItem value="new">New</MenuItem>
+  <MenuItem value="open">Open</MenuItem>
+  <MenuItem value="save">Save</MenuItem>
 </DropdownMenu>`,
           component: (
             <DropdownMenu
               trigger={<Button>Actions ▼</Button>}
               placement="bottom-left"
             >
-              <MenuItem onClick={() => alert('New clicked')}>New</MenuItem>
-              <MenuItem onClick={() => alert('Open clicked')}>Open</MenuItem>
-              <MenuItem onClick={() => alert('Save clicked')}>Save</MenuItem>
+              <MenuItem value="new">New</MenuItem>
+              <MenuItem value="open">Open</MenuItem>
+              <MenuItem value="save">Save</MenuItem>
             </DropdownMenu>
           )
         },
@@ -1010,18 +1010,18 @@ const Documentation: React.FC = () => {
   trigger={<IconButton icon="⚙" />}
   placement="bottom-right"
 >
-  <MenuItem onClick={() => alert('Settings clicked')}>Settings</MenuItem>
-  <MenuItem onClick={() => alert('Profile clicked')}>Profile</MenuItem>
-  <MenuItem onClick={() => alert('Logout clicked')}>Logout</MenuItem>
+  <MenuItem value="settings">Settings</MenuItem>
+  <MenuItem value="profile">Profile</MenuItem>
+  <MenuItem value="logout">Logout</MenuItem>
 </DropdownMenu>`,
           component: (
             <DropdownMenu
               trigger={<IconButton icon="⚙" />}
               placement="bottom-right"
             >
-              <MenuItem onClick={() => alert('Settings clicked')}>Settings</MenuItem>
-              <MenuItem onClick={() => alert('Profile clicked')}>Profile</MenuItem>
-              <MenuItem onClick={() => alert('Logout clicked')}>Logout</MenuItem>
+              <MenuItem value="settings">Settings</MenuItem>
+              <MenuItem value="profile">Profile</MenuItem>
+              <MenuItem value="logout">Logout</MenuItem>
             </DropdownMenu>
           )
         }

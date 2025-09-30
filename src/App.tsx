@@ -648,9 +648,9 @@ function App() {
                   selectedValue={selectedMenuValue}
                   onChange={setSelectedMenuValue}
                 >
-                  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-                  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-                  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+                  <MenuItem value="edit">Edit</MenuItem>
+                  <MenuItem value="copy">Copy</MenuItem>
+                  <MenuItem value="delete">Delete</MenuItem>
                   <MenuItem disabled>Disabled Option</MenuItem>
                 </Menu>
                 <div style={{ marginTop: '10px', fontSize: '14px' }}>
@@ -663,10 +663,10 @@ function App() {
                   trigger={<Button>Actions ▼</Button>}
                   placement="bottom-left"
                 >
-                  <MenuItem onClick={() => alert('New clicked')}>New</MenuItem>
-                  <MenuItem onClick={() => alert('Open clicked')}>Open</MenuItem>
-                  <MenuItem onClick={() => alert('Save clicked')}>Save</MenuItem>
-                  <MenuItem onClick={() => alert('Export clicked')}>Export</MenuItem>
+                  <MenuItem value="new">New</MenuItem>
+                  <MenuItem value="open">Open</MenuItem>
+                  <MenuItem value="save">Save</MenuItem>
+                  <MenuItem value="export">Export</MenuItem>
                 </DropdownMenu>
               </div>
               <div>
@@ -675,9 +675,9 @@ function App() {
                   trigger={<IconButton icon="⚙" />}
                   placement="bottom-right"
                 >
-                  <MenuItem onClick={() => alert('Settings clicked')}>Settings</MenuItem>
-                  <MenuItem onClick={() => alert('Profile clicked')}>Profile</MenuItem>
-                  <MenuItem onClick={() => alert('Logout clicked')}>Logout</MenuItem>
+                  <MenuItem value="settings">Settings</MenuItem>
+                  <MenuItem value="profile">Profile</MenuItem>
+                  <MenuItem value="logout">Logout</MenuItem>
                 </DropdownMenu>
               </div>
             </div>
