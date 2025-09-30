@@ -884,23 +884,39 @@ const Documentation: React.FC = () => {
       description: 'A menu component for displaying a list of options with button-like borders and styling.',
       props: [
         { name: 'children', type: 'ReactNode', required: true, description: 'Menu items' },
+        { name: 'selectedValue', type: 'string', required: false, description: 'Value of the currently selected menu item' },
         { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
       ],
       examples: [
         {
           title: 'Basic Menu',
           code: `<Menu>
-  <MenuItem onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-  <MenuItem onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-  <MenuItem onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
   <MenuItem disabled>Disabled Option</MenuItem>
 </Menu>`,
           component: (
             <Menu>
-              <MenuItem onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-              <MenuItem onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-              <MenuItem onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+              <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+              <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+              <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
               <MenuItem disabled>Disabled Option</MenuItem>
+            </Menu>
+          )
+        },
+        {
+          title: 'Menu with Selected Item',
+          code: `<Menu selectedValue="copy">
+  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+</Menu>`,
+          component: (
+            <Menu selectedValue="copy">
+              <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+              <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+              <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
             </Menu>
           )
         }
@@ -911,6 +927,7 @@ const Documentation: React.FC = () => {
       description: 'A menu item component for individual menu options.',
       props: [
         { name: 'children', type: 'ReactNode', required: true, description: 'Menu item content' },
+        { name: 'value', type: 'string', required: false, description: 'Value for selection comparison' },
         { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the menu item' },
         { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
@@ -919,12 +936,12 @@ const Documentation: React.FC = () => {
         {
           title: 'Menu Item States',
           code: `<Menu>
-  <MenuItem onClick={() => alert('Active item')}>Active Item</MenuItem>
+  <MenuItem value="active" onClick={() => alert('Active item')}>Active Item</MenuItem>
   <MenuItem disabled>Disabled Item</MenuItem>
 </Menu>`,
           component: (
             <Menu>
-              <MenuItem onClick={() => alert('Active item')}>Active Item</MenuItem>
+              <MenuItem value="active" onClick={() => alert('Active item')}>Active Item</MenuItem>
               <MenuItem disabled>Disabled Item</MenuItem>
             </Menu>
           )

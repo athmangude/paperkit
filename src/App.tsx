@@ -643,10 +643,10 @@ function App() {
             <div className="menus-grid">
               <div>
                 <Heading level={3}>Menu</Heading>
-                <Menu>
-                  <MenuItem onClick={() => alert('Edit clicked')}>Edit</MenuItem>
-                  <MenuItem onClick={() => alert('Copy clicked')}>Copy</MenuItem>
-                  <MenuItem onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+                <Menu selectedValue="copy">
+                  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+                  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+                  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
                   <MenuItem disabled>Disabled Option</MenuItem>
                 </Menu>
               </div>

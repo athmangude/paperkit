@@ -37,3 +37,12 @@
 .paper-menu-item--disabled:hover {
   background-color: #f9f9f9;
 }
+
+.paper-menu-item--selected {
+  background-color: #000;
+  color: #fff;
+}
+
+.paper-menu-item--selected:hover {
+  background-color: #000;
+}
