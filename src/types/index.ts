@@ -274,3 +274,33 @@ export interface NavigationBarProps extends BaseComponentProps {
   title?: string;
   navigationComponents?: React.ReactNode;
 }
+
+// Menu types
+export interface MenuProps extends BaseComponentProps {
+  children: React.ReactNode;
+}
+
+export interface MenuItemProps extends BaseComponentProps {
+  onClick?: () => void;
+  disabled?: boolean;
+  children: React.ReactNode;
+}
+
+// Dropdown Menu types
+export interface DropdownMenuProps extends BaseComponentProps {
+  trigger: React.ReactNode;
+  children: React.ReactNode;
+  placement?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+}
+
+// Select Input types
+export interface SelectProps extends BaseComponentProps {
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  error?: string;
+  options: Array<{ value: string; label: string; disabled?: boolean }>;
+  name?: string;
+  id?: string;
+}

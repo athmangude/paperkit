@@ -33,7 +33,11 @@ import {
   TableCell,
   IconButton,
   NavigationBar,
-  Hero
+  Hero,
+  Menu,
+  MenuItem,
+  DropdownMenu,
+  Select
 } from './components';
 import './App.css';
 
@@ -50,6 +54,7 @@ function App() {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const [copiedButton, setCopiedButton] = useState<string | null>(null);
+  const [selectValue, setSelectValue] = useState('');
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -210,6 +215,7 @@ function App() {
             <Button onClick={() => scrollToSection('tabs-accordion')}>Tabs & Accordion</Button>
             <Button onClick={() => scrollToSection('list-pagination')}>List & Pagination</Button>
             <Button onClick={() => scrollToSection('table')}>Table</Button>
+            <Button onClick={() => scrollToSection('menus')}>Menus</Button>
           </div>
         </div>
       </section>
@@ -372,6 +378,28 @@ function App() {
                 <TextArea 
                   placeholder="Enter longer text..." 
                   rows={4}
+                />
+              </div>
+              <div>
+                <Heading level={3}>Select Input</Heading>
+                <Select
+                  value={selectValue}
+                  onChange={setSelectValue}
+                  placeholder="Choose an option"
+                  options={[
+                    { value: 'option1', label: 'Option 1' },
+                    { value: 'option2', label: 'Option 2' },
+                    { value: 'option3', label: 'Option 3', disabled: true },
+                    { value: 'option4', label: 'Option 4' }
+                  ]}
+                />
+                <Select
+                  placeholder="Select with error"
+                  error="This field is required"
+                  options={[
+                    { value: 'a', label: 'Option A' },
+                    { value: 'b', label: 'Option B' }
+                  ]}
                 />
               </div>
             </div>
@@ -603,6 +631,49 @@ function App() {
                 </TableRow>
               </tbody>
             </Table>
+          </Card>
+        </div>
+      </section>
+
+      {/* Menus Section */}
+      <section id="menus" className="component-section">
+        <div className="container">
+          <Heading level={2}>Menus</Heading>
+          <Card elevation="medium" padding="large">
+            <div className="menus-grid">
+              <div>
+                <Heading level={3}>Menu</Heading>
+                <Menu>
+                  <MenuItem onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+                  <MenuItem onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+                  <MenuItem onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+                  <MenuItem disabled>Disabled Option</MenuItem>
+                </Menu>
+              </div>
+              <div>
+                <Heading level={3}>Dropdown Menu</Heading>
+                <DropdownMenu
+                  trigger={<Button>Actions ▼</Button>}
+                  placement="bottom-left"
+                >
+                  <MenuItem onClick={() => alert('New clicked')}>New</MenuItem>
+                  <MenuItem onClick={() => alert('Open clicked')}>Open</MenuItem>
+                  <MenuItem onClick={() => alert('Save clicked')}>Save</MenuItem>
+                  <MenuItem onClick={() => alert('Export clicked')}>Export</MenuItem>
+                </DropdownMenu>
+              </div>
+              <div>
+                <Heading level={3}>Icon Button Dropdown</Heading>
+                <DropdownMenu
+                  trigger={<IconButton icon="⚙" />}
+                  placement="bottom-right"
+                >
+                  <MenuItem onClick={() => alert('Settings clicked')}>Settings</MenuItem>
+                  <MenuItem onClick={() => alert('Profile clicked')}>Profile</MenuItem>
+                  <MenuItem onClick={() => alert('Logout clicked')}>Logout</MenuItem>
+                </DropdownMenu>
+              </div>
+            </div>
           </Card>
         </div>
       </section>

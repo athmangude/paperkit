@@ -2,6 +2,8 @@
 
 ## Status: All Issues Closed ✅
 
+**Last Updated:** All open issues have been resolved and implemented.
+
 ## List of issues
 
 ### 1. Radio buttons do not show correct status change when clicked
@@ -101,10 +103,15 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] when a list item is selected it's text is not visible. Introduce a selected property for a listItem. When an item is selected, its background is black and text is white
 - [Closed] hovering on a selected list item should not change its background color
 
+##### Menus
+- [Closed] Add Menus should display a list of provided options. The list items should have borders similar to the button borders, 2px solid black. The menu should have a 2px solid black border with bottom border radius similar to what we use for buttons. No top border radius. Menu items have bottom borders 2px solid black except that last item
+- [Closed] Add dropdown menus which are like menus above except that they are visible after clicking an another wrapped component e.g., icon button. The drop down menu is hidden upon clicking away from it.
+
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form
 - [Closed] Where there are variants involved, render the components and example usage code for all variants. Also do this for all other components with variants
 - [Closed] All input components should be grouped under input including radio buttons and checkboxes
+- [Closed] Add select input menus that display a drop down list of items with the selected item above the list of available items. List items should have similar borders to buttons. Only the last item in the menu should have rounded border bottom radius. The active item should have similar borders to the button borders but no border radius.
 
 ##### Notifications
 - [Closed] Show buttons to trigger all notification variants

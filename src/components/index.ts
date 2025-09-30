@@ -83,3 +83,15 @@ export type { HeroProps } from '../types';
 // Navigation Bar component
 export { NavigationBar } from './navigation-bar';
 export type { NavigationBarProps } from '../types';
+
+// Menu components
+export { Menu, MenuItem } from './menu';
+export type { MenuProps, MenuItemProps } from '../types';
+
+// Dropdown Menu component
+export { DropdownMenu } from './dropdown-menu';
+export type { DropdownMenuProps } from '../types';
+
+// Select component
+export { Select } from './select';
+export type { SelectProps } from '../types';

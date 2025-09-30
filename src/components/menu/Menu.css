@@ -1,0 +1,39 @@
+.paper-menu {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-width: 120px;
+}
+
+.paper-menu-item {
+  padding: 12px 16px;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+  background: #fff;
+  transition: background-color 0.2s ease;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.paper-menu-item:last-child {
+  border-bottom: none;
+}
+
+.paper-menu-item:hover:not(.paper-menu-item--disabled) {
+  background-color: #f5f5f5;
+}
+
+.paper-menu-item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f9f9f9;
+}
+
+.paper-menu-item--disabled:hover {
+  background-color: #f9f9f9;
+}
