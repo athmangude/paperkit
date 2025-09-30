@@ -55,6 +55,7 @@ function App() {
   const [activeTab, setActiveTab] = useState(0);
   const [copiedButton, setCopiedButton] = useState<string | null>(null);
   const [selectValue, setSelectValue] = useState('');
+  const [selectedMenuValue, setSelectedMenuValue] = useState('copy');
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -643,12 +644,18 @@ function App() {
             <div className="menus-grid">
               <div>
                 <Heading level={3}>Menu</Heading>
-                <Menu selectedValue="copy">
+                <Menu 
+                  selectedValue={selectedMenuValue}
+                  onChange={setSelectedMenuValue}
+                >
                   <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
                   <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
                   <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
                   <MenuItem disabled>Disabled Option</MenuItem>
                 </Menu>
+                <div style={{ marginTop: '10px', fontSize: '14px' }}>
+                  Selected: {selectedMenuValue}
+                </div>
               </div>
               <div>
                 <Heading level={3}>Dropdown Menu</Heading>

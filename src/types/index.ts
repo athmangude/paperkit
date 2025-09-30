@@ -279,6 +279,7 @@ export interface NavigationBarProps extends BaseComponentProps {
 export interface MenuProps extends BaseComponentProps {
   children: React.ReactNode;
   selectedValue?: string;
+  onChange?: (value: string) => void;
 }
 
 export interface MenuItemProps extends BaseComponentProps {

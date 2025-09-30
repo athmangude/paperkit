@@ -885,6 +885,7 @@ const Documentation: React.FC = () => {
       props: [
         { name: 'children', type: 'ReactNode', required: true, description: 'Menu items' },
         { name: 'selectedValue', type: 'string', required: false, description: 'Value of the currently selected menu item' },
+        { name: 'onChange', type: '(value: string) => void', required: false, description: 'Callback when menu item is selected' },
         { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
       ],
       examples: [
@@ -918,6 +919,30 @@ const Documentation: React.FC = () => {
               <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
               <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
             </Menu>
+          )
+        },
+        {
+          title: 'Interactive Menu with onChange',
+          code: `const [selectedValue, setSelectedValue] = useState('copy');
+
+<Menu 
+  selectedValue={selectedValue}
+  onChange={setSelectedValue}
+>
+  <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+  <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+  <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+</Menu>
+<div>Selected: {selectedValue}</div>`,
+          component: (
+            <div>
+              <Menu selectedValue="copy">
+                <MenuItem value="edit" onClick={() => alert('Edit clicked')}>Edit</MenuItem>
+                <MenuItem value="copy" onClick={() => alert('Copy clicked')}>Copy</MenuItem>
+                <MenuItem value="delete" onClick={() => alert('Delete clicked')}>Delete</MenuItem>
+              </Menu>
+              <div style={{ marginTop: '10px', fontSize: '14px' }}>Selected: copy</div>
+            </div>
           )
         }
       ]

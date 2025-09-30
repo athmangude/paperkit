@@ -5,6 +5,7 @@ import './Menu.css';
 export const Menu: React.FC<MenuProps> = ({
   children,
   selectedValue,
+  onChange,
   className = '',
 }) => {
   const menuClasses = [
@@ -12,12 +13,23 @@ export const Menu: React.FC<MenuProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  // Clone children and pass selectedValue to MenuItem components
+  const handleItemClick = (value: string, originalOnClick?: () => void) => {
+    if (onChange) {
+      onChange(value);
+    }
+    if (originalOnClick) {
+      originalOnClick();
+    }
+  };
+
+  // Clone children and pass selectedValue and click handler to MenuItem components
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child) && child.type && 
         (child.type as any).displayName === 'MenuItem') {
+      const childProps = child.props as any;
       return React.cloneElement(child, {
-        selected: selectedValue === (child.props as any).value
+        selected: selectedValue === childProps.value,
+        onClick: () => handleItemClick(childProps.value, childProps.onClick)
       });
     }
     return child;

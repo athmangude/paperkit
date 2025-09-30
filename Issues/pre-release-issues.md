@@ -108,6 +108,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] Add dropdown menus which are like menus above except that they are visible after clicking an another wrapped component e.g., icon button. The drop down menu is hidden upon clicking away from it.
 - [Closed] Add all menus to documentation
 - [Closed] All menus except dropdown menus should support the optional specification of a `selected` item.
+- [Closed] documentation should correctly implement onChange to set the selected menu item and show the change of the selected item on the menu
 
 ##### Input
 - [Closed] Render props table and components separately for each input component instead of a showcase form
