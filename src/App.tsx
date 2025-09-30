@@ -57,6 +57,11 @@ function App() {
   const [selectValue, setSelectValue] = useState('');
   const [selectedMenuValue, setSelectedMenuValue] = useState('copy');
 
+  const handleMenuChange = (value: string) => {
+    console.log('Menu change triggered:', value);
+    setSelectedMenuValue(value);
+  };
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -646,7 +651,7 @@ function App() {
                 <Heading level={3}>Menu</Heading>
                 <Menu 
                   selectedValue={selectedMenuValue}
-                  onChange={setSelectedMenuValue}
+                  onChange={handleMenuChange}
                 >
                   <MenuItem value="edit">Edit</MenuItem>
                   <MenuItem value="copy">Copy</MenuItem>

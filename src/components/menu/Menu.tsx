@@ -14,6 +14,7 @@ export const Menu: React.FC<MenuProps> = ({
   ].filter(Boolean).join(' ');
 
   const handleItemClick = (value: string, originalOnClick?: () => void) => {
+    console.log('Menu item clicked:', value, 'onChange:', !!onChange);
     if (onChange) {
       onChange(value);
     }
@@ -27,10 +28,20 @@ export const Menu: React.FC<MenuProps> = ({
     if (React.isValidElement(child) && child.type && 
         (child.type as any).displayName === 'MenuItem') {
       const childProps = child.props as any;
-      return React.cloneElement(child, {
-        selected: selectedValue === childProps.value,
-        onClick: () => handleItemClick(childProps.value, childProps.onClick)
-      });
+      const itemValue = childProps.value;
+      
+      // Only handle onChange if the item has a value and onChange is provided
+      if (itemValue && onChange) {
+        return React.cloneElement(child, {
+          selected: selectedValue === itemValue,
+          onClick: () => handleItemClick(itemValue, childProps.onClick)
+        });
+      } else {
+        // For items without value or when no onChange, just pass the selected state
+        return React.cloneElement(child, {
+          selected: selectedValue === itemValue
+        });
+      }
     }
     return child;
   });
