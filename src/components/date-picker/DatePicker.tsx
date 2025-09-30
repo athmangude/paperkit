@@ -3,7 +3,7 @@ import type { DatePickerProps } from '../../types';
 import { Button } from '../button';
 import { IconButton } from '../icon-button';
 import { Modal } from '../modal';
-import { CalendarToday, Close, NavigateBefore, NavigateNext } from '@mui/icons-material';
+import { FaCalendarAlt, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './DatePicker.css';
 
 // Utility functions for date calculations
@@ -241,7 +241,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           aria-haspopup="dialog"
         />
         <IconButton
-          icon={<CalendarToday />}
+          icon={<FaCalendarAlt />}
           size="small"
           onClick={() => !disabled && setIsOpen(true)}
           disabled={disabled}
@@ -250,7 +250,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         />
         {allowClear && selectedDate && (
           <IconButton
-            icon={<Close />}
+            icon={<FaTimes />}
             size="small"
             onClick={handleClear}
             disabled={disabled}
@@ -270,7 +270,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           {/* Header */}
           <div className="paper-date-picker__header">
             <IconButton
-              icon={<NavigateBefore />}
+              icon={<FaChevronLeft />}
               onClick={goToPreviousMonth}
               aria-label="Previous month"
             />
@@ -283,7 +283,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
               </span>
             </div>
             <IconButton
-              icon={<NavigateNext />}
+              icon={<FaChevronRight />}
               onClick={goToNextMonth}
               aria-label="Next month"
             />

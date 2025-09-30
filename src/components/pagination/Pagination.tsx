@@ -2,7 +2,7 @@ import React from 'react';
 import type { PaginationProps } from '../../types';
 import { Button } from '../button';
 import { IconButton } from '../icon-button';
-import { FirstPage, NavigateBefore, NavigateNext, LastPage } from '@mui/icons-material';
+import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa';
 import './Pagination.css';
 
 export const Pagination: React.FC<PaginationProps> = ({
@@ -74,7 +74,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     <div className={paginationClasses} role="navigation" aria-label="Pagination">
       {showFirstLast && (
         <IconButton
-          icon={<FirstPage />}
+          icon={<FaAngleDoubleLeft />}
           size="small"
           onClick={() => handlePageChange(1)}
           disabled={currentPage === 1}
@@ -84,7 +84,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       
       {showPrevNext && (
         <IconButton
-          icon={<NavigateBefore />}
+          icon={<FaAngleLeft />}
           size="small"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
@@ -123,7 +123,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       
       {showPrevNext && (
         <IconButton
-          icon={<NavigateNext />}
+          icon={<FaAngleRight />}
           size="small"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
@@ -133,7 +133,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       
       {showFirstLast && (
         <IconButton
-          icon={<LastPage />}
+          icon={<FaAngleDoubleRight />}
           size="small"
           onClick={() => handlePageChange(totalPages)}
           disabled={currentPage === totalPages}

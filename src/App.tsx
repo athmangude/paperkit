@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Star, Favorite, ArrowForward, Settings } from '@mui/icons-material';
+import { FaStar, FaHeart, FaArrowRight, FaCog } from 'react-icons/fa';
 import { 
   Button, 
   Card, 
@@ -240,7 +240,7 @@ function App() {
             <ProgressBar value={progressValue} />
             <Badge>5</Badge>
             <Tag>Tag</Tag>
-            <IconButton icon={<Star />} />
+            <IconButton icon={<FaStar />} />
           </div>
         </div>
       </section>
@@ -292,9 +292,9 @@ function App() {
               </div>
               <div>
                 <Heading level={3}>Icon Buttons</Heading>
-                <IconButton icon={<Star />} />
-                <IconButton icon={<Favorite />} />
-                <IconButton icon={<ArrowForward />} />
+                <IconButton icon={<FaStar />} />
+                <IconButton icon={<FaHeart />} />
+                <IconButton icon={<FaArrowRight />} />
               </div>
             </div>
           </Card>
@@ -677,7 +677,7 @@ function App() {
               <div>
                 <Heading level={3}>Icon Button Dropdown</Heading>
                 <DropdownMenu
-                  trigger={<IconButton icon={<Settings />} />}
+                  trigger={<IconButton icon={<FaCog />} />}
                   placement="bottom-right"
                 >
                   <MenuItem value="settings">Settings</MenuItem>
