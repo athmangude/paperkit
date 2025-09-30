@@ -58,7 +58,6 @@ function App() {
   const [selectedMenuValue, setSelectedMenuValue] = useState('copy');
 
   const handleMenuChange = (value: string) => {
-    console.log('Menu change triggered:', value);
     setSelectedMenuValue(value);
   };
 

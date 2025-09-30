@@ -14,7 +14,6 @@ export const Menu: React.FC<MenuProps> = ({
   ].filter(Boolean).join(' ');
 
   const handleItemClick = (value: string, originalOnClick?: () => void) => {
-    console.log('Menu item clicked:', value, 'onChange:', !!onChange);
     if (onChange) {
       onChange(value);
     }
