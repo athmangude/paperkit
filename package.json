@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:docs": "tsc -b && vite build --base=/",
+    "build:docs": "tsc -b && vite build --base=/protokit-ui/",
     "build:components": "cd src/components && npm install && npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
