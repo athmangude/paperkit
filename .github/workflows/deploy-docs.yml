@@ -33,10 +33,13 @@ jobs:
     - name: Build documentation site
       run: npm run build:docs
       
+    - name: Clear any existing Pages configuration
+      run: |
+        echo "Clearing any existing Pages configuration..."
+        rm -rf .github/pages || true
+      
     - name: Setup Pages
       uses: actions/configure-pages@v4
-      with:
-        static_site_generator: vite
       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
