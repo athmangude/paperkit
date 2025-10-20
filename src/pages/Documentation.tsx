@@ -37,7 +37,7 @@ import {
   MenuItem,
   DropdownMenu,
   Select
-} from '../components';
+} from '../components/index';
 import './Documentation.css';
 
 // Typography components are now imported directly

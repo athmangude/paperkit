@@ -39,7 +39,7 @@ import {
   MenuItem,
   DropdownMenu,
   Select
-} from './components';
+} from './components/index';
 import './App.css';
 
 function App() {

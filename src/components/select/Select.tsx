@@ -10,7 +10,6 @@ export const Select: React.FC<SelectProps> = ({
   error,
   options,
   name,
-  id,
   className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
