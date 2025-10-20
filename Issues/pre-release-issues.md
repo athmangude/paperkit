@@ -2,7 +2,7 @@
 
 ## Status: All Issues Closed ✅
 
-**Last Updated:** All open issues have been resolved and implemented. Font icons have been integrated throughout the project using react-icons.
+**Last Updated:** All issues have been resolved and implemented. Component documentation has been updated to accurately reflect required properties. Font icons have been integrated throughout the project using react-icons.
 
 ## List of issues
 
@@ -88,6 +88,7 @@ Rendering of tooltips stopped completely after fixing issue #4
 - [Closed] in all pages, all direct children of hero components should be centered i.e., if the direct children of the hero unit is cards, the cards should be centered, not the content inside cards. If it's text, the text should be centered
 - [Closed] in the show case page, under dashboard interface, use tags instead of badges to show status on the orders list
 - [Closed] badges should have a size property with options small, medium, large. Default is small. Add these options and demonstrate the variants in the documentation page under badges
+- [Closed] Component documentation is not accurate. Properties that should be required are not shown as required in the documentation. This requires a thorough scrutinty of the component implementation to identify all properties and highlight those that are required.
 
 ##### Layout
 - [Closed] Create a hero unit component. It should have a bottom border matching the button border. It's also a flex-container with column flex-direction, content center aligned and center justified. It does not have any background colors. It has a top and bottom padding of 50px and 20 px bottom margin.

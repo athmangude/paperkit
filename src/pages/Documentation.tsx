@@ -73,7 +73,10 @@ const Documentation: React.FC = () => {
         { name: 'placeholder', type: 'string', required: false, description: 'Placeholder text' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the input' },
         { name: 'error', type: 'string', required: false, description: 'Error message' },
-        { name: 'type', type: 'string', required: false, default: 'text', description: 'Input type' }
+        { name: 'type', type: '"text" | "email" | "password" | "number" | "tel" | "url"', required: false, default: 'text', description: 'Input type' },
+        { name: 'required', type: 'boolean', required: false, default: 'false', description: 'Mark input as required' },
+        { name: 'name', type: 'string', required: false, description: 'Form field name' },
+        { name: 'id', type: 'string', required: false, description: 'Element ID' }
       ],
       examples: [
         {
@@ -102,7 +105,12 @@ const Documentation: React.FC = () => {
         { name: 'placeholder', type: 'string', required: false, description: 'Placeholder text' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the textarea' },
         { name: 'error', type: 'string', required: false, description: 'Error message' },
-        { name: 'rows', type: 'number', required: false, default: '4', description: 'Number of rows' }
+        { name: 'required', type: 'boolean', required: false, default: 'false', description: 'Mark textarea as required' },
+        { name: 'name', type: 'string', required: false, description: 'Form field name' },
+        { name: 'id', type: 'string', required: false, description: 'Element ID' },
+        { name: 'rows', type: 'number', required: false, default: '4', description: 'Number of rows' },
+        { name: 'cols', type: 'number', required: false, description: 'Number of columns' },
+        { name: 'maxLength', type: 'number', required: false, description: 'Maximum character length' }
       ],
       examples: [
         {
@@ -152,7 +160,7 @@ const Documentation: React.FC = () => {
         { name: 'onChange', type: '(value: string | boolean) => void', required: false, description: 'Change handler' },
         { name: 'label', type: 'string', required: false, description: 'Radio label' },
         { name: 'value', type: 'string', required: false, description: 'Radio value' },
-        { name: 'name', type: 'string', required: false, description: 'Group name for radio buttons' },
+        { name: 'group', type: 'string', required: false, description: 'Group name for radio buttons' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the radio' }
       ],
       examples: [
@@ -202,11 +210,12 @@ const Documentation: React.FC = () => {
       name: 'Slider',
       description: 'A range slider component for numeric input selection.',
       props: [
-        { name: 'value', type: 'number', required: false, default: '0', description: 'Slider value' },
+        { name: 'value', type: 'number', required: false, default: '50', description: 'Slider value' },
         { name: 'onChange', type: '(value: number) => void', required: false, description: 'Change handler' },
         { name: 'min', type: 'number', required: false, default: '0', description: 'Minimum value' },
         { name: 'max', type: 'number', required: false, default: '100', description: 'Maximum value' },
         { name: 'step', type: 'number', required: false, default: '1', description: 'Step increment' },
+        { name: 'showValue', type: 'boolean', required: false, default: 'false', description: 'Show current value' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the slider' }
       ],
       examples: [
@@ -228,8 +237,17 @@ const Documentation: React.FC = () => {
       props: [
         { name: 'value', type: 'Date | null', required: false, description: 'Selected date' },
         { name: 'onChange', type: '(date: Date | null) => void', required: false, description: 'Change handler' },
-        { name: 'placeholder', type: 'string', required: false, description: 'Placeholder text' },
-        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the date picker' }
+        { name: 'placeholder', type: 'string', required: false, default: 'Select date...', description: 'Placeholder text' },
+        { name: 'format', type: '"MM/DD/YYYY" | "DD/MM/YYYY" | "YYYY-MM-DD" | "MM-DD-YYYY"', required: false, default: 'MM/DD/YYYY', description: 'Date format' },
+        { name: 'locale', type: 'string', required: false, default: 'en-US', description: 'Locale for date formatting' },
+        { name: 'showTimePicker', type: 'boolean', required: false, default: 'false', description: 'Show time picker' },
+        { name: 'timeFormat', type: '"12h" | "24h"', required: false, default: '12h', description: 'Time format' },
+        { name: 'minDate', type: 'Date', required: false, description: 'Minimum selectable date' },
+        { name: 'maxDate', type: 'Date', required: false, description: 'Maximum selectable date' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the date picker' },
+        { name: 'allowClear', type: 'boolean', required: false, default: 'true', description: 'Allow clearing the date' },
+        { name: 'showToday', type: 'boolean', required: false, default: 'true', description: 'Show today button' },
+        { name: 'showWeekNumbers', type: 'boolean', required: false, default: 'false', description: 'Show week numbers' }
       ],
       examples: [
         {
@@ -248,12 +266,13 @@ const Documentation: React.FC = () => {
       name: 'Button',
       description: 'A versatile button component with multiple variants, sizes, and states. Supports regular buttons and icon buttons.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Button content' },
-        { name: 'variant', type: '"primary" | "secondary" | "outline"', required: false, default: 'primary', description: 'Button style variant' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Button content' },
+        { name: 'variant', type: '"primary" | "secondary" | "outline"', required: false, default: 'outline', description: 'Button style variant' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Button size' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the button' },
-        { name: 'onClick', type: '(event: MouseEvent) => void', required: false, description: 'Click handler' },
-        { name: 'type', type: '"button" | "submit" | "reset"', required: false, default: 'button', description: 'Button type' }
+        { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        { name: 'type', type: '"button" | "submit" | "reset"', required: false, default: 'button', description: 'Button type' },
+        { name: 'icon', type: 'ReactNode', required: false, description: 'Icon to display in the button' }
       ],
       examples: [
         {
@@ -298,9 +317,9 @@ const Documentation: React.FC = () => {
       name: 'Card',
       description: 'A container component for grouping related content with elevation and padding options.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Card content' },
-        { name: 'elevation', type: '"none" | "low" | "medium" | "high"', required: false, default: 'low', description: 'Shadow elevation' },
-        { name: 'padding', type: '"none" | "small" | "medium" | "large"', required: false, default: 'medium', description: 'Internal padding' }
+        { name: 'children', type: 'ReactNode', required: false, description: 'Card content' },
+        { name: 'elevation', type: '"low" | "medium" | "high"', required: false, default: 'medium', description: 'Shadow elevation' },
+        { name: 'padding', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Internal padding' }
       ],
       examples: [
         {
@@ -333,9 +352,10 @@ const Documentation: React.FC = () => {
       name: 'Typography',
       description: 'Typography components for consistent text styling across the application.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'BodyText content' },
-        { name: 'level', type: '1 | 2 | 3', required: false, description: 'Heading level (for Heading component)' },
-        { name: 'variant', type: '"body" | "caption" | "overline"', required: false, default: 'body', description: 'BodyText variant (for BodyText component)' }
+        { name: 'children', type: 'ReactNode', required: true, description: 'Typography content' },
+        { name: 'level', type: '1 | 2 | 3', required: true, description: 'Heading level (for Heading component)' },
+        { name: 'href', type: 'string', required: true, description: 'Link URL (for Link component)' },
+        { name: 'external', type: 'boolean', required: false, default: 'false', description: 'Open link in new tab (for Link component)' }
       ],
       examples: [
         {
@@ -375,7 +395,7 @@ const Documentation: React.FC = () => {
       name: 'Badge',
       description: 'A small status indicator component for notifications and labels.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Badge content' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Badge content' },
         { name: 'variant', type: '"default" | "success" | "warning" | "error"', required: false, default: 'default', description: 'Badge variant' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'small', description: 'Badge size' }
       ],
@@ -427,11 +447,12 @@ const Documentation: React.FC = () => {
       name: 'IconButton',
       description: 'A button component specifically designed for icons.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Icon content' },
+        { name: 'icon', type: 'ReactNode', required: true, description: 'Icon content' },
         { name: 'variant', type: '"primary" | "secondary" | "outline"', required: false, default: 'primary', description: 'Button style variant' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Button size' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the button' },
-        { name: 'onClick', type: '(event: MouseEvent) => void', required: false, description: 'Click handler' }
+        { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        { name: 'type', type: '"button" | "submit" | "reset"', required: false, default: 'button', description: 'Button type' }
       ],
       examples: [
         {
@@ -471,8 +492,9 @@ const Documentation: React.FC = () => {
       name: 'ProgressBar',
       description: 'A progress indicator component.',
       props: [
-        { name: 'value', type: 'number', required: false, default: '0', description: 'Progress value (0-100)' },
-        { name: 'variant', type: '"default" | "success" | "warning" | "error"', required: false, default: 'default', description: 'Progress bar variant' },
+        { name: 'value', type: 'number', required: false, default: '0', description: 'Progress value' },
+        { name: 'max', type: 'number', required: false, default: '100', description: 'Maximum value' },
+        { name: 'variant', type: '"default" | "success" | "warning" | "error" | "info"', required: false, default: 'default', description: 'Progress bar variant' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Progress bar size' },
         { name: 'showLabel', type: 'boolean', required: false, default: 'false', description: 'Show percentage label' }
       ],
@@ -516,9 +538,10 @@ const Documentation: React.FC = () => {
       name: 'Tag',
       description: 'A small label component for categorization.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Tag content' },
-        { name: 'variant', type: '"default" | "success" | "warning" | "error"', required: false, default: 'default', description: 'Tag variant' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Tag content' },
+        { name: 'variant', type: '"default" | "primary" | "success" | "warning" | "error" | "info"', required: false, default: 'default', description: 'Tag variant' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Tag size' },
+        { name: 'removable', type: 'boolean', required: false, default: 'false', description: 'Show remove button' },
         { name: 'onRemove', type: '() => void', required: false, description: 'Remove handler' }
       ],
       examples: [
@@ -602,8 +625,8 @@ const Documentation: React.FC = () => {
       props: [
         { name: 'isOpen', type: 'boolean', required: true, description: 'Modal open state' },
         { name: 'onClose', type: '() => void', required: true, description: 'Close handler' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Modal content' },
         { name: 'title', type: 'string', required: false, description: 'Modal title' },
-        { name: 'children', type: 'ReactNode', required: true, description: 'Modal content' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Modal size' }
       ],
       examples: [
@@ -621,7 +644,8 @@ const Documentation: React.FC = () => {
       description: 'A notification component for displaying messages.',
       props: [
         { name: 'message', type: 'string', required: true, description: 'Notification message' },
-        { name: 'variant', type: '"success" | "warning" | "error" | "info"', required: false, default: 'info', description: 'Notification variant' },
+        { name: 'type', type: '"success" | "warning" | "error" | "info"', required: false, default: 'info', description: 'Notification type' },
+        { name: 'title', type: 'string', required: false, description: 'Notification title' },
         { name: 'duration', type: 'number', required: false, default: '5000', description: 'Auto-close duration in ms' },
         { name: 'onClose', type: '() => void', required: false, description: 'Close handler' }
       ],
@@ -657,7 +681,7 @@ const Documentation: React.FC = () => {
       description: 'A tooltip component for displaying helpful information on hover.',
       props: [
         { name: 'content', type: 'string', required: true, description: 'Tooltip content' },
-        { name: 'children', type: 'ReactNode', required: true, description: 'Trigger element' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Trigger element' },
         { name: 'position', type: '"top" | "bottom" | "left" | "right"', required: false, default: 'top', description: 'Tooltip position' },
         { name: 'showArrow', type: 'boolean', required: false, default: 'true', description: 'Show arrow pointer' }
       ],
@@ -673,7 +697,7 @@ const Documentation: React.FC = () => {
       name: 'Tabs',
       description: 'A tabbed interface component for organizing content.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Tab items' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Tab items' },
         { name: 'defaultActiveTab', type: 'number', required: false, default: '0', description: 'Default active tab index' },
         { name: 'onChange', type: '(index: number) => void', required: false, description: 'Tab change handler' }
       ],
@@ -695,11 +719,27 @@ const Documentation: React.FC = () => {
         }
       ]
     },
+    tabitem: {
+      name: 'TabItem',
+      description: 'A tab item component for individual tabs within a Tabs component.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: false, description: 'Tab content' },
+        { name: 'label', type: 'string', required: true, description: 'Tab label' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the tab' }
+      ],
+      examples: [
+        {
+          title: 'Basic TabItem',
+          code: '<TabItem label="Tab 1">Content 1</TabItem>',
+          component: <TabItem label="Tab 1"><BodyText>Content 1</BodyText></TabItem>
+        }
+      ]
+    },
     accordion: {
       name: 'Accordion',
       description: 'A collapsible content component.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Accordion items' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Accordion items' },
         { name: 'allowMultiple', type: 'boolean', required: false, default: 'false', description: 'Allow multiple items open' }
       ],
       examples: [
@@ -720,12 +760,30 @@ const Documentation: React.FC = () => {
         }
       ]
     },
+    accordionitem: {
+      name: 'AccordionItem',
+      description: 'An individual accordion item component.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: false, description: 'Accordion item content' },
+        { name: 'title', type: 'string', required: true, description: 'Accordion item title' },
+        { name: 'defaultOpen', type: 'boolean', required: false, default: 'false', description: 'Open by default' },
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the accordion item' }
+      ],
+      examples: [
+        {
+          title: 'Basic AccordionItem',
+          code: '<AccordionItem title="Section 1">Content 1</AccordionItem>',
+          component: <AccordionItem title="Section 1"><BodyText>Content 1</BodyText></AccordionItem>
+        }
+      ]
+    },
     list: {
       name: 'List',
       description: 'A list component for displaying items.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'List items' },
-        { name: 'variant', type: '"default" | "bordered" | "striped"', required: false, default: 'default', description: 'List variant' }
+        { name: 'children', type: 'ReactNode', required: false, description: 'List items' },
+        { name: 'variant', type: '"default" | "outlined" | "filled"', required: false, default: 'default', description: 'List variant' },
+        { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'List size' }
       ],
       examples: [
         {
@@ -745,14 +803,35 @@ const Documentation: React.FC = () => {
         }
       ]
     },
+    listitem: {
+      name: 'ListItem',
+      description: 'An individual list item component.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: false, description: 'List item content' },
+        { name: 'title', type: 'string', required: false, description: 'List item title' },
+        { name: 'subtitle', type: 'string', required: false, description: 'List item subtitle' },
+        { name: 'icon', type: 'ReactNode', required: false, description: 'List item icon' },
+        { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
+        { name: 'selected', type: 'boolean', required: false, default: 'false', description: 'Selected state' }
+      ],
+      examples: [
+        {
+          title: 'Basic ListItem',
+          code: '<ListItem title="First item" />',
+          component: <ListItem title="First item" />
+        }
+      ]
+    },
     pagination: {
       name: 'Pagination',
       description: 'A pagination component for navigating through pages.',
       props: [
-        { name: 'currentPage', type: 'number', required: true, description: 'Current page number' },
-        { name: 'totalPages', type: 'number', required: true, description: 'Total number of pages' },
-        { name: 'onPageChange', type: '(page: number) => void', required: true, description: 'Page change handler' },
-        { name: 'showFirstLast', type: 'boolean', required: false, default: 'true', description: 'Show first/last buttons' }
+        { name: 'currentPage', type: 'number', required: false, default: '1', description: 'Current page number' },
+        { name: 'totalPages', type: 'number', required: false, default: '1', description: 'Total number of pages' },
+        { name: 'onPageChange', type: '(page: number) => void', required: false, description: 'Page change handler' },
+        { name: 'showFirstLast', type: 'boolean', required: false, default: 'true', description: 'Show first/last buttons' },
+        { name: 'showPrevNext', type: 'boolean', required: false, default: 'true', description: 'Show previous/next buttons' },
+        { name: 'maxVisiblePages', type: 'number', required: false, default: '5', description: 'Maximum number of visible page buttons' }
       ],
       examples: [
         {
@@ -766,7 +845,7 @@ const Documentation: React.FC = () => {
       name: 'Table',
       description: 'A table component for displaying tabular data.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Table content' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Table content' },
         { name: 'variant', type: '"default" | "bordered" | "striped"', required: false, default: 'default', description: 'Table variant' },
         { name: 'size', type: '"small" | "medium" | "large"', required: false, default: 'medium', description: 'Table size' }
       ],
@@ -806,11 +885,54 @@ const Documentation: React.FC = () => {
         }
       ]
     },
+    tableheader: {
+      name: 'TableHeader',
+      description: 'A table header cell component.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: false, description: 'Header content' }
+      ],
+      examples: [
+        {
+          title: 'Basic TableHeader',
+          code: '<TableHeader>Name</TableHeader>',
+          component: <TableHeader>Name</TableHeader>
+        }
+      ]
+    },
+    tablerow: {
+      name: 'TableRow',
+      description: 'A table row component.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: false, description: 'Row content' }
+      ],
+      examples: [
+        {
+          title: 'Basic TableRow',
+          code: '<TableRow><TableCell>Data</TableCell></TableRow>',
+          component: <TableRow><TableCell>Data</TableCell></TableRow>
+        }
+      ]
+    },
+    tablecell: {
+      name: 'TableCell',
+      description: 'A table cell component.',
+      props: [
+        { name: 'children', type: 'ReactNode', required: false, description: 'Cell content' },
+        { name: 'data-label', type: 'string', required: false, description: 'Data label for responsive tables' }
+      ],
+      examples: [
+        {
+          title: 'Basic TableCell',
+          code: '<TableCell>Data</TableCell>',
+          component: <TableCell>Data</TableCell>
+        }
+      ]
+    },
     hero: {
       name: 'Hero',
       description: 'A hero section component for page headers with consistent styling and layout.',
       props: [
-        { name: 'children', type: 'ReactNode', required: true, description: 'Hero content' },
+        { name: 'children', type: 'ReactNode', required: false, description: 'Hero content' },
         { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
       ],
       examples: [
@@ -886,8 +1008,7 @@ const Documentation: React.FC = () => {
       props: [
         { name: 'children', type: 'ReactNode', required: true, description: 'Menu items' },
         { name: 'selectedValue', type: 'string', required: false, description: 'Value of the currently selected menu item' },
-        { name: 'onChange', type: '(value: string) => void', required: false, description: 'Callback when menu item is selected' },
-        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+        { name: 'onChange', type: '(value: string) => void', required: false, description: 'Callback when menu item is selected' }
       ],
       examples: [
         {
@@ -955,8 +1076,7 @@ const Documentation: React.FC = () => {
         { name: 'children', type: 'ReactNode', required: true, description: 'Menu item content' },
         { name: 'value', type: 'string', required: false, description: 'Value for selection comparison' },
         { name: 'onClick', type: '() => void', required: false, description: 'Click handler' },
-        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the menu item' },
-        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+        { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the menu item' }
       ],
       examples: [
         {
@@ -980,8 +1100,7 @@ const Documentation: React.FC = () => {
       props: [
         { name: 'trigger', type: 'ReactNode', required: true, description: 'Trigger element (button, icon, etc.)' },
         { name: 'children', type: 'ReactNode', required: true, description: 'Menu items' },
-        { name: 'placement', type: '"bottom-left" | "bottom-right" | "top-left" | "top-right"', required: false, default: 'bottom-left', description: 'Menu placement relative to trigger' },
-        { name: 'className', type: 'string', required: false, description: 'Additional CSS classes' }
+        { name: 'placement', type: '"bottom-left" | "bottom-right" | "top-left" | "top-right"', required: false, default: 'bottom-left', description: 'Menu placement relative to trigger' }
       ],
       examples: [
         {
@@ -1032,12 +1151,12 @@ const Documentation: React.FC = () => {
       name: 'Select',
       description: 'A select input component with dropdown list and proper styling.',
       props: [
+        { name: 'options', type: 'Array<{value: string, label: string, disabled?: boolean}>', required: true, description: 'Select options' },
         { name: 'value', type: 'string', required: false, description: 'Selected value' },
         { name: 'onChange', type: '(value: string) => void', required: false, description: 'Change handler' },
         { name: 'placeholder', type: 'string', required: false, default: 'Select an option', description: 'Placeholder text' },
         { name: 'disabled', type: 'boolean', required: false, default: 'false', description: 'Disable the select' },
         { name: 'error', type: 'string', required: false, description: 'Error message' },
-        { name: 'options', type: 'Array<{value: string, label: string, disabled?: boolean}>', required: true, description: 'Select options' },
         { name: 'name', type: 'string', required: false, description: 'Form field name' },
         { name: 'id', type: 'string', required: false, description: 'Element ID' }
       ],
