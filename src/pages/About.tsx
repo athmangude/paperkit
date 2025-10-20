@@ -7,7 +7,7 @@ import {
   BodyText,
   NavigationBar,
   Hero
-} from '../components';
+} from '../components/index';
 import './About.css';
 
 const About: React.FC = () => {

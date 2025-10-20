@@ -6,7 +6,7 @@ export const MenuItem: React.FC<MenuItemProps & { selected?: boolean }> = ({
   children,
   onClick,
   disabled = false,
-  value,
+  value: _value,
   selected = false,
   className = '',
 }) => {

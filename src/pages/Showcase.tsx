@@ -34,7 +34,7 @@ import {
   IconButton,
   NavigationBar,
   Hero
-} from '../components';
+} from '../components/index';
 import './Showcase.css';
 
 const Showcase: React.FC = () => {
