@@ -27,11 +27,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/protokit-ui/protokit-ui.git"
+    "url": "https://github.com/athmangude/protokit-ui.git"
   },
-  "homepage": "https://protokit-ui.github.io",
+  "homepage": "https://athmangude.github.io/protokit-ui",
   "bugs": {
-    "url": "https://github.com/protokit-ui/protokit-ui/issues"
+    "url": "https://github.com/athmangude/protokit-ui/issues"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
