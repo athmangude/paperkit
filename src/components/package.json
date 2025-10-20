@@ -1,7 +1,7 @@
 {
   "name": "protokit-ui",
   "version": "1.0.0",
-  "description": "A comprehensive React component library with hand-drawn design system",
+  "description": "A comprehensive React component library with hand-drawn design system. Features 30+ beautiful, accessible components including buttons, forms, navigation, data display, and layout components. Built with TypeScript and styled with CSS for modern React applications.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,10 +21,30 @@
     "ui",
     "typescript",
     "hand-drawn",
-    "paper-kit"
+    "paper-kit",
+    "accessibility",
+    "forms",
+    "navigation",
+    "data-display",
+    "layout",
+    "buttons",
+    "inputs",
+    "modals",
+    "tables",
+    "tabs",
+    "accordion",
+    "pagination"
   ],
-  "author": "Protokit Team",
+  "author": {
+    "name": "Protokit Team",
+    "email": "hello@protokit.dev",
+    "url": "https://athmangude.github.io/protokit-ui"
+  },
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/athmangude/protokit-ui.git"

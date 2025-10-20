@@ -1,99 +1,211 @@
-# Protokit
+# Protokit UI
 
-A comprehensive React component library with hand-drawn design system built with TypeScript.
+A comprehensive React component library with a hand-drawn design system. Features 30+ beautiful, accessible components built with TypeScript for modern React applications.
 
-## Installation
+## 🎨 Design Philosophy
+
+Protokit UI embraces a hand-drawn aesthetic that brings warmth and personality to your applications. Each component is carefully crafted with attention to detail, accessibility, and developer experience.
+
+## ✨ Features
+
+- **30+ Components**: Buttons, forms, navigation, data display, and layout components
+- **TypeScript Support**: Full type definitions included
+- **Accessible**: Built with accessibility in mind
+- **Customizable**: Easy to theme and customize
+- **Modern React**: Compatible with React 18+
+- **Hand-drawn Design**: Unique visual style that stands out
+
+## 📦 Installation
 
 ```bash
 npm install protokit-ui
 ```
 
-or
-
-```bash
-yarn add protokit-ui
-```
-
-## Quick Start
+## 🚀 Quick Start
 
 ```tsx
-import { Button, Card, Heading, BodyText } from 'protokit-ui';
+import React from 'react';
+import { Button, Card, Input } from 'protokit-ui';
 
 function App() {
   return (
+    <div>
+      <Card>
+        <h2>Welcome to Protokit UI</h2>
+        <Input placeholder="Enter your name" />
+        <Button>Get Started</Button>
+      </Card>
+    </div>
+  );
+}
+
+export default App;
+```
+
+## 🧩 Components
+
+### Form Components
+- **Button** - Primary, secondary, and icon buttons
+- **Input** - Text input with validation states
+- **TextArea** - Multi-line text input
+- **Checkbox** - Checkbox with custom styling
+- **Radio** - Radio button groups
+- **Toggle** - Switch/toggle component
+- **Slider** - Range slider input
+- **DatePicker** - Date selection component
+- **Select** - Dropdown selection
+- **ProgressBar** - Progress indication
+
+### Display Components
+- **Card** - Content container with elevation
+- **Badge** - Status and notification badges
+- **Tag** - Categorization tags
+- **Divider** - Visual separation
+- **Table** - Data tables with sorting
+- **List** - Structured lists
+- **Typography** - Text styling components
+
+### Navigation Components
+- **NavigationBar** - Main navigation
+- **Menu** - Context and dropdown menus
+- **Tabs** - Tabbed content organization
+- **Pagination** - Page navigation
+- **Breadcrumb** - Navigation breadcrumbs
+
+### Feedback Components
+- **Modal** - Overlay dialogs
+- **Notification** - Toast notifications
+- **Tooltip** - Contextual help
+- **Accordion** - Collapsible content
+
+### Layout Components
+- **Header** - Page headers
+- **Hero** - Landing page sections
+- **Grid** - Layout grid system
+
+## 🎯 Usage Examples
+
+### Form with Validation
+```tsx
+import { Input, Button, Card } from 'protokit-ui';
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  return (
     <Card>
-      <Heading level={1}>Hello Protokit!</Heading>
-      <BodyText>Welcome to the hand-drawn design system.</BodyText>
-      <Button>Get Started</Button>
+      <Input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <Button onClick={handleLogin}>
+        Sign In
+      </Button>
     </Card>
   );
 }
 ```
 
-## CSS Setup
+### Data Display
+```tsx
+import { Table, Badge, Tag } from 'protokit-ui';
 
-Import the base styles in your main CSS file:
+function UserTable({ users }) {
+  return (
+    <Table
+      data={users}
+      columns={[
+        { key: 'name', title: 'Name' },
+        { key: 'email', title: 'Email' },
+        { 
+          key: 'status', 
+          title: 'Status',
+          render: (status) => <Badge type={status}>{status}</Badge>
+        },
+        {
+          key: 'tags',
+          title: 'Tags',
+          render: (tags) => tags.map(tag => <Tag key={tag}>{tag}</Tag>)
+        }
+      ]}
+    />
+  );
+}
+```
+
+### Navigation
+```tsx
+import { NavigationBar, Menu, Tabs } from 'protokit-ui';
+
+function AppLayout() {
+  return (
+    <div>
+      <NavigationBar
+        brand="My App"
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Products', href: '/products' },
+          { label: 'About', href: '/about' }
+        ]}
+      />
+      
+      <Tabs>
+        <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
+        <Tabs.Tab label="Details">Details content</Tabs.Tab>
+        <Tabs.Tab label="Settings">Settings content</Tabs.Tab>
+      </Tabs>
+    </div>
+  );
+}
+```
+
+## 🎨 Theming
+
+Protokit UI components use CSS custom properties for easy theming:
 
 ```css
-@import 'protokit-ui/dist/styles.css';
+:root {
+  --protokit-primary: #007bff;
+  --protokit-secondary: #6c757d;
+  --protokit-success: #28a745;
+  --protokit-warning: #ffc107;
+  --protokit-danger: #dc3545;
+  --protokit-border-radius: 8px;
+  --protokit-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 ```
 
-## Font Setup
+## 📚 Documentation
 
-Add the Patrick Hand font to your HTML:
+- **Full Documentation**: [https://athmangude.github.io/protokit-ui/](https://athmangude.github.io/protokit-ui/)
+- **Component Showcase**: [https://athmangude.github.io/protokit-ui/showcase](https://athmangude.github.io/protokit-ui/showcase)
+- **API Reference**: [https://athmangude.github.io/protokit-ui/documentation](https://athmangude.github.io/protokit-ui/documentation)
 
-```html
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-```
+## 🤝 Contributing
 
-## Components
+We welcome contributions! Please see our [Contributing Guide](https://github.com/athmangude/protokit-ui/blob/main/CONTRIBUTING.md) for details.
 
-### Typography
-- `Heading` - Various heading levels with hand-drawn styling
-- `BodyText` - Body text with consistent styling
-- `Link` - Styled links with hand-drawn underlines
+## 📄 License
 
-### Buttons
-- `Button` - Primary, secondary, and outline variants
-- `IconButton` - Icon-only buttons
-- `Toggle` - Toggle switches
+MIT License - see [LICENSE](https://github.com/athmangude/protokit-ui/blob/main/LICENSE) for details.
 
-### Form Components
-- `Input` - Text inputs with validation states
-- `TextArea` - Multi-line text inputs
-- `Checkbox` - Checkbox inputs
-- `Radio` - Radio button inputs
-- `Select` - Dropdown select inputs
-- `DatePicker` - Date selection component
-- `Slider` - Range slider inputs
+## 🙏 Acknowledgments
 
-### Layout Components
-- `Card` - Container with elevation and padding options
-- `Modal` - Modal dialogs
-- `Divider` - Visual separators
-- `NavigationBar` - Top navigation component
-- `Hero` - Hero section component
+- React team for the amazing framework
+- TypeScript team for excellent type support
+- Open source community for inspiration and tools
 
-### Data Display
-- `Table`, `TableHeader`, `TableRow`, `TableCell` - Table components
-- `List`, `ListItem` - List components
-- `Pagination` - Page navigation
-- `ProgressBar` - Progress indicators
-- `Badge` - Status badges
-- `Tag` - Categorization tags
-- `Tooltip` - Hover tooltips
+---
 
-### Interactive Components
-- `Tabs`, `TabItem` - Tab navigation
-- `Accordion`, `AccordionItem` - Collapsible content
-- `Menu`, `MenuItem` - Context menus
-- `DropdownMenu` - Dropdown menus
-- `Notification` - Toast notifications
+**Made with ❤️ by the Protokit Team**
 
-## Documentation
-
-Visit [protokit-ui.github.io](https://protokit-ui.github.io) for complete documentation, examples, and interactive demos.
-
-## License
-
-MIT
+[GitHub](https://github.com/athmangude/protokit-ui) • [Documentation](https://athmangude.github.io/protokit-ui/) • [Issues](https://github.com/athmangude/protokit-ui/issues)
