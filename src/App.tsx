@@ -104,22 +104,22 @@ function App() {
             <Card className="setup-card">
               <Heading level={3}>Installation</Heading>
               <div className="code-block">
-                <pre><code>npm install protokit</code></pre>
+                <pre><code>npm install protokit-ui</code></pre>
                 <Button 
                   size="small" 
                   variant="outline" 
-                  onClick={() => handleCopy('npm install protokit', 'npm-install')}
+                  onClick={() => handleCopy('npm install protokit-ui', 'npm-install')}
                 >
                   {copiedButton === 'npm-install' ? 'Copied!' : 'Copy'}
                 </Button>
               </div>
                              <BodyText>Or using yarn:</BodyText>
                <div className="code-block">
-                 <pre><code>yarn add protokit</code></pre>
+                 <pre><code>yarn add protokit-ui</code></pre>
                  <Button 
                    size="small" 
                    variant="outline" 
-                   onClick={() => handleCopy('yarn add protokit', 'yarn-add')}
+                   onClick={() => handleCopy('yarn add protokit-ui', 'yarn-add')}
                  >
                    {copiedButton === 'yarn-add' ? 'Copied!' : 'Copy'}
                  </Button>
@@ -143,7 +143,7 @@ function App() {
              <Card className="setup-card">
                <Heading level={3}>Basic Usage</Heading>
                <div className="code-block">
-                 <pre><code>{`import { Button, Card, Typography } from 'protokit';
+                 <pre><code>{`import { Button, Card, Typography } from 'protokit-ui';
 
 function App() {
   return (
@@ -156,7 +156,7 @@ function App() {
                  <Button 
                    size="small" 
                    variant="outline" 
-                   onClick={() => handleCopy(`import { Button, Card, Typography } from 'protokit';
+                   onClick={() => handleCopy(`import { Button, Card, Typography } from 'protokit-ui';
 
 function App() {
   return (
@@ -177,11 +177,11 @@ function App() {
                <BodyText><strong>CSS Setup:</strong></BodyText>
                <BodyText>Import the base styles in your main CSS file:</BodyText>
                <div className="code-block">
-                 <pre><code>@import 'paper-kit/dist/styles.css';</code></pre>
+                 <pre><code>@import 'protokit-ui/dist/styles.css';</code></pre>
                  <Button 
                    size="small" 
                    variant="outline" 
-                   onClick={() => handleCopy('@import \'paper-kit/dist/styles.css\';', 'css-import')}
+                   onClick={() => handleCopy('@import \'protokit-ui/dist/styles.css\';', 'css-import')}
                  >
                    {copiedButton === 'css-import' ? 'Copied!' : 'Copy'}
                  </Button>

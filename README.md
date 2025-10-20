@@ -58,13 +58,13 @@ A beautiful, hand-drawn design system built with React and TypeScript, featuring
 ### Installation
 
 ```bash
-npm install protokit
+npm install protokit-ui
 ```
 
 Or using yarn:
 
 ```bash
-yarn add protokit
+yarn add protokit-ui
 ```
 
 ### Dependencies
@@ -80,7 +80,7 @@ yarn add protokit
 ### Basic Usage
 
 ```tsx
-import { Button, Card, Heading, BodyText } from 'protokit';
+import { Button, Card, Heading, BodyText } from 'protokit-ui';
 
 function App() {
   return (
@@ -99,7 +99,7 @@ function App() {
 Import the base styles in your main CSS file:
 
 ```css
-@import 'protokit/dist/styles.css';
+@import 'protokit-ui/dist/styles.css';
 ```
 
 #### Font Setup

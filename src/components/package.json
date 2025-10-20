@@ -1,5 +1,5 @@
 {
-  "name": "protokit",
+  "name": "protokit-ui",
   "version": "1.0.0",
   "description": "A comprehensive React component library with hand-drawn design system",
   "main": "dist/index.ts",
@@ -27,11 +27,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/athmangude/protokit.git"
+    "url": "https://github.com/protokit-ui/protokit-ui.git"
   },
-  "homepage": "https://protokit.github.io",
+  "homepage": "https://protokit-ui.github.io",
   "bugs": {
-    "url": "https://github.com/athmangude/protokit/issues"
+    "url": "https://github.com/protokit-ui/protokit-ui/issues"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

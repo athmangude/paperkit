@@ -5,19 +5,19 @@ A comprehensive React component library with hand-drawn design system built with
 ## Installation
 
 ```bash
-npm install protokit
+npm install protokit-ui
 ```
 
 or
 
 ```bash
-yarn add protokit
+yarn add protokit-ui
 ```
 
 ## Quick Start
 
 ```tsx
-import { Button, Card, Heading, BodyText } from 'protokit';
+import { Button, Card, Heading, BodyText } from 'protokit-ui';
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
 Import the base styles in your main CSS file:
 
 ```css
-@import 'protokit/dist/styles.css';
+@import 'protokit-ui/dist/styles.css';
 ```
 
 ## Font Setup
@@ -92,7 +92,7 @@ Add the Patrick Hand font to your HTML:
 
 ## Documentation
 
-Visit [protokit.github.io](https://protokit.github.io) for complete documentation, examples, and interactive demos.
+Visit [protokit-ui.github.io](https://protokit-ui.github.io) for complete documentation, examples, and interactive demos.
 
 ## License
 
