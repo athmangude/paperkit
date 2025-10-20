@@ -9,7 +9,7 @@ import About from './pages/About.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/protokit">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/showcase" element={<Showcase />} />
