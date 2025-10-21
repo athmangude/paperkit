@@ -2,7 +2,7 @@
 // This file is included in tsconfig.node.json to provide a valid TypeScript input
 
 export const buildConfig = {
-  version: '1.0.0',
+  version: '1.0.1',
   environment: 'development'
 };
 
