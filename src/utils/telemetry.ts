@@ -81,25 +81,37 @@ class TelemetryService {
    * Initialize telemetry providers
    */
   public async initialize(): Promise<void> {
-    if (!this.config.enabled || this.isInitialized) {
+    console.log('Initializing telemetry service...');
+    console.log('Config:', this.config);
+    
+    if (!this.config.enabled) {
+      console.log('Telemetry is disabled');
+      return;
+    }
+    
+    if (this.isInitialized) {
+      console.log('Telemetry already initialized');
       return;
     }
 
     try {
       // Load all external providers dynamically
+      console.log('Loading external providers...');
       await this.loader.loadAll();
       
       // Check if any providers were loaded successfully
       const loadedProviders = this.loader.getLoadedProviders();
+      console.log('Loaded providers:', loadedProviders);
       
       if (loadedProviders.length === 0) {
         console.log('No external telemetry providers available, using fallback service');
         await fallbackTelemetryService.initialize();
       } else {
-        console.log('Telemetry providers loaded:', loadedProviders);
+        console.log('Telemetry providers loaded successfully:', loadedProviders);
       }
 
       this.isInitialized = true;
+      console.log('Telemetry initialization complete');
     } catch (error) {
       console.warn('Telemetry initialization failed, using fallback:', error);
       await fallbackTelemetryService.initialize();
@@ -111,18 +123,28 @@ class TelemetryService {
    * Track a telemetry event
    */
   public track(event: TelemetryEvent): void {
-    if (!this.config.enabled || !this.isInitialized) {
+    console.log('Tracking event:', event);
+    
+    if (!this.config.enabled) {
+      console.log('Telemetry is disabled, not tracking event');
+      return;
+    }
+    
+    if (!this.isInitialized) {
+      console.log('Telemetry not initialized yet, not tracking event');
       return;
     }
 
     try {
       // Send to Google Analytics
       if (this.config.providers.googleAnalytics?.measurementId) {
+        console.log('Sending to Google Analytics');
         this.trackGoogleAnalytics(event);
       }
 
       // Send to Amplitude
       if (this.config.providers.amplitude?.apiKey) {
+        console.log('Sending to Amplitude');
         this.trackAmplitude(event);
       }
 
@@ -130,6 +152,7 @@ class TelemetryService {
       if (!this.config.providers.googleAnalytics?.measurementId && 
           !this.config.providers.amplitude?.apiKey && 
           !this.config.providers.hotjar?.siteId) {
+        console.log('No external providers configured, using fallback');
         fallbackTelemetryService.track(event);
       }
     } catch (error) {

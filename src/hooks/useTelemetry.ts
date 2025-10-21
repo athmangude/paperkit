@@ -9,6 +9,9 @@
 import { useEffect, useCallback, useRef } from 'react';
 import { telemetryService, TelemetryEventType } from '../utils/telemetry';
 
+// Global tracking to prevent duplicate page views
+const trackedPages = new Set<string>();
+
 /**
  * Hook for tracking page views and scroll depth
  */
@@ -16,10 +19,18 @@ export const usePageTracking = (pageName: string) => {
   const scrollDepthRef = useRef<number>(0);
   const scrollMilestones = [25, 50, 75, 100];
   const trackedMilestones = useRef<Set<number>>(new Set());
+  const hasTrackedPageView = useRef<boolean>(false);
 
   useEffect(() => {
-    // Track initial page view
-    telemetryService.trackPageView(pageName);
+    // Only track page view once per page load globally
+    if (!trackedPages.has(pageName)) {
+      console.log(`Tracking page view for: ${pageName}`);
+      telemetryService.trackPageView(pageName);
+      trackedPages.add(pageName);
+      hasTrackedPageView.current = true;
+    } else {
+      console.log(`Page view already tracked for: ${pageName}`);
+    }
 
     // Track scroll depth
     const handleScroll = () => {
@@ -39,7 +50,13 @@ export const usePageTracking = (pageName: string) => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Cleanup function
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      // Reset tracked pages when component unmounts (route change)
+      trackedPages.clear();
+    };
   }, [pageName]);
 
   return {
@@ -51,6 +68,9 @@ export const usePageTracking = (pageName: string) => {
  * Hook for tracking user interactions
  */
 export const useTelemetry = (pageName: string) => {
+  const lastClickTime = useRef<number>(0);
+  const clickDebounceMs = 500; // Prevent duplicate clicks within 500ms
+
   const trackEvent = useCallback((
     type: string,
     element?: string,
@@ -66,6 +86,13 @@ export const useTelemetry = (pageName: string) => {
   }, [pageName]);
 
   const trackButtonClick = useCallback((buttonText: string, properties?: Record<string, any>) => {
+    const now = Date.now();
+    if (now - lastClickTime.current < clickDebounceMs) {
+      console.log(`Debouncing button click: ${buttonText}`);
+      return;
+    }
+    lastClickTime.current = now;
+    console.log(`Tracking button click: ${buttonText}`);
     telemetryService.trackButtonClick(pageName, buttonText, properties);
   }, [pageName]);
 

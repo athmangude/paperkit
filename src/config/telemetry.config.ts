@@ -6,10 +6,10 @@
  * library integrity and prevent telemetry leakage to library consumers.
  */
 
-// Safe environment variable access
+// Safe environment variable access for Vite
 const getEnvVar = (key: string): string => {
-  if (typeof window !== 'undefined' && (window as any).__ENV__) {
-    return (window as any).__ENV__[key] || '';
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return import.meta.env[key] || '';
   }
   return '';
 };
@@ -22,8 +22,8 @@ const isProduction = (): boolean => {
 };
 
 export const telemetryConfig = {
-  // Enable telemetry only in production
-  enabled: isProduction(),
+  // Enable telemetry in both development and production for testing
+  enabled: true,
   
   // Environment
   environment: isProduction() ? 'production' as const : 'development' as const,
