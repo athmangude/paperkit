@@ -142,6 +142,9 @@ Each component includes:
 - Usage patterns
 - Interactive playground
 
+### Telemetry Integration
+For website telemetry setup and configuration, see [TELEMETRY_README.md](./TELEMETRY_README.md).
+
 ## 🛠 Development
 
 ### Project Structure
@@ -217,5 +220,4 @@ MIT License - see LICENSE file for details.
 ---
 
 Built with ❤️ and lots of hand-drawn love
-# Trigger Pages deployment
-# Trigger fresh deployment after unpublishing
+

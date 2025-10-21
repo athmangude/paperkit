@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaStar, FaHeart, FaArrowRight, FaCog } from 'react-icons/fa';
+import { usePageTracking, useTelemetry, useComponentDemoTelemetry } from './hooks/useTelemetry';
 import { 
   Button, 
   Card, 
@@ -43,6 +44,11 @@ import {
 import './App.css';
 
 function App() {
+  // Telemetry hooks
+  usePageTracking('landing');
+  const { trackButtonClick, trackModalOpen, trackModalClose, trackTabSwitch, trackComponentInteraction } = useTelemetry('landing');
+  const { trackCodeCopyAction } = useComponentDemoTelemetry('landing');
+
   const [inputValue, setInputValue] = useState('');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('option1');
@@ -60,19 +66,47 @@ function App() {
 
   const handleMenuChange = (value: string) => {
     setSelectedMenuValue(value);
+    trackComponentInteraction('menu', 'select', { value });
   };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      trackComponentInteraction('navigation', 'scroll_to_section', { sectionId });
     }
   };
 
   const handleCopy = (text: string, buttonId: string) => {
     navigator.clipboard.writeText(text);
     setCopiedButton(buttonId);
+    trackCodeCopyAction('code_snippet', 'copy', { buttonId, textLength: text.length });
     setTimeout(() => setCopiedButton(null), 3000);
+  };
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+    trackModalOpen('demo_modal');
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    trackModalClose('demo_modal');
+  };
+
+  const handleTabSwitch = (index: number) => {
+    setActiveTab(index);
+    trackTabSwitch(`tab_${index}`);
+  };
+
+  const handleNotificationShow = () => {
+    setShowNotification(true);
+    trackComponentInteraction('notification', 'show');
+  };
+
+  const handleNotificationHide = () => {
+    setShowNotification(false);
+    trackComponentInteraction('notification', 'hide');
   };
 
   return (
@@ -208,20 +242,20 @@ function App() {
         <div className="container">
           <Heading level={2}>Component Navigation</Heading>
           <div className="nav-grid">
-            <Button onClick={() => scrollToSection('typography')}>Typography</Button>
-            <Button onClick={() => scrollToSection('buttons')}>Buttons</Button>
-            <Button onClick={() => scrollToSection('progress-badges')}>Progress & Badges</Button>
-            <Button onClick={() => scrollToSection('dividers')}>Dividers</Button>
-            <Button onClick={() => scrollToSection('date-picker')}>Date Picker</Button>
-            <Button onClick={() => scrollToSection('form-inputs')}>Form Inputs</Button>
-            <Button onClick={() => scrollToSection('form-controls')}>Form Controls</Button>
-            <Button onClick={() => scrollToSection('cards')}>Cards</Button>
-            <Button onClick={() => scrollToSection('modal-notification')}>Modal & Notification</Button>
-            <Button onClick={() => scrollToSection('tags-tooltips')}>Tags & Tooltips</Button>
-            <Button onClick={() => scrollToSection('tabs-accordion')}>Tabs & Accordion</Button>
-            <Button onClick={() => scrollToSection('list-pagination')}>List & Pagination</Button>
-            <Button onClick={() => scrollToSection('table')}>Table</Button>
-            <Button onClick={() => scrollToSection('menus')}>Menus</Button>
+            <Button onClick={() => { trackButtonClick('Typography Navigation'); scrollToSection('typography'); }}>Typography</Button>
+            <Button onClick={() => { trackButtonClick('Buttons Navigation'); scrollToSection('buttons'); }}>Buttons</Button>
+            <Button onClick={() => { trackButtonClick('Progress & Badges Navigation'); scrollToSection('progress-badges'); }}>Progress & Badges</Button>
+            <Button onClick={() => { trackButtonClick('Dividers Navigation'); scrollToSection('dividers'); }}>Dividers</Button>
+            <Button onClick={() => { trackButtonClick('Date Picker Navigation'); scrollToSection('date-picker'); }}>Date Picker</Button>
+            <Button onClick={() => { trackButtonClick('Form Inputs Navigation'); scrollToSection('form-inputs'); }}>Form Inputs</Button>
+            <Button onClick={() => { trackButtonClick('Form Controls Navigation'); scrollToSection('form-controls'); }}>Form Controls</Button>
+            <Button onClick={() => { trackButtonClick('Cards Navigation'); scrollToSection('cards'); }}>Cards</Button>
+            <Button onClick={() => { trackButtonClick('Modal & Notification Navigation'); scrollToSection('modal-notification'); }}>Modal & Notification</Button>
+            <Button onClick={() => { trackButtonClick('Tags & Tooltips Navigation'); scrollToSection('tags-tooltips'); }}>Tags & Tooltips</Button>
+            <Button onClick={() => { trackButtonClick('Tabs & Accordion Navigation'); scrollToSection('tabs-accordion'); }}>Tabs & Accordion</Button>
+            <Button onClick={() => { trackButtonClick('List & Pagination Navigation'); scrollToSection('list-pagination'); }}>List & Pagination</Button>
+            <Button onClick={() => { trackButtonClick('Table Navigation'); scrollToSection('table'); }}>Table</Button>
+            <Button onClick={() => { trackButtonClick('Menus Navigation'); scrollToSection('menus'); }}>Menus</Button>
           </div>
         </div>
       </section>
@@ -484,8 +518,8 @@ function App() {
           <Heading level={2}>Modal & Notification</Heading>
           <Card elevation="medium" padding="large">
             <div className="modal-demo">
-              <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
-              <Button onClick={() => setShowNotification(true)}>Show Notification</Button>
+              <Button onClick={handleModalOpen}>Open Modal</Button>
+              <Button onClick={handleNotificationShow}>Show Notification</Button>
               
               <Modal 
                 isOpen={isModalOpen} 
@@ -494,14 +528,14 @@ function App() {
               >
                 <BodyText>This is an example modal with some content. You can close it by clicking the X button or clicking outside the modal.</BodyText>
                 <div style={{ marginTop: '20px' }}>
-                  <Button onClick={() => setIsModalOpen(false)}>Close</Button>
+                  <Button onClick={handleModalClose}>Close</Button>
                 </div>
               </Modal>
 
               {showNotification && (
                 <Notification 
                   message="This is an example notification!" 
-                  onClose={() => setShowNotification(false)}
+                  onClose={handleNotificationHide}
                 />
               )}
             </div>
@@ -545,7 +579,7 @@ function App() {
           <Card elevation="medium" padding="large">
             <div className="tabs-demo">
               <Heading level={3}>Tabs</Heading>
-              <Tabs defaultActiveTab={activeTab} onChange={(index) => setActiveTab(index)}>
+              <Tabs defaultActiveTab={activeTab} onChange={handleTabSwitch}>
                 <TabItem label="Tab 1">
                   <BodyText>Content for the first tab. This can contain any React components.</BodyText>
                 </TabItem>
