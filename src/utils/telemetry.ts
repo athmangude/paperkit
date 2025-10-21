@@ -8,6 +8,8 @@
 
 import { telemetryConfig } from '../config/telemetry.config';
 import { fallbackTelemetryService } from './telemetry-fallback';
+import { TelemetryLoader } from './telemetry-loader';
+import * as amplitude from '@amplitude/analytics-browser';
 
 // Telemetry configuration interface
 export interface TelemetryConfig {
@@ -58,9 +60,21 @@ export interface TelemetryEvent {
 class TelemetryService {
   private config: TelemetryConfig;
   private isInitialized = false;
+  private loader: TelemetryLoader;
 
   constructor(config: TelemetryConfig = telemetryConfig) {
     this.config = config;
+    this.loader = new TelemetryLoader({
+      googleAnalytics: config.providers.googleAnalytics?.enabled ? {
+        measurementId: config.providers.googleAnalytics.measurementId
+      } : undefined,
+      amplitude: config.providers.amplitude?.enabled ? {
+        apiKey: config.providers.amplitude.apiKey
+      } : undefined,
+      hotjar: config.providers.hotjar?.enabled ? {
+        siteId: config.providers.hotjar.siteId
+      } : undefined,
+    });
   }
 
   /**
@@ -72,43 +86,17 @@ class TelemetryService {
     }
 
     try {
-      // Try to initialize external providers
-      let hasExternalProviders = false;
-
-      // Initialize Google Analytics
-      if (this.config.providers.googleAnalytics?.measurementId) {
-        try {
-          await this.initializeGoogleAnalytics();
-          hasExternalProviders = true;
-        } catch (error) {
-          console.warn('Google Analytics initialization failed:', error);
-        }
-      }
-
-      // Initialize Amplitude
-      if (this.config.providers.amplitude?.apiKey) {
-        try {
-          await this.initializeAmplitude();
-          hasExternalProviders = true;
-        } catch (error) {
-          console.warn('Amplitude initialization failed:', error);
-        }
-      }
-
-      // Initialize Hotjar
-      if (this.config.providers.hotjar?.siteId) {
-        try {
-          this.initializeHotjar();
-          hasExternalProviders = true;
-        } catch (error) {
-          console.warn('Hotjar initialization failed:', error);
-        }
-      }
-
-      // If no external providers are available, use fallback
-      if (!hasExternalProviders) {
+      // Load all external providers dynamically
+      await this.loader.loadAll();
+      
+      // Check if any providers were loaded successfully
+      const loadedProviders = this.loader.getLoadedProviders();
+      
+      if (loadedProviders.length === 0) {
         console.log('No external telemetry providers available, using fallback service');
         await fallbackTelemetryService.initialize();
+      } else {
+        console.log('Telemetry providers loaded:', loadedProviders);
       }
 
       this.isInitialized = true;
@@ -231,53 +219,10 @@ class TelemetryService {
     });
   }
 
-  private async initializeGoogleAnalytics(): Promise<void> {
-    try {
-      // Check if gtag is available globally (loaded via script tag)
-      if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
-        (window as any).gtag('config', this.config.providers.googleAnalytics!.measurementId, {
-          page_title: document.title,
-          page_location: window.location.href,
-        });
-      } else {
-        console.warn('Google Analytics gtag not found - ensure GA script is loaded');
-      }
-    } catch (error) {
-      console.warn('Google Analytics initialization failed:', error);
-    }
-  }
-
-  private async initializeAmplitude(): Promise<void> {
-    try {
-      // Check if Amplitude is available globally (loaded via script tag)
-      if (typeof window !== 'undefined' && typeof (window as any).amplitude !== 'undefined') {
-        (window as any).amplitude.init(this.config.providers.amplitude!.apiKey);
-      } else {
-        console.warn('Amplitude not found - ensure Amplitude script is loaded');
-      }
-    } catch (error) {
-      console.warn('Amplitude initialization failed:', error);
-    }
-  }
-
-  private initializeHotjar(): void {
-    const script = document.createElement('script');
-    script.innerHTML = `
-      (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:${this.config.providers.hotjar!.siteId},hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    `;
-    document.head.appendChild(script);
-  }
 
   private trackGoogleAnalytics(event: TelemetryEvent): void {
     try {
-      // Check if gtag is available globally
+      // Use global gtag function (loaded via script)
       if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
         (window as any).gtag('event', event.type, {
           event_category: event.page,
@@ -292,14 +237,12 @@ class TelemetryService {
 
   private trackAmplitude(event: TelemetryEvent): void {
     try {
-      // Check if amplitude is available globally
-      if (typeof window !== 'undefined' && typeof (window as any).amplitude !== 'undefined') {
-        (window as any).amplitude.track(event.type, {
-          page: event.page,
-          element: event.element,
-          ...event.properties,
-        });
-      }
+      // Use Amplitude npm package
+      amplitude.track(event.type, {
+        page: event.page,
+        element: event.element,
+        ...event.properties,
+      });
     } catch (error) {
       console.warn('Amplitude tracking failed:', error);
     }

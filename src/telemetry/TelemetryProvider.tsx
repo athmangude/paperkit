@@ -9,6 +9,8 @@
 import React, { createContext, useContext, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { telemetryService } from '../utils/telemetry';
+import { HotjarProvider } from './HotjarProvider';
+import { telemetryConfig } from '../config/telemetry.config';
 
 interface TelemetryContextType {
   isEnabled: boolean;
@@ -47,7 +49,12 @@ export const TelemetryProvider: React.FC<TelemetryProviderProps> = ({ children }
 
   return (
     <TelemetryContext.Provider value={contextValue}>
-      {children}
+      <HotjarProvider 
+        siteId={telemetryConfig.providers.hotjar?.siteId || ''}
+        version={6}
+      >
+        {children}
+      </HotjarProvider>
     </TelemetryContext.Provider>
   );
 };
