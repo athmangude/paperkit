@@ -33,11 +33,21 @@ class TelemetryLoader {
    * Load Google Analytics dynamically
    */
   public async loadGoogleAnalytics(): Promise<boolean> {
-    if (this.loadedProviders.has('googleAnalytics') || !this.config.googleAnalytics?.measurementId) {
+    console.log('Attempting to load Google Analytics...');
+    console.log('GA Measurement ID:', this.config.googleAnalytics?.measurementId);
+    
+    if (this.loadedProviders.has('googleAnalytics')) {
+      console.log('Google Analytics already loaded');
+      return false;
+    }
+    
+    if (!this.config.googleAnalytics?.measurementId) {
+      console.log('No Google Analytics measurement ID provided');
       return false;
     }
 
     try {
+      console.log('Loading GA script...');
       // Load Google Analytics script dynamically
       await this.loadScript(`https://www.googletagmanager.com/gtag/js?id=${this.config.googleAnalytics.measurementId}`);
       
@@ -49,6 +59,7 @@ class TelemetryLoader {
         };
         (window as any).gtag('js', new Date());
         (window as any).gtag('config', this.config.googleAnalytics.measurementId);
+        console.log('GA gtag initialized');
       }
 
       this.loadedProviders.add('googleAnalytics');
@@ -64,13 +75,24 @@ class TelemetryLoader {
    * Load Amplitude using @amplitude/analytics-browser npm package
    */
   public async loadAmplitude(): Promise<boolean> {
-    if (this.loadedProviders.has('amplitude') || !this.config.amplitude?.apiKey) {
+    console.log('Attempting to load Amplitude...');
+    console.log('Amplitude API Key:', this.config.amplitude?.apiKey ? 'Present' : 'Missing');
+    
+    if (this.loadedProviders.has('amplitude')) {
+      console.log('Amplitude already loaded');
+      return false;
+    }
+    
+    if (!this.config.amplitude?.apiKey) {
+      console.log('No Amplitude API key provided');
       return false;
     }
 
     try {
+      console.log('Initializing Amplitude...');
       // Initialize Amplitude using the npm package
       amplitude.init(this.config.amplitude.apiKey);
+      console.log('Amplitude init called');
 
       this.loadedProviders.add('amplitude');
       console.log('Amplitude loaded successfully via @amplitude/analytics-browser package');
@@ -85,16 +107,27 @@ class TelemetryLoader {
    * Load Hotjar using react-hotjar
    */
   public async loadHotjar(): Promise<boolean> {
-    if (this.loadedProviders.has('hotjar') || !this.config.hotjar?.siteId) {
+    console.log('Attempting to load Hotjar...');
+    console.log('Hotjar Site ID:', this.config.hotjar?.siteId);
+    
+    if (this.loadedProviders.has('hotjar')) {
+      console.log('Hotjar already loaded');
+      return false;
+    }
+    
+    if (!this.config.hotjar?.siteId) {
+      console.log('No Hotjar site ID provided');
       return false;
     }
 
     try {
+      console.log('Initializing Hotjar...');
       // Initialize Hotjar using react-hotjar
       hotjar.initialize({
         id: parseInt(this.config.hotjar.siteId),
         sv: 6
       });
+      console.log('Hotjar initialize called');
 
       this.loadedProviders.add('hotjar');
       console.log('Hotjar loaded successfully via react-hotjar');
