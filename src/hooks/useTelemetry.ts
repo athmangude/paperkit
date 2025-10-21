@@ -52,7 +52,7 @@ export const usePageTracking = (pageName: string) => {
  */
 export const useTelemetry = (pageName: string) => {
   const trackEvent = useCallback((
-    type: TelemetryEventType,
+    type: string,
     element?: string,
     properties?: Record<string, any>
   ) => {

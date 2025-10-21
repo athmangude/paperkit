@@ -6,7 +6,8 @@
  * component library integrity and prevent telemetry leakage to library consumers.
  */
 
-import React, { ReactNode, MouseEvent } from 'react';
+import React from 'react';
+import type { ReactNode, MouseEvent } from 'react';
 import { useTelemetry } from '../hooks/useTelemetry';
 
 interface TelemetryButtonProps {
@@ -65,7 +66,6 @@ export const TelemetryLink: React.FC<TelemetryLinkProps> = ({
   children,
   href,
   pageName,
-  linkText,
   properties,
   className,
   external = false,

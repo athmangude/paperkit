@@ -6,7 +6,8 @@
  * library integrity and prevent telemetry leakage to library consumers.
  */
 
-import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { telemetryService } from '../utils/telemetry';
 
 interface TelemetryContextType {

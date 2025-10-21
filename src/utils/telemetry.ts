@@ -7,6 +7,7 @@
  */
 
 import { telemetryConfig } from '../config/telemetry.config';
+import { fallbackTelemetryService } from './telemetry-fallback';
 
 // Telemetry configuration interface
 export interface TelemetryConfig {
@@ -29,25 +30,25 @@ export interface TelemetryConfig {
 }
 
 // Event types for consistent tracking
-export enum TelemetryEventType {
-  PAGE_VIEW = 'page_view',
-  BUTTON_CLICK = 'button_click',
-  FORM_SUBMIT = 'form_submit',
-  CODE_COPY = 'code_copy',
-  COMPONENT_INTERACTION = 'component_interaction',
-  SCROLL_DEPTH = 'scroll_depth',
-  NAVIGATION = 'navigation',
-  MODAL_OPEN = 'modal_open',
-  MODAL_CLOSE = 'modal_close',
-  TAB_SWITCH = 'tab_switch',
-  ACCORDION_TOGGLE = 'accordion_toggle',
-  SEARCH = 'search',
-  DOWNLOAD = 'download',
-}
+export const TelemetryEventType = {
+  PAGE_VIEW: 'page_view',
+  BUTTON_CLICK: 'button_click',
+  FORM_SUBMIT: 'form_submit',
+  CODE_COPY: 'code_copy',
+  COMPONENT_INTERACTION: 'component_interaction',
+  SCROLL_DEPTH: 'scroll_depth',
+  NAVIGATION: 'navigation',
+  MODAL_OPEN: 'modal_open',
+  MODAL_CLOSE: 'modal_close',
+  TAB_SWITCH: 'tab_switch',
+  ACCORDION_TOGGLE: 'accordion_toggle',
+  SEARCH: 'search',
+  DOWNLOAD: 'download',
+} as const;
 
 // Event properties interface
 export interface TelemetryEvent {
-  type: TelemetryEventType;
+  type: string;
   page: string;
   element?: string;
   properties?: Record<string, any>;
@@ -71,24 +72,50 @@ class TelemetryService {
     }
 
     try {
+      // Try to initialize external providers
+      let hasExternalProviders = false;
+
       // Initialize Google Analytics
       if (this.config.providers.googleAnalytics?.measurementId) {
-        await this.initializeGoogleAnalytics();
+        try {
+          await this.initializeGoogleAnalytics();
+          hasExternalProviders = true;
+        } catch (error) {
+          console.warn('Google Analytics initialization failed:', error);
+        }
       }
 
       // Initialize Amplitude
       if (this.config.providers.amplitude?.apiKey) {
-        await this.initializeAmplitude();
+        try {
+          await this.initializeAmplitude();
+          hasExternalProviders = true;
+        } catch (error) {
+          console.warn('Amplitude initialization failed:', error);
+        }
       }
 
       // Initialize Hotjar
       if (this.config.providers.hotjar?.siteId) {
-        this.initializeHotjar();
+        try {
+          this.initializeHotjar();
+          hasExternalProviders = true;
+        } catch (error) {
+          console.warn('Hotjar initialization failed:', error);
+        }
+      }
+
+      // If no external providers are available, use fallback
+      if (!hasExternalProviders) {
+        console.log('No external telemetry providers available, using fallback service');
+        await fallbackTelemetryService.initialize();
       }
 
       this.isInitialized = true;
     } catch (error) {
-      console.warn('Telemetry initialization failed:', error);
+      console.warn('Telemetry initialization failed, using fallback:', error);
+      await fallbackTelemetryService.initialize();
+      this.isInitialized = true;
     }
   }
 
@@ -110,8 +137,16 @@ class TelemetryService {
       if (this.config.providers.amplitude?.apiKey) {
         this.trackAmplitude(event);
       }
+
+      // If no external providers are configured, use fallback
+      if (!this.config.providers.googleAnalytics?.measurementId && 
+          !this.config.providers.amplitude?.apiKey && 
+          !this.config.providers.hotjar?.siteId) {
+        fallbackTelemetryService.track(event);
+      }
     } catch (error) {
-      console.warn('Telemetry tracking failed:', error);
+      console.warn('Telemetry tracking failed, using fallback:', error);
+      fallbackTelemetryService.track(event);
     }
   }
 
@@ -120,7 +155,7 @@ class TelemetryService {
    */
   public trackPageView(page: string, properties?: Record<string, any>): void {
     this.track({
-      type: TelemetryEventType.PAGE_VIEW,
+      type: 'PAGE_VIEW',
       page,
       properties,
       timestamp: Date.now(),
@@ -197,16 +232,32 @@ class TelemetryService {
   }
 
   private async initializeGoogleAnalytics(): Promise<void> {
-    const { gtag } = await import('gtag');
-    gtag('config', this.config.providers.googleAnalytics!.measurementId, {
-      page_title: document.title,
-      page_location: window.location.href,
-    });
+    try {
+      // Check if gtag is available globally (loaded via script tag)
+      if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+        (window as any).gtag('config', this.config.providers.googleAnalytics!.measurementId, {
+          page_title: document.title,
+          page_location: window.location.href,
+        });
+      } else {
+        console.warn('Google Analytics gtag not found - ensure GA script is loaded');
+      }
+    } catch (error) {
+      console.warn('Google Analytics initialization failed:', error);
+    }
   }
 
   private async initializeAmplitude(): Promise<void> {
-    const amplitude = await import('@amplitude/analytics-browser');
-    amplitude.init(this.config.providers.amplitude!.apiKey);
+    try {
+      // Check if Amplitude is available globally (loaded via script tag)
+      if (typeof window !== 'undefined' && typeof (window as any).amplitude !== 'undefined') {
+        (window as any).amplitude.init(this.config.providers.amplitude!.apiKey);
+      } else {
+        console.warn('Amplitude not found - ensure Amplitude script is loaded');
+      }
+    } catch (error) {
+      console.warn('Amplitude initialization failed:', error);
+    }
   }
 
   private initializeHotjar(): void {
@@ -225,28 +276,35 @@ class TelemetryService {
   }
 
   private trackGoogleAnalytics(event: TelemetryEvent): void {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', event.type, {
-        event_category: event.page,
-        event_label: event.element,
-        custom_parameters: event.properties,
-      });
+    try {
+      // Check if gtag is available globally
+      if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', event.type, {
+          event_category: event.page,
+          event_label: event.element,
+          custom_parameters: event.properties,
+        });
+      }
+    } catch (error) {
+      console.warn('Google Analytics tracking failed:', error);
     }
   }
 
   private trackAmplitude(event: TelemetryEvent): void {
-    if (typeof amplitude !== 'undefined') {
-      amplitude.track(event.type, {
-        page: event.page,
-        element: event.element,
-        ...event.properties,
-      });
+    try {
+      // Check if amplitude is available globally
+      if (typeof window !== 'undefined' && typeof (window as any).amplitude !== 'undefined') {
+        (window as any).amplitude.track(event.type, {
+          page: event.page,
+          element: event.element,
+          ...event.properties,
+        });
+      }
+    } catch (error) {
+      console.warn('Amplitude tracking failed:', error);
     }
   }
 }
 
 // Create singleton instance
 export const telemetryService = new TelemetryService();
-
-// Export types and utilities
-export type { TelemetryConfig, TelemetryEvent };

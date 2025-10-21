@@ -6,26 +6,41 @@
  * library integrity and prevent telemetry leakage to library consumers.
  */
 
+// Safe environment variable access
+const getEnvVar = (key: string): string => {
+  if (typeof window !== 'undefined' && (window as any).__ENV__) {
+    return (window as any).__ENV__[key] || '';
+  }
+  return '';
+};
+
+const isProduction = (): boolean => {
+  if (typeof window !== 'undefined') {
+    return window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
+  }
+  return false;
+};
+
 export const telemetryConfig = {
   // Enable telemetry only in production
-  enabled: process.env.NODE_ENV === 'production',
+  enabled: isProduction(),
   
   // Environment
-  environment: process.env.NODE_ENV as 'development' | 'production',
+  environment: isProduction() ? 'production' as const : 'development' as const,
   
   // Provider configurations
   providers: {
     googleAnalytics: {
-      measurementId: process.env.REACT_APP_GA_MEASUREMENT_ID || '',
-      enabled: !!process.env.REACT_APP_GA_MEASUREMENT_ID,
+      measurementId: getEnvVar('REACT_APP_GA_MEASUREMENT_ID'),
+      enabled: !!getEnvVar('REACT_APP_GA_MEASUREMENT_ID'),
     },
     amplitude: {
-      apiKey: process.env.REACT_APP_AMPLITUDE_API_KEY || '',
-      enabled: !!process.env.REACT_APP_AMPLITUDE_API_KEY,
+      apiKey: getEnvVar('REACT_APP_AMPLITUDE_API_KEY'),
+      enabled: !!getEnvVar('REACT_APP_AMPLITUDE_API_KEY'),
     },
     hotjar: {
-      siteId: process.env.REACT_APP_HOTJAR_SITE_ID || '',
-      enabled: !!process.env.REACT_APP_HOTJAR_SITE_ID,
+      siteId: getEnvVar('REACT_APP_HOTJAR_SITE_ID'),
+      enabled: !!getEnvVar('REACT_APP_HOTJAR_SITE_ID'),
     },
   },
   
