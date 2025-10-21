@@ -8,9 +8,19 @@ import {
   NavigationBar,
   Hero
 } from '../components/index';
+import { usePageTracking, useTelemetry } from '../hooks/useTelemetry';
 import './About.css';
 
 const About: React.FC = () => {
+  // Telemetry hooks
+  usePageTracking('about');
+  const { trackButtonClick, trackNavigation } = useTelemetry('about');
+
+  const handleNavigationClick = (destination: string, buttonText: string) => {
+    trackButtonClick(buttonText);
+    trackNavigation(destination);
+  };
+
   return (
     <div className="about">
       <NavigationBar 
@@ -18,13 +28,13 @@ const About: React.FC = () => {
         navigationComponents={
           <div>
             <RouterLink to="/about">
-              <Button variant="outline">About</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/about', 'About Navigation')}>About</Button>
             </RouterLink>
             <RouterLink to="/documentation">
-              <Button variant="outline">Documentation</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/documentation', 'Documentation Navigation')}>Documentation</Button>
             </RouterLink>
             <RouterLink to="/showcase">
-              <Button variant="outline">Showcase</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/showcase', 'Showcase Navigation')}>Showcase</Button>
             </RouterLink>
           </div>
         }

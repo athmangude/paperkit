@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaEllipsisV, FaCheck, FaInfo, FaExclamationTriangle, FaUser, FaEnvelope, FaCalendarAlt, FaHeart, FaShare, FaComment } from 'react-icons/fa';
+import { usePageTracking, useTelemetry, useFormTelemetry } from '../hooks/useTelemetry';
 import {
   Button,
   Card,
@@ -38,6 +39,11 @@ import {
 import './Showcase.css';
 
 const Showcase: React.FC = () => {
+  // Telemetry hooks
+  usePageTracking('showcase');
+  const { trackButtonClick, trackNavigation, trackModalOpen, trackModalClose } = useTelemetry('showcase');
+  const { trackFormFieldInteraction, trackFormSubmission } = useFormTelemetry('showcase', 'contact_form');
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -56,12 +62,30 @@ const Showcase: React.FC = () => {
 
   const handleInputChange = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFormFieldInteraction(field, 'change', { value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setNotificationType('success');
     setShowNotification(true);
+    trackFormSubmission({ formFields: Object.keys(formData).length });
+  };
+
+  const handleModalOpen = () => {
+    setShowModal(true);
+    trackModalOpen('welcome_modal');
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    trackModalClose('welcome_modal');
+  };
+
+
+  const handleNavigationClick = (destination: string, buttonText: string) => {
+    trackButtonClick(buttonText);
+    trackNavigation(destination);
   };
 
   const socialPosts = [
@@ -118,13 +142,13 @@ const Showcase: React.FC = () => {
         navigationComponents={
           <div>
             <RouterLink to="/about">
-              <Button variant="outline">About</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/about', 'About Navigation')}>About</Button>
             </RouterLink>
             <RouterLink to="/documentation">
-              <Button variant="outline">Documentation</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/documentation', 'Documentation Navigation')}>Documentation</Button>
             </RouterLink>
             <RouterLink to="/showcase">
-              <Button variant="outline">Showcase</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/showcase', 'Showcase Navigation')}>Showcase</Button>
             </RouterLink>
           </div>
         }
@@ -138,7 +162,7 @@ const Showcase: React.FC = () => {
           including forms, social media feeds, user profiles, and dashboard interfaces.
         </BodyText>
         <div className="hero-actions">
-          <Button variant="primary" size="large" onClick={() => setShowModal(true)}>
+          <Button variant="primary" size="large" onClick={handleModalOpen}>
             Get Started
           </Button>
           <Button variant="outline" size="large">
@@ -524,10 +548,10 @@ const Showcase: React.FC = () => {
           all the components you need to build beautiful, consistent user interfaces.
         </BodyText>
         <div className="modal-actions">
-          <Button variant="primary" onClick={() => setShowModal(false)}>
+          <Button variant="primary" onClick={handleModalClose}>
             Get Started
           </Button>
-          <Button variant="outline" onClick={() => setShowModal(false)}>
+          <Button variant="outline" onClick={handleModalClose}>
             Learn More
           </Button>
         </div>

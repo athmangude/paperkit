@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaStar, FaCog } from 'react-icons/fa';
+import { usePageTracking, useTelemetry, useComponentDemoTelemetry } from '../hooks/useTelemetry';
 import { 
   Button, 
   Card, 
@@ -60,6 +61,11 @@ interface ComponentDoc {
 }
 
 const Documentation: React.FC = () => {
+  // Telemetry hooks
+  usePageTracking('documentation');
+  const { trackButtonClick, trackNavigation, trackComponentInteraction } = useTelemetry('documentation');
+  const { trackCodeCopyAction } = useComponentDemoTelemetry('documentation');
+
   const [activeComponent, setActiveComponent] = useState('button');
   const [copiedButton, setCopiedButton] = useState<string | null>(null);
 
@@ -1212,7 +1218,18 @@ const Documentation: React.FC = () => {
   const copyToClipboard = (text: string, buttonId: string) => {
     navigator.clipboard.writeText(text);
     setCopiedButton(buttonId);
+    trackCodeCopyAction(activeComponent, 'code_example', { buttonId, textLength: text.length });
     setTimeout(() => setCopiedButton(null), 3000);
+  };
+
+  const handleComponentSelect = (componentName: string) => {
+    setActiveComponent(componentName);
+    trackComponentInteraction('component_selector', 'select', { componentName });
+  };
+
+  const handleNavigationClick = (destination: string, buttonText: string) => {
+    trackButtonClick(buttonText);
+    trackNavigation(destination);
   };
 
   return (
@@ -1222,13 +1239,13 @@ const Documentation: React.FC = () => {
         navigationComponents={
           <div>
             <RouterLink to="/about">
-              <Button variant="outline">About</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/about', 'About Navigation')}>About</Button>
             </RouterLink>
             <RouterLink to="/documentation">
-              <Button variant="outline">Documentation</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/documentation', 'Documentation Navigation')}>Documentation</Button>
             </RouterLink>
             <RouterLink to="/showcase">
-              <Button variant="outline">Showcase</Button>
+              <Button variant="outline" onClick={() => handleNavigationClick('/showcase', 'Showcase Navigation')}>Showcase</Button>
             </RouterLink>
           </div>
         }
@@ -1246,7 +1263,7 @@ const Documentation: React.FC = () => {
               <ListItem
                 key={key}
                 title={components[key].name}
-                onClick={() => setActiveComponent(key)}
+                onClick={() => handleComponentSelect(key)}
                 selected={activeComponent === key}
               />
             ))}
