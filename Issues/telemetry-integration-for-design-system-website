@@ -1,0 +1,30 @@
+# Telemetry Integration for Design System Website
+
+The Protokit design system website consists of four main pages that would benefit from comprehensive telemetry integration: the landing page (App.tsx), About page, Showcase page, and Documentation page. Each page serves distinct purposes and contains various interactive components that would generate valuable user behavior data.
+
+Landing Page Telemetry Coverage: The landing page serves as the primary entry point and showcases the design system's capabilities through interactive component demonstrations. Telemetry should capture user engagement with the extensive component library including buttons, forms, modals, notifications, and interactive elements like sliders, toggles, and date pickers. This page would generate data on initial user impressions, component interaction patterns, and feature discovery rates. The landing page also contains navigation elements and call-to-action buttons that would provide insights into user flow and conversion intent.
+
+About, Showcase, and Documentation Page Telemetry: The About page focuses on brand storytelling and value proposition, while the Showcase page demonstrates real-world applications through dashboard interfaces, social media feeds, user profiles, and comprehensive form examples. The Documentation page provides interactive component examples with live code snippets and prop documentation. Telemetry integration should capture page-specific interactions including form submissions, code copying behavior, component testing interactions, and navigation patterns between different sections. The extensive use of interactive elements like tabs, accordions, pagination, and data tables in these pages would provide rich behavioral data on how users explore and engage with the design system's capabilities.
+
+Comprehensive Activity Tracking: Beyond basic page visits, the telemetry system should capture granular user interactions including mouse movements, hover states, click patterns, scroll behavior, form field interactions, and component state changes. This would include tracking interactions with the 30+ components showcased across all pages, user journey mapping through the design system exploration, and understanding which components generate the most interest or confusion. The telemetry should also monitor performance metrics, user session duration, and conversion funnels from initial landing to component adoption or documentation engagement.
+
+
+## Telemetry Integration Constraints: Protecting Component Integrity
+
+When integrating telemetry into the Protokit design system website, **do not add telemetry or instrumentation directly within the core component code (i.e., any code within `src/components/`)**. The core library components are shared and imported into consumer projects, including developer local environments. Adding telemetry to these components would send data from developer or private projects—violating privacy, polluting analytics, and creating non-production noise.
+
+**All telemetry must be handled exclusively in the website code**, specifically within the top-level page files (such as `App.tsx`, `About.tsx`, `Showcase.tsx`, and `Documentation.tsx`) or in wrappers/HOCs/hooks composed and used only within the website. Track user interactions with components by:
+
+- Instrumenting events in the page containers that use the components (e.g., button clicks in the showcase page),
+- Using telemetry-aware wrapper components in the website codebase,
+- Listening to React events at the page level,
+- Avoiding any import of telemetry clients, hooks, or code in files within `src/components/`.
+
+**Never modify component code for the sake of telemetry.** Component props and implementation must remain telemetry-agnostic.
+
+This constraint ensures that:
+
+- Developers using Protokit do not leak local usage to telemetry services,
+- Analytics includes only real website user behavior,
+- Component library remains trustworthy, open, and privacy-conscious.
+
