@@ -33,13 +33,32 @@ interface TelemetryProviderProps {
 }
 
 export const TelemetryProvider: React.FC<TelemetryProviderProps> = ({ children }) => {
+  const [isInitialized, setIsInitialized] = React.useState(false);
+
   useEffect(() => {
-    // Initialize telemetry service
-    telemetryService.initialize();
+    // Initialize telemetry service asynchronously
+    const initTelemetry = async () => {
+      try {
+        if (!telemetryConfig.enabled) {
+          console.log('Telemetry disabled on localhost');
+          setIsInitialized(true);
+          return;
+        }
+        
+        await telemetryService.initialize();
+        console.log('Telemetry initialized successfully');
+        setIsInitialized(true);
+      } catch (error) {
+        console.warn('Telemetry initialization failed:', error);
+        setIsInitialized(true); // Still render children even if telemetry fails
+      }
+    };
+
+    initTelemetry();
   }, []);
 
   const contextValue: TelemetryContextType = {
-    isEnabled: typeof window !== 'undefined' && window.location.hostname !== 'localhost',
+    isEnabled: isInitialized && typeof window !== 'undefined',
     trackPageView: telemetryService.trackPageView.bind(telemetryService),
     trackButtonClick: telemetryService.trackButtonClick.bind(telemetryService),
     trackFormSubmit: telemetryService.trackFormSubmit.bind(telemetryService),
