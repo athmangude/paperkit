@@ -9,7 +9,9 @@
 // Safe environment variable access for Vite
 const getEnvVar = (key: string): string => {
   if (typeof import.meta !== 'undefined' && import.meta.env) {
-    return import.meta.env[key] || '';
+    const value = import.meta.env[key] || '';
+    console.log(`Environment variable ${key}:`, value ? 'SET' : 'NOT SET');
+    return value;
   }
   return '';
 };
