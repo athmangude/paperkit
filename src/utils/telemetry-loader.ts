@@ -142,20 +142,37 @@ class TelemetryLoader {
    * Load all configured providers
    */
   public async loadAll(): Promise<void> {
+    console.log('loadAll() called');
+    console.log('Config in loader:', this.config);
+    
     const promises = [];
 
+    console.log('GA config:', this.config.googleAnalytics);
+    console.log('Amplitude config:', this.config.amplitude);
+    console.log('Hotjar config:', this.config.hotjar);
+
     if (this.config.googleAnalytics?.measurementId) {
+      console.log('Adding GA to promises');
       promises.push(this.loadGoogleAnalytics());
+    } else {
+      console.log('GA not configured - no measurement ID');
     }
 
     if (this.config.amplitude?.apiKey) {
+      console.log('Adding Amplitude to promises');
       promises.push(this.loadAmplitude());
+    } else {
+      console.log('Amplitude not configured - no API key');
     }
 
     if (this.config.hotjar?.siteId) {
+      console.log('Adding Hotjar to promises');
       promises.push(this.loadHotjar());
+    } else {
+      console.log('Hotjar not configured - no site ID');
     }
 
+    console.log('Promises to execute:', promises.length);
     await Promise.allSettled(promises);
   }
 
