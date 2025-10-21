@@ -89,6 +89,13 @@ class TelemetryService {
       return;
     }
     
+    // Additional check for development mode
+    if (typeof window !== 'undefined' && 
+        (window.location.hostname === 'localhost' || 
+         window.location.hostname.includes('127.0.0.1'))) {
+      return;
+    }
+    
     if (this.isInitialized) {
       return;
     }
@@ -119,6 +126,13 @@ class TelemetryService {
   public track(event: TelemetryEvent): void {
     
     if (!this.config.enabled) {
+      return;
+    }
+    
+    // Additional check for development mode
+    if (typeof window !== 'undefined' && 
+        (window.location.hostname === 'localhost' || 
+         window.location.hostname.includes('127.0.0.1'))) {
       return;
     }
     

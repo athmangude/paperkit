@@ -32,34 +32,34 @@ export const telemetryConfig = {
   providers: {
     googleAnalytics: {
       measurementId: getEnvVar('VITE_GA_MEASUREMENT_ID'),
-      enabled: !!getEnvVar('VITE_GA_MEASUREMENT_ID'),
+      enabled: isProduction() && !!getEnvVar('VITE_GA_MEASUREMENT_ID'),
     },
     amplitude: {
       apiKey: getEnvVar('VITE_AMPLITUDE_API_KEY'),
-      enabled: !!getEnvVar('VITE_AMPLITUDE_API_KEY'),
+      enabled: isProduction() && !!getEnvVar('VITE_AMPLITUDE_API_KEY'),
     },
     hotjar: {
       siteId: getEnvVar('VITE_HOTJAR_SITE_ID'),
-      enabled: !!getEnvVar('VITE_HOTJAR_SITE_ID'),
+      enabled: isProduction() && !!getEnvVar('VITE_HOTJAR_SITE_ID'),
     },
   },
   
   // Event tracking settings
   tracking: {
     // Track scroll depth milestones
-    scrollMilestones: [25, 50, 75, 100],
+    scrollMilestones: isProduction() ? [25, 50, 75, 100] : [],
     
     // Track user interactions
-    trackInteractions: true,
+    trackInteractions: isProduction(),
     
     // Track form submissions
-    trackForms: true,
+    trackForms: isProduction(),
     
     // Track code copying
-    trackCodeCopy: true,
+    trackCodeCopy: isProduction(),
     
     // Track component interactions
-    trackComponents: true,
+    trackComponents: isProduction(),
   },
   
   // Privacy settings
