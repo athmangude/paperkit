@@ -37,16 +37,16 @@ jobs:
         echo "VITE_AMPLITUDE_API_KEY: ${VITE_AMPLITUDE_API_KEY:+SET}"
         echo "VITE_HOTJAR_SITE_ID: ${VITE_HOTJAR_SITE_ID:+SET}"
       env:
-        VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
-        VITE_AMPLITUDE_API_KEY: ${{ secrets.VITE_AMPLITUDE_API_KEY }}
-        VITE_HOTJAR_SITE_ID: ${{ secrets.VITE_HOTJAR_SITE_ID }}
+        VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
+        VITE_AMPLITUDE_API_KEY: ${{ vars.VITE_AMPLITUDE_API_KEY }}
+        VITE_HOTJAR_SITE_ID: ${{ vars.VITE_HOTJAR_SITE_ID }}
       
     - name: Build documentation site
       run: npm run build:docs
       env:
-        VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
-        VITE_AMPLITUDE_API_KEY: ${{ secrets.VITE_AMPLITUDE_API_KEY }}
-        VITE_HOTJAR_SITE_ID: ${{ secrets.VITE_HOTJAR_SITE_ID }}
+        VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
+        VITE_AMPLITUDE_API_KEY: ${{ vars.VITE_AMPLITUDE_API_KEY }}
+        VITE_HOTJAR_SITE_ID: ${{ vars.VITE_HOTJAR_SITE_ID }}
       
     - name: Setup Pages
       uses: actions/configure-pages@v4
