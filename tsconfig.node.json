@@ -21,5 +21,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["test-package.js"]
+  "include": ["build-utils.ts"]
 }
