@@ -39,6 +39,12 @@ export const TelemetryProvider: React.FC<TelemetryProviderProps> = ({ children }
     // Initialize telemetry service asynchronously
     const initTelemetry = async () => {
       try {
+        if (!telemetryConfig.enabled) {
+          console.log('Telemetry disabled on localhost');
+          setIsInitialized(true);
+          return;
+        }
+        
         await telemetryService.initialize();
         console.log('Telemetry initialized successfully');
         setIsInitialized(true);

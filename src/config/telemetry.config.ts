@@ -22,8 +22,8 @@ const isProduction = (): boolean => {
 };
 
 export const telemetryConfig = {
-  // Enable telemetry in both development and production for testing
-  enabled: true,
+  // Disable telemetry on localhost, enable only in production
+  enabled: isProduction(),
   
   // Environment
   environment: isProduction() ? 'production' as const : 'development' as const,

@@ -85,7 +85,7 @@ class TelemetryService {
     console.log('Config:', this.config);
     
     if (!this.config.enabled) {
-      console.log('Telemetry is disabled');
+      console.log('Telemetry is disabled on localhost');
       return;
     }
     
@@ -126,7 +126,7 @@ class TelemetryService {
     console.log('Tracking event:', event);
     
     if (!this.config.enabled) {
-      console.log('Telemetry is disabled, not tracking event');
+      console.log('Telemetry is disabled on localhost, not tracking event');
       return;
     }
     
