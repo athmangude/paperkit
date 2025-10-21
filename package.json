@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:docs": "tsc -b && vite build --base=/protokit-ui/",
+    "build": "tsc -b tsconfig.app.json && vite build",
+    "build:docs": "tsc -b tsconfig.app.json && vite build --base=/protokit-ui/",
     "build:components": "cd src/components && npm install && npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
