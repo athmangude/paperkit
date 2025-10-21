@@ -6,7 +6,7 @@ import App from './App.tsx'
 import Documentation from './pages/Documentation.tsx'
 import Showcase from './pages/Showcase.tsx'
 import About from './pages/About.tsx'
-import { TelemetryProvider } from './components/telemetry/TelemetryProvider'
+import { TelemetryProvider } from './telemetry/TelemetryProvider'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

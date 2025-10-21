@@ -7,7 +7,7 @@
  */
 
 import React, { createContext, useContext, useEffect, ReactNode } from 'react';
-import { telemetryService } from '../../utils/telemetry';
+import { telemetryService } from '../utils/telemetry';
 
 interface TelemetryContextType {
   isEnabled: boolean;

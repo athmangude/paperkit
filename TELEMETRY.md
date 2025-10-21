@@ -51,7 +51,7 @@ src/
 │   ├── button/
 │   ├── card/
 │   └── ...
-├── components/telemetry/ # Website-only telemetry components
+├── telemetry/           # Website-only telemetry components
 │   ├── TelemetryProvider.tsx
 │   └── TelemetryWrapper.tsx
 ├── hooks/               # Website-only telemetry hooks
@@ -174,8 +174,12 @@ const MyForm = () => {
 ### Telemetry Isolation Check
 ```bash
 # Verify no telemetry imports in component library
-grep -r "telemetry" src/components/ --exclude-dir=telemetry
+grep -r "telemetry" src/components/
 # Should return no results
+
+# Verify telemetry is properly isolated in its own directory
+ls src/telemetry/
+# Should show TelemetryProvider.tsx and TelemetryWrapper.tsx
 ```
 
 ### Provider Validation

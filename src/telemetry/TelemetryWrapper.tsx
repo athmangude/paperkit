@@ -7,7 +7,7 @@
  */
 
 import React, { ReactNode, MouseEvent } from 'react';
-import { useTelemetry } from '../../hooks/useTelemetry';
+import { useTelemetry } from '../hooks/useTelemetry';
 
 interface TelemetryButtonProps {
   children: ReactNode;
