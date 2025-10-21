@@ -64,7 +64,28 @@ class TelemetryService {
 
   constructor(config: TelemetryConfig = telemetryConfig) {
     this.config = config;
+    
+    console.log('TelemetryService constructor - config:', config);
+    console.log('GA enabled:', config.providers.googleAnalytics?.enabled);
+    console.log('GA measurementId:', config.providers.googleAnalytics?.measurementId);
+    console.log('Amplitude enabled:', config.providers.amplitude?.enabled);
+    console.log('Amplitude apiKey:', config.providers.amplitude?.apiKey);
+    console.log('Hotjar enabled:', config.providers.hotjar?.enabled);
+    console.log('Hotjar siteId:', config.providers.hotjar?.siteId);
+    
     this.loader = new TelemetryLoader({
+      googleAnalytics: config.providers.googleAnalytics?.enabled ? {
+        measurementId: config.providers.googleAnalytics.measurementId
+      } : undefined,
+      amplitude: config.providers.amplitude?.enabled ? {
+        apiKey: config.providers.amplitude.apiKey
+      } : undefined,
+      hotjar: config.providers.hotjar?.enabled ? {
+        siteId: config.providers.hotjar.siteId
+      } : undefined,
+    });
+    
+    console.log('TelemetryLoader created with config:', {
       googleAnalytics: config.providers.googleAnalytics?.enabled ? {
         measurementId: config.providers.googleAnalytics.measurementId
       } : undefined,
