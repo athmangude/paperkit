@@ -32,29 +32,8 @@
   </div>
   
   <script>
-    // List of valid React Router routes
-    const validRoutes = ['', 'showcase', 'documentation', 'about'];
-    
-    // Capture the original path
-    const path = window.location.pathname;
-    const basePath = '/protokit-ui/';
-    const relativePath = path.replace(basePath, '');
-    
-    // Check if this might be a valid React Router route
-    const isLikelyValidRoute = validRoutes.includes(relativePath) || 
-                              relativePath.startsWith('showcase/') ||
-                              relativePath.startsWith('documentation/') ||
-                              relativePath.startsWith('about/');
-    
-    if (isLikelyValidRoute) {
-      // Redirect to root with original path info for React Router to handle
-      const redirectUrl = basePath + '?redirected=true&original=' + encodeURIComponent(relativePath);
-      window.location.href = redirectUrl;
-    } else {
-      // For truly invalid routes, redirect to root and let React Router show 404
-      const redirectUrl = basePath + '?redirected=true&original=' + encodeURIComponent(relativePath) + '&invalid=true';
-      window.location.href = redirectUrl;
-    }
+    // Simply redirect to the root and let React Router handle everything
+    window.location.href = '/protokit-ui/';
   </script>
 </body>
 </html>

@@ -18,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/showcase" element={<Showcase />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/about" element={<About />} />
+          <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

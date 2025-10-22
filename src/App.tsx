@@ -44,6 +44,30 @@ import {
 import './App.css';
 
 function App() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  
+  // Handle redirects from 404.html
+  useEffect(() => {
+    const redirected = searchParams.get('redirected');
+    const original = searchParams.get('original');
+    const invalid = searchParams.get('invalid');
+    
+    if (redirected === 'true' && original) {
+      // Clear the URL parameters to prevent infinite loops
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, '', cleanUrl);
+      
+      if (invalid === 'true') {
+        // Invalid route - navigate to 404 page
+        navigate('/404', { replace: true });
+      } else {
+        // Valid route - navigate to the original path
+        navigate(`/${original}`, { replace: true });
+      }
+    }
+  }, [searchParams, navigate]);
+
   // Telemetry hooks
   usePageTracking('landing');
   const { trackButtonClick, trackModalOpen, trackModalClose, trackTabSwitch, trackComponentInteraction } = useTelemetry('landing');
