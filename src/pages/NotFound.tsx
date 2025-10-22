@@ -16,15 +16,17 @@ function NotFound() {
     // Check if this is a redirected 404
     const redirected = searchParams.get('redirected');
     const original = searchParams.get('original');
+    const invalid = searchParams.get('invalid');
     
     if (redirected === 'true' && original) {
       setIsRedirected(true);
       setOriginalPath(original);
       
       // Track the 404 event
-      trackComponentInteraction('404', 'redirected_404', { 
+      trackComponentInteraction('404', invalid === 'true' ? 'invalid_route_404' : 'redirected_404', { 
         originalPath: original,
-        currentPath: window.location.pathname 
+        currentPath: window.location.pathname,
+        isInvalid: invalid === 'true'
       });
     }
   }, [searchParams, trackComponentInteraction]);
@@ -51,7 +53,7 @@ function NotFound() {
             <BodyText className="not-found-message">
               {isRedirected && originalPath ? (
                 <>
-                  The page <strong>"{originalPath}"</strong> doesn't exist, but we've brought you here safely.
+                  The page <strong>"{originalPath}"</strong> doesn't exist.
                 </>
               ) : (
                 <>
