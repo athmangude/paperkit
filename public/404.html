@@ -32,8 +32,15 @@
   </div>
   
   <script>
-    // Simply redirect to the root and let React Router handle everything
-    window.location.href = '/protokit-ui/';
+    // This 404.html is only for truly invalid routes
+    // Valid routes now have their own physical HTML files
+    // Redirect to root with invalid route flag
+    const path = window.location.pathname;
+    const basePath = '/protokit-ui/';
+    const relativePath = path.replace(basePath, '');
+    
+    // Redirect to React app with invalid route information
+    window.location.href = basePath + '?invalid=true&original=' + encodeURIComponent(relativePath);
   </script>
 </body>
 </html>
