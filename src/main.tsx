@@ -6,6 +6,7 @@ import App from './App.tsx'
 import Documentation from './pages/Documentation.tsx'
 import Showcase from './pages/Showcase.tsx'
 import About from './pages/About.tsx'
+import NotFound from './pages/NotFound.tsx'
 import { TelemetryProvider } from './telemetry/TelemetryProvider'
 
 createRoot(document.getElementById('root')!).render(
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/showcase" element={<Showcase />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TelemetryProvider>
